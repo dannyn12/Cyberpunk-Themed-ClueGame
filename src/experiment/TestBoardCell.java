@@ -23,7 +23,7 @@ public class TestBoardCell {
 		adjacencyList.add(cell);
 	}
 	
-	Set<TestBoardCell> getAdjList() {
+	public Set<TestBoardCell> getAdjList() {
 		return adjacencyList;
 	}
 	

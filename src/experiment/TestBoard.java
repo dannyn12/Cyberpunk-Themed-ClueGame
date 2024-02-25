@@ -14,7 +14,7 @@ public class TestBoard {
 		
 	}
 	
-	public TestBoardCell getCall(int row, int col) {
+	public TestBoardCell getCell(int row, int col) {
 		return grid[row][col];
 		
 	}
