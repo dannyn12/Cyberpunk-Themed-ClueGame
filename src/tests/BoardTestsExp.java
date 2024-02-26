@@ -1,3 +1,8 @@
+/* BoardTestsExp is a class with tests methods which contains adjacency test and tests for calcTarget.
+ * Danny Nguyen and Jordan Lam
+ * 2/26/24
+ */
+
 package tests;
 
 import java.util.Set;
@@ -100,13 +105,13 @@ public class BoardTestsExp {
 		board.calcTargets(rollOf4, 4);
 		Set<TestBoardCell> targets4 = board.getTargets();
 		Assert.assertEquals(7, targets4.size());
-		Assert.assertTrue(targets3.contains(board.getCell(1, 3)));
-		Assert.assertTrue(targets3.contains(board.getCell(2, 2)));
-		Assert.assertTrue(targets3.contains(board.getCell(3, 1)));
-		Assert.assertTrue(targets3.contains(board.getCell(1, 3)));
-		Assert.assertTrue(targets3.contains(board.getCell(1, 1)));
-		Assert.assertTrue(targets3.contains(board.getCell(0, 2)));
-		Assert.assertTrue(targets3.contains(board.getCell(1, 3)));
+		Assert.assertTrue(targets4.contains(board.getCell(1, 3)));
+		Assert.assertTrue(targets4.contains(board.getCell(2, 2)));
+		Assert.assertTrue(targets4.contains(board.getCell(3, 1)));
+		Assert.assertTrue(targets4.contains(board.getCell(1, 3)));
+		Assert.assertTrue(targets4.contains(board.getCell(1, 1)));
+		Assert.assertTrue(targets4.contains(board.getCell(0, 2)));
+		Assert.assertTrue(targets4.contains(board.getCell(1, 3)));
 		
 		// test when roll is 5
 		TestBoardCell rollOf5 = board.getCell(0, 0);
@@ -126,7 +131,7 @@ public class BoardTestsExp {
 		TestBoardCell rollOf6 = board.getCell(0, 0);
 		board.calcTargets(rollOf6, 6);
 		Set<TestBoardCell> targets6 = board.getTargets();
-		Assert.assertEquals(9, targets5.size());
+		Assert.assertEquals(9, targets6.size());
 		Assert.assertTrue(targets6.contains(board.getCell(3, 3)));
 		Assert.assertTrue(targets6.contains(board.getCell(2, 2)));
 		Assert.assertTrue(targets6.contains(board.getCell(1, 1)));
