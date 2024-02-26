@@ -1,10 +1,9 @@
 package tests;
 
 import java.util.Set;
-
 import org.junit.Assert;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
 
 import experiment.TestBoard;
 import experiment.TestBoardCell;
@@ -14,7 +13,7 @@ public class BoardTestsExp {
 	
 	@BeforeEach
 	public void setUp() {
-		board = new TestBoard();
+		board = new TestBoard(4,4);
 	}
 	
 	/*
