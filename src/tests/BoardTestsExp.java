@@ -210,7 +210,6 @@ public class BoardTestsExp {
 		Assert.assertTrue(targets.contains(board.getCell(3,3))); 
 		board.getCell(0, 2).setOccupied(false);                   
 		board.getCell(1, 2).setIsRoom(false);    
-		
 		// test case where player blocks path and the only route is a room
 		board.getCell(0,1).setIsRoom(true);
 		board.getCell(1,0).setOccupied(true);
