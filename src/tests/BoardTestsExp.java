@@ -143,15 +143,26 @@ public class BoardTestsExp {
 	 */
 	@Test
 	public void testTargetsRoom() {
-		board.getCell(0, 2).setOccupied(true);
-		board.getCell(1, 2).setIsRoom(true);
-		TestBoardCell cell = board.getCell(0, 3);
-		board.calcTargets(cell, 3);
+		// test case where 1 room can be entered 
+		board.getCell(1, 0).setIsRoom(true);
+		TestBoardCell cell = board.getCell(0, 0);
+		board.calcTargets(cell, 2);
 		Set<TestBoardCell> targets = board.getTargets();
 		Assert.assertEquals(3, targets.size());
-		Assert.assertTrue(targets.contains(board.getCell(1,2)));
-		Assert.assertTrue(targets.contains(board.getCell(2,2)));
-		Assert.assertTrue(targets.contains(board.getCell(3,3)));
+		Assert.assertTrue(targets.contains(board.getCell(1,0))); 
+		Assert.assertTrue(targets.contains(board.getCell(1,1))); 
+		Assert.assertTrue(targets.contains(board.getCell(0,2)));
+		board.getCell(1, 0).setIsRoom(false);
+		// test case where only move would be to enter one of two rooms
+		board.getCell(1, 0).setIsRoom(true);
+		board.getCell(0, 1).setIsRoom(true);
+		TestBoardCell cell2 = board.getCell(0, 0);
+		board.calcTargets(cell2, 5);
+		Set<TestBoardCell> targets2 = board.getTargets();
+		Assert.assertEquals(2, targets2.size());
+		Assert.assertTrue(targets2.contains(board.getCell(1,0))); 
+		Assert.assertTrue(targets2.contains(board.getCell(1,1))); 
+		
 	}
 	
 	/*
@@ -159,7 +170,22 @@ public class BoardTestsExp {
 	 */
 	@Test
 	public void testTargetsOccupied() {
-		
+		// test case where 1 player blocks a cell the user could've went to
+		board.getCell(2, 0).setOccupied(true);
+		TestBoardCell cell = board.getCell(0, 0);
+		board.calcTargets(cell, 2);
+		Set<TestBoardCell> targets = board.getTargets();
+		Assert.assertEquals(2, targets.size());
+		Assert.assertTrue(targets.contains(board.getCell(0,2))); 
+		Assert.assertTrue(targets.contains(board.getCell(1,1))); 
+		board.getCell(2, 0).setOccupied(false);
+		// test case where the player is trapped between others so they aren't able to move
+		board.getCell(1, 0).setOccupied(true);
+		board.getCell(0, 1).setOccupied(true);
+		TestBoardCell cell2 = board.getCell(0, 0);
+		board.calcTargets(cell2, 3);
+		Set<TestBoardCell> targets2 = board.getTargets();
+		Assert.assertEquals(0, targets2.size());
 	}
 	
 	/*
@@ -167,8 +193,34 @@ public class BoardTestsExp {
 	 */
 	@Test
 	public void testTargetsMixed() {
+		// test case where player blocks path but there is a room                             
+		board.getCell(0, 2).setOccupied(true);                   
+		board.getCell(1, 2).setIsRoom(true);                     
+		TestBoardCell cell = board.getCell(0, 3);                
+		board.calcTargets(cell, 3);                              
+		Set<TestBoardCell> targets = board.getTargets();         
+		Assert.assertEquals(3, targets.size());                  
+		Assert.assertTrue(targets.contains(board.getCell(1,2))); 
+		Assert.assertTrue(targets.contains(board.getCell(2,2))); 
+		Assert.assertTrue(targets.contains(board.getCell(3,3))); 
+		board.getCell(0, 2).setOccupied(false);                   
+		board.getCell(1, 2).setIsRoom(false);    
 		
-	}
-	
+		// test case where player blocks path and the only route is a room
+		board.getCell(0,1).setIsRoom(true);
+		board.getCell(1,0).setOccupied(true);
+		TestBoardCell cell2 = board.getCell(0, 0);
+		board.calcTargets(cell2, 3);
+		Set<TestBoardCell> targets2 = board.getTargets();
+		Assert.assertEquals(3, targets2);
+		Assert.assertTrue(targets.contains(board.getCell(0, 1)));
+	}   
 	
 }
+	
+	
+	
+	
+	
+	
+	
