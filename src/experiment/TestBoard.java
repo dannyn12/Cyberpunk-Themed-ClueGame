@@ -11,6 +11,7 @@ import java.util.Set;
 public class TestBoard {
 	private TestBoardCell[][] grid;
 	private Set<TestBoardCell> targets;
+	private Set<TestBoardCell> visited;
 	
 	public TestBoard(int rows, int columns) {
 		this.grid = new TestBoardCell[rows][columns];

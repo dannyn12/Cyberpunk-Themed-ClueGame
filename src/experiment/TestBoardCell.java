@@ -9,8 +9,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class TestBoardCell {
-	private int column;
-	private int row;
+	private int column, row;
 	private Set<TestBoardCell> adjacencyList;
 	private boolean isRoom;
 	private boolean isOccupied;
