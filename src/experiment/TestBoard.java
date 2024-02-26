@@ -1,5 +1,6 @@
-/*
- * 
+/* TestBoard contains the board. It contains methods so that the tests work but do not pass.
+ * Danny Nguyen and Jordan Lam
+ * 2/26/24
  */
 
 package experiment;
@@ -21,15 +22,18 @@ public class TestBoard {
 		this.targets = new HashSet<>();
 	}
 	
+	// calculates legal targets for a move from startCell of length pathlength
 	public void calcTargets(TestBoardCell startCell, int pathlength) {
 		
 	}
 	
+	// returns the cell from the board at row, col.
 	public TestBoardCell getCell(int row, int col) {
 		return grid[row][col];
 		
 	}
 	
+	// gets the targets last created by calcTargets()
 	public Set<TestBoardCell> getTargets() {
 		return targets;
 	}

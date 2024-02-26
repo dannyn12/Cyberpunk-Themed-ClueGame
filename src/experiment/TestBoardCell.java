@@ -1,3 +1,8 @@
+/* TestBoardCell class represents one cell in the grid. 
+ * Danny Nguyen and Jordan Lam
+ * 2/26/24
+ */
+
 package experiment;
 
 import java.util.HashSet;
@@ -19,6 +24,7 @@ public class TestBoardCell {
 		this.isOccupied = false;
 	}
 	
+	//  adds a cell to this cells adjacency list
 	public void addAdjacency(TestBoardCell cell) {
 		adjacencyList.add(cell);
 	}
@@ -30,7 +36,7 @@ public class TestBoardCell {
 	public void setIsRoom(boolean isRoom) {
 		this.isRoom = isRoom;
 	}
-
+	
 	public boolean isRoom() {
 		return isRoom;
 	}
