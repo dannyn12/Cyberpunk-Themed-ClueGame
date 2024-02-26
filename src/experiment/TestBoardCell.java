@@ -27,7 +27,7 @@ public class TestBoardCell {
 		return adjacencyList;
 	}
 	
-	public void setRoom(boolean isRoom) {
+	public void setIsRoom(boolean isRoom) {
 		this.isRoom = isRoom;
 	}
 

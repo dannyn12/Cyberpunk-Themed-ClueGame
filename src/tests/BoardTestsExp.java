@@ -139,8 +139,37 @@ public class BoardTestsExp {
 		Assert.assertTrue(targets6.contains(board.getCell(0,2)));
 	}
 	
+	/*
+	 * Test for targets when a room in involved
+	 */
+	@Test
+	public void testTargetsRoom() {
+		board.getCell(0, 2).setOccupied(true);
+		board.getCell(1, 2).setIsRoom(true);
+		TestBoardCell cell = board.getCell(0, 3);
+		board.calcTargets(cell, 3);
+		Set<TestBoardCell> targets = board.getTargets();
+		Assert.assertEquals(3, targets.size());
+		Assert.assertTrue(targets.contains(board.getCell(1,2)));
+		Assert.assertTrue(targets.contains(board.getCell(2,2)));
+		Assert.assertTrue(targets.contains(board.getCell(3,3)));
+	}
 	
+	/*
+	 * Test for targets when an interfering occupied space is involved
+	 */
+	@Test
+	public void testTargetsOccupied() {
+		
+	}
 	
+	/*
+	 * Test that includes room and occupied cells
+	 */
+	@Test
+	public void testTargetsMixed() {
+		
+	}
 	
 	
 }
