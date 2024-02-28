@@ -1,4 +1,4 @@
-/* TestBoard contains the board. It contains methods so that the tests work but do not pass.
+/* TestBoard contains the board and calculates the adjacency for each cell.
  * Danny Nguyen and Jordan Lam
  * 2/26/24
  */
@@ -8,11 +8,15 @@ package experiment;
 import java.util.HashSet;
 import java.util.Set;
 
+// 
 public class TestBoard {
 	private TestBoardCell[][] grid;
 	private Set<TestBoardCell> targets;
 	private Set<TestBoardCell> visited;
 	
+	/*
+	 * Calculates adjacency of a each cell in the grid.
+	 */
 	private void calculateAdjacencies(int rows, int columns) {
 		for (int row = 0; row < rows; row++) { // going to each cell 
 			for (int column = 0; column < columns; column++) {
@@ -46,7 +50,9 @@ public class TestBoard {
 		this.calculateAdjacencies(rows, columns);
 	}
 	
-	// calculates legal targets for a move from startCell of length pathlength
+	/*
+	 * Calculates legal targets for a move from startCell of length pathlength
+	 */
 	public void calcTargets(TestBoardCell startCell, int pathlength) {
 		// put starting cell visited
 		visited.add(startCell);
@@ -78,13 +84,17 @@ public class TestBoard {
 		}
 	}
 	
-	// returns the cell from the board at row, col.
+	/*
+	 * Returns the cell from the board at row, col.
+	 */
 	public TestBoardCell getCell(int row, int col) {
 		return grid[row][col];
 		
 	}
 	
-	// gets the targets last created by calcTargets()
+	/*
+	 * Returns the cell from the board at row, col.
+	 */
 	public Set<TestBoardCell> getTargets() {
 		return targets;
 	}
