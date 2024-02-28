@@ -28,6 +28,7 @@ public class TestBoardCell {
 		adjacencyList.add(cell);
 	}
 	
+	
 	public Set<TestBoardCell> getAdjList() {
 		return adjacencyList;
 	}
