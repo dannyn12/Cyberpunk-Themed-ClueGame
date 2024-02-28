@@ -78,6 +78,7 @@ public class BoardTestsExp {
 		Assert.assertEquals(2, targets.size());
 		Assert.assertTrue(targets.contains(board.getCell(0, 1)));
 		Assert.assertTrue(targets.contains(board.getCell(1, 0)));
+		board.getTargets().clear();
 		
 		// test when roll is 2
 		TestBoardCell rollOf2 = board.getCell(0, 0);
@@ -87,6 +88,7 @@ public class BoardTestsExp {
 		Assert.assertTrue(targets2.contains(board.getCell(0, 2)));
 		Assert.assertTrue(targets2.contains(board.getCell(2, 0)));
 		Assert.assertTrue(targets2.contains(board.getCell(1, 1)));
+		board.getTargets().clear();
 		
 		// test when roll is 3
 		TestBoardCell rollOf3 = board.getCell(0, 0);
@@ -99,19 +101,20 @@ public class BoardTestsExp {
 		Assert.assertTrue(targets3.contains(board.getCell(1, 2)));
 		Assert.assertTrue(targets3.contains(board.getCell(0, 3)));
 		Assert.assertTrue(targets3.contains(board.getCell(1, 0)));	
+		board.getTargets().clear();
 		
 		// test when roll is 4
 		TestBoardCell rollOf4 = board.getCell(0, 0);
 		board.calcTargets(rollOf4, 4);
 		Set<TestBoardCell> targets4 = board.getTargets();
-		Assert.assertEquals(7, targets4.size());
-		Assert.assertTrue(targets4.contains(board.getCell(1, 3)));
+		Assert.assertEquals(6, targets4.size());
 		Assert.assertTrue(targets4.contains(board.getCell(2, 2)));
 		Assert.assertTrue(targets4.contains(board.getCell(3, 1)));
 		Assert.assertTrue(targets4.contains(board.getCell(1, 3)));
 		Assert.assertTrue(targets4.contains(board.getCell(1, 1)));
 		Assert.assertTrue(targets4.contains(board.getCell(0, 2)));
-		Assert.assertTrue(targets4.contains(board.getCell(1, 3)));
+		Assert.assertTrue(targets4.contains(board.getCell(2, 0)));
+		board.getTargets().clear();
 		
 		// test when roll is 5
 		TestBoardCell rollOf5 = board.getCell(0, 0);
@@ -126,21 +129,21 @@ public class BoardTestsExp {
 		Assert.assertTrue(targets5.contains(board.getCell(0,1)));
 		Assert.assertTrue(targets5.contains(board.getCell(1,0)));
 		Assert.assertTrue(targets5.contains(board.getCell(1,0)));
+		board.getTargets().clear();
 		
 		// test when roll is 6
 		TestBoardCell rollOf6 = board.getCell(0, 0);
 		board.calcTargets(rollOf6, 6);
 		Set<TestBoardCell> targets6 = board.getTargets();
-		Assert.assertEquals(9, targets6.size());
+		Assert.assertEquals(7, targets6.size());
 		Assert.assertTrue(targets6.contains(board.getCell(3, 3)));
 		Assert.assertTrue(targets6.contains(board.getCell(2, 2)));
 		Assert.assertTrue(targets6.contains(board.getCell(1, 1)));
 		Assert.assertTrue(targets6.contains(board.getCell(3, 1)));
 		Assert.assertTrue(targets6.contains(board.getCell(2, 0)));
 		Assert.assertTrue(targets6.contains(board.getCell(1, 3)));
-		Assert.assertTrue(targets6.contains(board.getCell(3,0)));
 		Assert.assertTrue(targets6.contains(board.getCell(0,2)));
-		Assert.assertTrue(targets6.contains(board.getCell(0,2)));
+		board.getTargets().clear();
 	}
 	
 	/*
@@ -158,6 +161,7 @@ public class BoardTestsExp {
 		Assert.assertTrue(targets.contains(board.getCell(1,1))); 
 		Assert.assertTrue(targets.contains(board.getCell(0,2)));
 		board.getCell(1, 0).setIsRoom(false);
+		board.getTargets().clear();
 		// test case where only move would be to enter one of two rooms
 		board.getCell(1, 0).setIsRoom(true);
 		board.getCell(0, 1).setIsRoom(true);
@@ -166,7 +170,8 @@ public class BoardTestsExp {
 		Set<TestBoardCell> targets2 = board.getTargets();
 		Assert.assertEquals(2, targets2.size());
 		Assert.assertTrue(targets2.contains(board.getCell(1,0))); 
-		Assert.assertTrue(targets2.contains(board.getCell(0,1))); 
+		Assert.assertTrue(targets2.contains(board.getCell(0,1)));
+		board.getTargets().clear();
 		
 	}
 	
@@ -184,6 +189,7 @@ public class BoardTestsExp {
 		Assert.assertTrue(targets.contains(board.getCell(0,2))); 
 		Assert.assertTrue(targets.contains(board.getCell(1,1))); 
 		board.getCell(2, 0).setOccupied(false);
+		board.getTargets().clear();
 		// test case where the player is trapped between others so they aren't able to move
 		board.getCell(1, 0).setOccupied(true);
 		board.getCell(0, 1).setOccupied(true);
@@ -191,6 +197,7 @@ public class BoardTestsExp {
 		board.calcTargets(cell2, 3);
 		Set<TestBoardCell> targets2 = board.getTargets();
 		Assert.assertEquals(0, targets2.size());
+		board.getTargets().clear();
 	}
 	
 	/*
@@ -209,15 +216,17 @@ public class BoardTestsExp {
 		Assert.assertTrue(targets.contains(board.getCell(2,2))); 
 		Assert.assertTrue(targets.contains(board.getCell(3,3))); 
 		board.getCell(0, 2).setOccupied(false);                   
-		board.getCell(1, 2).setIsRoom(false);    
+		board.getCell(1, 2).setIsRoom(false);
+		board.getTargets().clear();
 		// test case where player blocks path and the only route is a room
 		board.getCell(0,1).setIsRoom(true);
 		board.getCell(1,0).setOccupied(true);
 		TestBoardCell cell2 = board.getCell(0, 0);
 		board.calcTargets(cell2, 3);
 		Set<TestBoardCell> targets2 = board.getTargets();
-		Assert.assertEquals(3, targets2);
-		Assert.assertTrue(targets.contains(board.getCell(0, 1)));
+		Assert.assertEquals(1, targets2.size());
+		Assert.assertTrue(targets2.contains(board.getCell(0, 1)));
+		board.getTargets().clear();
 	}   
 	
 }

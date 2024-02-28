@@ -23,10 +23,10 @@ public class TestBoard {
 				if ((column - 1) >= 0) { // left neighbor
 					cell.addAdjacency(grid[row][column-1]);
 				}
-				if ((row + 1) <= rows) { // below neighbor
+				if ((row + 1) < rows) { // below neighbor
 					cell.addAdjacency(grid[row+1][column]);
 				}
-				if ((column + 1) <= columns) { // right neighbor
+				if ((column + 1) < columns) { // right neighbor
 					cell.addAdjacency(grid[row][column+1]);
 				}
 				
@@ -42,12 +42,40 @@ public class TestBoard {
 			}
 		}
 		this.targets = new HashSet<>();
+		this.visited = new HashSet<>();
 		this.calculateAdjacencies(rows, columns);
 	}
 	
 	// calculates legal targets for a move from startCell of length pathlength
 	public void calcTargets(TestBoardCell startCell, int pathlength) {
-		
+		// put starting cell visited
+		visited.add(startCell);
+		// loop through the start cells adjacency list
+		for (TestBoardCell adjCell: startCell.getAdjList()) {
+			// if it is visited continue
+			if (visited.contains(adjCell) || adjCell.isOccupied() == true) {
+				continue;
+			}
+			// add cell to visited if not
+			visited.add(adjCell);
+			
+			// if pathlength is 1 or there is a room it is a target
+			if (pathlength == 1 || adjCell.isRoom() == true) {
+				// if cell is occupied it is not
+				if (adjCell.isOccupied() == false) {
+					targets.add(adjCell);
+				}
+				
+			}
+			// go next adjCell cell
+			else {
+				calcTargets(adjCell, pathlength - 1);
+			}
+			
+			// romove adjCell from visited set
+			visited.remove(adjCell);
+			
+		}
 	}
 	
 	// returns the cell from the board at row, col.
