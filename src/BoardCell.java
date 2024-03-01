@@ -28,8 +28,8 @@ public class BoardCell {
 	}
 	
 	//  adds a cell to this cells adjacency list
-	public void addAdjacency(BoardCell cell) {
-		adjList.add(cell);
+	public void addAdj(BoardCell adj) {
+		adjList.add(adj);
 	}
 	
 	
