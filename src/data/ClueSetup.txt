@@ -1,0 +1,13 @@
+// Rooms and room cards
+Room, Neon Alley, A
+Room, Cybernetics Clinic, C
+Room, Corporate Tower, T
+Room, Cyberspace Nexus, N
+Room, Data Core, D
+Room, Slum District, S
+Room, Quantum Laboratory, Q
+Room, Underground Bunker, U
+Room, Techno Junkyard, J
+// other spaces on board
+Space, Unused, X
+Space, Walkway, W
