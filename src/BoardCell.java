@@ -6,30 +6,35 @@
 
 import java.util.HashSet;
 import java.util.Set;
-
+// todo
 public class BoardCell {
-	private int column, row;
-	private Set<BoardCell> adjacencyList;
+	private int col, row;
+	private Set<BoardCell> adjList;
 	private boolean isRoom;
 	private boolean isOccupied;
+	private char inital;
+	private DoorDirection DoorDirection;
+	private boolean roomLabel;
+	private boolean roomCenter;
+	private char secretPassage;
 	
-	public BoardCell(int column, int row) {
+	public BoardCell(int col, int row) {
 		super();
-		this.column = column;
+		this.col = col;
 		this.row = row;
-		this.adjacencyList = new HashSet<>();
+		this.adjList = new HashSet<>();
 		this.isRoom = false;
 		this.isOccupied = false;
 	}
 	
 	//  adds a cell to this cells adjacency list
 	public void addAdjacency(BoardCell cell) {
-		adjacencyList.add(cell);
+		adjList.add(cell);
 	}
 	
 	
 	public Set<BoardCell> getAdjList() {
-		return adjacencyList;
+		return adjList;
 	}
 	
 	public void setIsRoom(boolean isRoom) {

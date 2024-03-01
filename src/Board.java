@@ -6,7 +6,7 @@
 
 import java.util.HashSet;
 import java.util.Set;
-
+// todo
 public class Board {
 	private BoardCell[][] grid;
 	private Set<BoardCell> targets;
