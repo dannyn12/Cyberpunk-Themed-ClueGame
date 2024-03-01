@@ -5,45 +5,68 @@
  */
 package clueGame;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 // todo
 public class Board {
 	private BoardCell[][] grid;
+	private int numRows;
+	private int numColumns;
+	private String layoutConfigFile;
+	private String setupConfigFile;
+	private Map<Character, Room> roomMap;
 	private Set<BoardCell> targets;
 	private Set<BoardCell> visited;
+	private static Board theInstance = new Board();
 	
 	private void calculateAdjacencies(int rows, int columns) {
 		for (int row = 0; row < rows; row++) { // going to each cell 
 			for (int column = 0; column < columns; column++) {
 				BoardCell cell = grid[row][column];
 				if ((row - 1) >= 0) { // above neighbor
-					cell.addAdjacency(grid[row-1][column]);
+					cell.addAdj(grid[row-1][column]);
 				}
 				if ((column - 1) >= 0) { // left neighbor
-					cell.addAdjacency(grid[row][column-1]);
+					cell.addAdj(grid[row][column-1]);
 				}
 				if ((row + 1) < rows) { // below neighbor
-					cell.addAdjacency(grid[row+1][column]);
+					cell.addAdj(grid[row+1][column]);
 				}
 				if ((column + 1) < columns) { // right neighbor
-					cell.addAdjacency(grid[row][column+1]);
+					cell.addAdj(grid[row][column+1]);
 				}
 				
 			}
 		}
 	}
 	
-	public Board(int rows, int columns) {
-		this.grid = new BoardCell[rows][columns];
-		for (int row = 0; row < rows; row++) { // adding cells to grid
-			for (int column = 0; column < columns; column++) {
-				this.grid[row][column] = new BoardCell(row, column);
-			}
-		}
-		this.targets = new HashSet<>();
-		this.visited = new HashSet<>();
-		this.calculateAdjacencies(rows, columns);
-	}
+//	public Board(int rows, int columns) {
+//		this.grid = new BoardCell[rows][columns];
+//		for (int row = 0; row < rows; row++) { // adding cells to grid
+//			for (int column = 0; column < columns; column++) {
+//				this.grid[row][column] = new BoardCell(row, column);
+//			}
+//		}
+//		this.targets = new HashSet<>();
+//		this.visited = new HashSet<>();
+//		this.calculateAdjacencies(rows, columns);
+//	}
+
+    // constructor is private to ensure only one can be created
+    private Board() {
+           super() ;
+    }
+    // this method returns the only Board
+    public static Board getInstance() {
+           return theInstance;
+    }
+    /*
+     * initialize the board (since we are using singleton pattern)
+     */
+    public void initialize()
+    {
+
+    }	
 	
 	// calculates legal targets for a move from startCell of length pathlength
 	public void calcTargets(BoardCell startCell, int pathlength) {
@@ -77,6 +100,18 @@ public class Board {
 		}
 	}
 	
+	public void loadSetupConfig() {
+		
+	}
+	
+	public void loadLayoutConfig() {
+		
+	}
+	
+	public void setConfigFiles(String layout, String setup) {
+		
+	}
+	
 	// returns the cell from the board at row, col.
 	public BoardCell getCell(int row, int col) {
 		return grid[row][col];
@@ -87,4 +122,23 @@ public class Board {
 	public Set<BoardCell> getTargets() {
 		return targets;
 	}
+
+	public static Board getTheInstance() {
+		return theInstance;
+	}
+
+	public Room getRoom(char initial) {
+		
+	}
+
+	public int getNumRows() {
+		return numRows;
+	}
+
+	public int getNumColumns() {
+		return numColumns;
+	}
+	
+	
+	
 }

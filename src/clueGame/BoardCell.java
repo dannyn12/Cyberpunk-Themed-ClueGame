@@ -17,6 +17,7 @@ public class BoardCell {
 	private boolean roomLabel;
 	private boolean roomCenter;
 	private char secretPassage;
+	private boolean isDoorWay;
 	
 	public BoardCell(int col, int row) {
 		super();
@@ -52,6 +53,24 @@ public class BoardCell {
 	public boolean isOccupied() {
 		return isOccupied;
 	}
+	
+	public boolean isDoorWay() {
+		return isDoorWay;
+	}
+
+	public DoorDirection getDoorDirection() {
+		return DoorDirection;
+	}
+
+	public boolean isLabel() {
+		return roomLabel;
+	}
+
+	public boolean isCenter() {
+		return roomCenter;
+	}
+	
+	
 
 }
 
