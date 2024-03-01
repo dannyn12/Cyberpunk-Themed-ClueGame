@@ -2,6 +2,7 @@
  * Authors: Jordan Lam & Danny Nguyen
  * This is the Room class *insert information about room class*
  */
+package clueGame;
 public class Room {
 	private String name;
 	private BoardCell centerCell;

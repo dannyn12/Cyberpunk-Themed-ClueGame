@@ -4,6 +4,7 @@
  */
 
 //todo
+package clueGame;
 public class BadConfigFormatException {
 
 }

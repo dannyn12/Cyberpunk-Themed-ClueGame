@@ -3,7 +3,7 @@
  * Authors: Danny Nguyen and Jordan Lam
  * 2/26/24
  */
-
+package clueGame;
 import java.util.HashSet;
 import java.util.Set;
 // todo
