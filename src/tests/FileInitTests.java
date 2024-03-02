@@ -95,15 +95,68 @@ public class FileInitTests {
 		assertEquals(DoorDirection.UP, cell.getDoorDirection());
 
 		//Underground Bunker walkways
+		cell = board.getCell(15, 19);
+		assertTrue(cell.isDoorway());
+		assertEquals(DoorDirection.RIGHT, cell.getDoorDirection());
+		cell = board.getCell(12, 23);
+		assertTrue(cell.isDoorway());
+		assertEquals(DoorDirection.DOWN, cell.getDoorDirection());
+		cell = board.getCell(17, 21);
+		assertTrue(cell.isDoorway());
+		assertEquals(DoorDirection.UP, cell.getDoorDirection());	
 		
 		//Quantum Laboratory walkways
+		cell = board.getCell(20, 20);
+		assertTrue(cell.isDoorway());
+		assertEquals(DoorDirection.DOWN, cell.getDoorDirection());
+		cell = board.getCell(20, 23);
+		assertTrue(cell.isDoorway());
+		assertEquals(DoorDirection.DOWN, cell.getDoorDirection());
+		cell = board.getCell(21, 18);
+		assertTrue(cell.isDoorway());
+		assertEquals(DoorDirection.RIGHT, cell.getDoorDirection());
 		
 		//Data core walkways
+		cell = board.getCell(20, 14);
+		assertTrue(cell.isDoorway());
+		assertEquals(DoorDirection.DOWN, cell.getDoorDirection());
+		cell = board.getCell(20, 11);
+		assertTrue(cell.isDoorway());
+		assertEquals(DoorDirection.DOWN, cell.getDoorDirection());
+		cell = board.getCell(23, 18);
+		assertTrue(cell.isDoorway());
+		assertEquals(DoorDirection.LEFT, cell.getDoorDirection());
+		cell = board.getCell(24, 18);
+		assertTrue(cell.isDoorway());
+		assertEquals(DoorDirection.LEFT, cell.getDoorDirection());
+		cell = board.getCell(23, 7);
+		assertTrue(cell.isDoorway());
+		assertEquals(DoorDirection.RIGHT, cell.getDoorDirection());
 		
 		//Cyberspace Nexus walkways
+		cell = board.getCell(18, 3);
+		assertTrue(cell.isDoorway());
+		assertEquals(DoorDirection.UP, cell.getDoorDirection());
+		cell = board.getCell(18, 4);
+		assertTrue(cell.isDoorway());
+		assertEquals(DoorDirection.UP, cell.getDoorDirection());
+		cell = board.getCell(9, 3);
+		assertTrue(cell.isDoorway());
+		assertEquals(DoorDirection.DOWN, cell.getDoorDirection());	
+		cell = board.getCell(14, 6);
+		assertTrue(cell.isDoorway());
+		assertEquals(DoorDirection.LEFT, cell.getDoorDirection());	
 		
 		// Cybernetics Clinic walkways
-		
+		cell = board.getCell(3, 19);
+		assertTrue(cell.isDoorway());
+		assertEquals(DoorDirection.RIGHT, cell.getDoorDirection());
+		cell = board.getCell(4, 19);
+		assertTrue(cell.isDoorway());
+		assertEquals(DoorDirection.RIGHT, cell.getDoorDirection());
+		cell = board.getCell(6, 21);
+		assertTrue(cell.isDoorway());
+		assertEquals(DoorDirection.UP, cell.getDoorDirection());
 		
 		// Test that walkways are not doors
 		cell = board.getCell(14, 8);
@@ -121,7 +174,7 @@ public class FileInitTests {
 				if (cell.isDoorway())
 					numDoors++;
 			}
-		Assert.assertEquals(17, numDoors);
+		Assert.assertEquals(26, numDoors);
 	}
 
 	// Test a few room cells to ensure the room initial is correct.

@@ -10,14 +10,14 @@ import java.util.Set;
 public class BoardCell {
 	private int col, row;
 	private Set<BoardCell> adjList;
-	private boolean isRoom;
 	private boolean isOccupied;
-	private char inital;
+	private char initial;
 	private DoorDirection DoorDirection;
 	private boolean roomLabel;
 	private boolean roomCenter;
 	private char secretPassage;
-	private boolean isDoorWay;
+	private boolean isDoorway;
+	private boolean isRoom;
 	
 	public BoardCell(int col, int row) {
 		super();
@@ -54,8 +54,8 @@ public class BoardCell {
 		return isOccupied;
 	}
 	
-	public boolean isDoorWay() {
-		return isDoorWay;
+	public boolean isDoorway() {
+		return isDoorway;
 	}
 
 	public DoorDirection getDoorDirection() {
@@ -66,8 +66,16 @@ public class BoardCell {
 		return roomLabel;
 	}
 
-	public boolean isCenter() {
+	public boolean isRoomCenter() {
 		return roomCenter;
+	}
+
+	public char getSecretPassage() {
+		return secretPassage;
+	}
+
+	public char getInitial() {
+		return initial;
 	}
 	
 	

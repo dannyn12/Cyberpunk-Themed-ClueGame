@@ -4,6 +4,7 @@
  * 2/26/24
  */
 package clueGame;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -40,34 +41,31 @@ public class Board {
 		}
 	}
 	
-//	public Board(int rows, int columns) {
-//		this.grid = new BoardCell[rows][columns];
-//		for (int row = 0; row < rows; row++) { // adding cells to grid
-//			for (int column = 0; column < columns; column++) {
-//				this.grid[row][column] = new BoardCell(row, column);
-//			}
-//		}
-//		this.targets = new HashSet<>();
-//		this.visited = new HashSet<>();
-//		this.calculateAdjacencies(rows, columns);
-//	}
+	// constructor is private to ensure only one can be created
+	private Board() {
+		super() ;
+	}
+	// this method returns the only Board
+	public static Board getInstance() {
+		return theInstance;
+	}
+	/*
+	 * initialize the board (since we are using singleton pattern)
+	 */
+	public void initialize()
+	{
+		this.grid = new BoardCell[27][26];
+		for (int row = 0; row < 27; row++) { // adding cells to grid
+			for (int column = 0; column < 26; column++) {
+				this.grid[row][column] = new BoardCell(row, column);
+			}
+		}
+		this.targets = new HashSet<>();
+		this.visited = new HashSet<>();
+		this.calculateAdjacencies(27, 26);
+		this.roomMap = new HashMap<>();
+	}	
 
-    // constructor is private to ensure only one can be created
-    private Board() {
-           super() ;
-    }
-    // this method returns the only Board
-    public static Board getInstance() {
-           return theInstance;
-    }
-    /*
-     * initialize the board (since we are using singleton pattern)
-     */
-    public void initialize()
-    {
-
-    }	
-	
 	// calculates legal targets for a move from startCell of length pathlength
 	public void calcTargets(BoardCell startCell, int pathlength) {
 		// put starting cell visited
@@ -128,6 +126,15 @@ public class Board {
 	}
 
 	public Room getRoom(char initial) {
+		Room room = new Room();
+		roomMap.put(initial, room);
+		return roomMap.get(initial);
+		
+	}
+	
+	public Room getRoom(BoardCell cell) {
+		char initial = cell.getInitial();
+		return roomMap.get(initial);
 		
 	}
 
@@ -138,7 +145,5 @@ public class Board {
 	public int getNumColumns() {
 		return numColumns;
 	}
-	
-	
 	
 }
