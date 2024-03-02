@@ -20,6 +20,8 @@ public class Board {
 	private Set<BoardCell> visited;
 	private static Board theInstance = new Board();
 	
+	
+	// method calculate the adjacencies  of each cell in the board
 	private void calculateAdjacencies(int rows, int columns) {
 		for (int row = 0; row < rows; row++) { // going to each cell 
 			for (int column = 0; column < columns; column++) {

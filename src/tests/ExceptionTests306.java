@@ -1,8 +1,5 @@
 package tests;
 
-
-
-
 /*
  * This program tests that, when loading config files, exceptions 
  * are thrown appropriately.
@@ -12,6 +9,8 @@ import java.io.FileNotFoundException;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.function.Executable;
+
 import clueGame.BadConfigFormatException;
 import clueGame.Board;
 
@@ -33,6 +32,7 @@ public class ExceptionTests306 {
 			board.loadLayoutConfig();
 		});
 	}
+
 
 	// Test that an exception is thrown for a Layout file that specifies
 	// a room that is not in the legend. 

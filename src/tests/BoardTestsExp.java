@@ -1,5 +1,5 @@
 /* BoardTestsExp is a class with tests methods which contains adjacency test and tests for calcTarget.
- * Danny Nguyen and Jordan Lam
+ * Authors: Danny Nguyen and Jordan Lam
  * 2/26/24
  */
 
