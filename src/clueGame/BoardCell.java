@@ -2,6 +2,7 @@
  * Authors: Jordan Lam, Danny Nguyen
  * BoardCell class this gives information about each invidual cell like if it is a room or is occupied by a player
  * this room also has adjacenyList that shows its adjacent neighbors
+ * 3/2/24
  */
 package clueGame;
 import java.util.HashSet;

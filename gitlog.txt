@@ -1,3 +1,100 @@
+commit 00c86daf74402f316e61488c26073206351f1a43
+Author: Danny Nguyen <dbnguyen@mines.edu>
+Date:   Sat Mar 2 00:26:38 2024 -0700
+
+    added Text.txt and fixed errors
+
+commit 31a27299036e739e37b5c10df49bb3cdd4b2d592
+Author: Danny Nguyen <dbnguyen@mines.edu>
+Date:   Fri Mar 1 23:22:29 2024 -0700
+
+    finished the room tests
+
+commit bce49ca3b81cab37b6f45bf9f609e217bc5440c8
+Author: Danny Nguyen <dbnguyen@mines.edu>
+Date:   Fri Mar 1 23:08:23 2024 -0700
+
+    finished testNumberOfDoorways test
+
+commit dc8db358cd9dc4abb3e1f6c629d7051df5f39a28
+Author: Danny Nguyen <dbnguyen@mines.edu>
+Date:   Fri Mar 1 23:02:36 2024 -0700
+
+    finished fourdoordirection tests
+
+commit 1889853a20dd27161def0eab7e01fb92215e312b
+Author: Jordan Lam <jordanlam@mines.edu>
+Date:   Fri Mar 1 12:49:15 2024 -0700
+
+    added test functions for room names and half of the walkways
+
+commit 46cd67a5358d69e13fda4c8c413e8952b3b8f4b7
+Author: Danny Nguyen <dbnguyen@mines.edu>
+Date:   Fri Mar 1 12:45:33 2024 -0700
+
+    added singleton pattern and getters in board and boardCell class
+
+commit 35b455f303416ae9fcc77d3c88d50e3808df913a
+Author: Jordan Lam <jordanlam@mines.edu>
+Date:   Fri Mar 1 12:24:26 2024 -0700
+
+    created new test file and updated layout for num columns
+
+commit 88356904f61d00a12c87f17b55d68260a5f2e0e7
+Author: Danny Nguyen <dbnguyen@mines.edu>
+Date:   Fri Mar 1 12:14:29 2024 -0700
+
+    created clueGame package and moved classes
+
+commit f09157b3ce3ab684d7cd78045f90866842d130ad
+Merge: 9d7f8e0 3149d91
+Author: Danny Nguyen <dbnguyen@mines.edu>
+Date:   Fri Mar 1 12:07:10 2024 -0700
+
+    Merge branch 'main' of https://github.com/dannyn12/ClueGame
+
+commit 3149d91c1eeb00592ab3932bdbf4074334ceb6c7
+Author: Jordan Lam <jordanlam@mines.edu>
+Date:   Fri Mar 1 12:06:38 2024 -0700
+
+    changing addadjacent function to addadj
+
+commit 001783c6c1ae1f1b7beb4a9484d72a2ba94e374a
+Author: Jordan Lam <jordanlam@mines.edu>
+Date:   Fri Mar 1 00:32:57 2024 -0700
+
+    Added instance vars to BoardCell and todo indicators for Board,BoardCell, and BadConfigFormatExption classes
+
+commit 202c716e60a98730b5dc08cf24a7c2d545e3eacd
+Author: Jordan Lam <jordanlam@mines.edu>
+Date:   Fri Mar 1 00:26:29 2024 -0700
+
+    added enum vars to DoorDirection, UP, DOWN, LEFT, RIGHT, NONE
+
+commit 5bf8166aecb4222b7a40bbaaf4889cf1f6452fc1
+Author: Jordan Lam <jordanlam@mines.edu>
+Date:   Fri Mar 1 00:23:42 2024 -0700
+
+    added second constructor for room with instance var setters
+
+commit 42e3180cc6a43fc2c29f40beacf3b2225c382941
+Author: Jordan Lam <jordanlam@mines.edu>
+Date:   Fri Mar 1 00:21:32 2024 -0700
+
+    added Room Constructor and methods for instance variables
+
+commit c5aaf250537a2703898c558824590e3640c135d9
+Author: Jordan Lam <jordanlam@mines.edu>
+Date:   Fri Mar 1 00:15:22 2024 -0700
+
+    added BadConfigFormatException, Coard, BoardCell, DoorDirection, and Room Classes. Added previous information into Board and BoardCell.
+
+commit bf2bd19242fbe228d7e5f5b9e779b5f36eecd8cd
+Author: Jordan Lam <jordanlam@mines.edu>
+Date:   Fri Mar 1 00:04:08 2024 -0700
+
+    added all datafiles and grader tests
+
 commit 9d7f8e067403703a6fdb4d2f872f6f3c310af964
 Author: Danny Nguyen <dbnguyen@mines.edu>
 Date:   Wed Feb 28 13:08:24 2024 -0700
