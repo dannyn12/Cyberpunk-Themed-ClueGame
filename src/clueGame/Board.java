@@ -4,11 +4,15 @@
  * 2/26/24
  */
 package clueGame;
+
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.Set;
-// todo
+
 public class Board {
 	private BoardCell[][] grid;
 	private int numRows;
@@ -56,16 +60,20 @@ public class Board {
 	 */
 	public void initialize()
 	{
-		this.grid = new BoardCell[27][26];
-		for (int row = 0; row < 27; row++) { // adding cells to grid
-			for (int column = 0; column < 26; column++) {
+		this.grid = new BoardCell[this.numRows][this.numColumns];
+		for (int row = 0; row < this.numRows; row++) { // adding cells to grid
+			for (int column = 0; column < this.numColumns; column++) {
 				this.grid[row][column] = new BoardCell(row, column);
 			}
 		}
 		this.targets = new HashSet<>();
 		this.visited = new HashSet<>();
-		this.calculateAdjacencies(27, 26);
+		this.calculateAdjacencies(this.numRows, this.numColumns);
 		this.roomMap = new HashMap<>();
+		
+		// load layout and setup
+		this.loadSetupConfig();
+		this.loadLayoutConfig();
 	}	
 
 	// calculates legal targets for a move from startCell of length pathlength
@@ -100,25 +108,51 @@ public class Board {
 		}
 	}
 	
+	// TODO
 	public void loadSetupConfig() {
-		
+	
 	}
 	
+	// TODO
 	public void loadLayoutConfig() {
+
 		
 	}
 	
+	/*
+	 * Sets layout to layoutConfigFile and setup setupConfigFile. Method also gets the size of
+	 * the board.
+	 */
 	public void setConfigFiles(String layout, String setup) {
+		this.layoutConfigFile = layout;
+		this.setupConfigFile = setup;
 		
+		// get size of board
+		int rows = 0;
+		int columns = 0;
+		try {
+			FileReader file = new FileReader("src/data/" + layout);
+			Scanner scanner = new Scanner(file);
+			while (scanner.hasNextLine()) {
+				String[] row = scanner.nextLine().split(",");
+				rows += 1;
+				columns = row.length;
+			}
+			scanner.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		this.numRows = rows;
+		this.numColumns = columns;
+			
 	}
 	
-	// returns the cell from the board at row, col.
+
 	public BoardCell getCell(int row, int col) {
 		return grid[row][col];
 		
 	}
 	
-	// gets the targets last created by calcTargets()
 	public Set<BoardCell> getTargets() {
 		return targets;
 	}
@@ -126,7 +160,8 @@ public class Board {
 	public static Board getTheInstance() {
 		return theInstance;
 	}
-
+	
+	// TODO OR FIX
 	public Room getRoom(char initial) {
 		Room room = new Room();
 		roomMap.put(initial, room);
@@ -147,5 +182,6 @@ public class Board {
 	public int getNumColumns() {
 		return numColumns;
 	}
+
 	
 }
