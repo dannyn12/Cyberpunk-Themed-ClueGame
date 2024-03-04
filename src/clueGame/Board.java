@@ -294,6 +294,11 @@ public class Board {
 		this.numRows = rows;
 		this.numColumns = columns;
 	}
+	
+	public Set<BoardCell> getAdjList(int row, int col){
+		BoardCell cell = this.grid[row][col];
+		return cell.getAdjList();
+	}
 
 	public BoardCell getCell(int row, int col) {
 		return grid[row][col];
