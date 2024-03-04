@@ -122,7 +122,10 @@ public class Board {
 			throw new BadConfigFormatException("Setup Config file not found.");
 		}
 	}
-
+	
+	/*
+	 * Reads setupConfigFile and set up game
+	 */
 	private void SetupGame() throws FileNotFoundException {
 		FileReader file = new FileReader("src/data/" + this.setupConfigFile);
 		Scanner scanner = new Scanner(file);

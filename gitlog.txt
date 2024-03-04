@@ -1,3 +1,58 @@
+commit 6d608420a2d9cb802c0d6af0c99dfce7ed366146
+Author: Danny Nguyen <dbnguyen@mines.edu>
+Date:   Mon Mar 4 01:11:55 2024 -0700
+
+    refactored board class
+
+commit 4b4ef2636c64d5034f98db9310e03b72f67ffa9d
+Merge: 3b3ab2e 7709d7f
+Author: Danny Nguyen <dbnguyen@mines.edu>
+Date:   Mon Mar 4 00:27:19 2024 -0700
+
+    Merge branch 'main' of https://github.com/dannyn12/ClueGame
+
+commit 3b3ab2e4f7c77b6d8513b6090254956c433713a9
+Author: Danny Nguyen <dbnguyen@mines.edu>
+Date:   Mon Mar 4 00:25:55 2024 -0700
+
+    refactored parts of board class
+
+commit 7709d7f88a29145671d9959e4272e46c03598910
+Author: Jordan Lam <jordanlam@mines.edu>
+Date:   Mon Mar 4 00:14:50 2024 -0700
+
+    added badconfigformat and passed exception tests
+
+commit de341d09bd4e9f1281a1be801003f5430a156a7e
+Author: Jordan Lam <jordanlam@mines.edu>
+Date:   Sun Mar 3 22:37:04 2024 -0700
+
+    adjusted layout filess and updated board initalization functions all fileinittests now pass
+
+commit a8bfbb4748c3f954225a05adf5493ba7d5ea4058
+Author: Jordan Lam <jordanlam@mines.edu>
+Date:   Sun Mar 3 20:20:40 2024 -0700
+
+    updated file branch
+
+commit 5f58c88c1ef9f2cbbe4116a9e9e5d2ac7dd46d09
+Author: Danny Nguyen <dbnguyen@mines.edu>
+Date:   Sun Mar 3 17:11:16 2024 -0700
+
+    implemented loadLayoutConfig method
+
+commit 8f40a70e1e5ae6576182ef9d38d8697bec103e6a
+Author: Danny Nguyen <dbnguyen@mines.edu>
+Date:   Sun Mar 3 01:50:12 2024 -0700
+
+    implemented setConfigFiles method
+
+commit 61f2974bdf07c1e3e92bd785d5c1f8ef4ec3cec8
+Author: Danny Nguyen <dbnguyen@mines.edu>
+Date:   Sat Mar 2 00:31:24 2024 -0700
+
+    added more comments to methods
+
 commit 00c86daf74402f316e61488c26073206351f1a43
 Author: Danny Nguyen <dbnguyen@mines.edu>
 Date:   Sat Mar 2 00:26:38 2024 -0700
