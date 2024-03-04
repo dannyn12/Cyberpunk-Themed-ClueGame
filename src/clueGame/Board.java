@@ -63,11 +63,15 @@ public class Board {
 	/*
 	 * initialize the board (since we are using singleton pattern)
 	 */
-	public void initialize()
+	public void initialize() 
 	{
-		// load setup and layout
-		this.loadSetupConfig();
-		this.loadLayoutConfig();
+		try {
+			this.loadSetupConfig();
+			this.loadLayoutConfig();
+		} catch (BadConfigFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}	
 
 	// calculates legal targets for a move from startCell of length pathlength
@@ -102,7 +106,7 @@ public class Board {
 		}
 	}
 	
-	public void loadSetupConfig() {
+	public void loadSetupConfig() throws BadConfigFormatException {
 		try {
 			FileReader file = new FileReader("src/data/" + this.setupConfigFile);
 			Scanner scanner = new Scanner(file);
@@ -116,14 +120,14 @@ public class Board {
 				}
 			}
 		} catch (FileNotFoundException e ) {
-			e.printStackTrace();
+			throw new BadConfigFormatException("Setup Config file not found.");
 		}
 		
 	
 	}
 	
 	// Initializes the layout of the board
-	public void loadLayoutConfig() {
+	public void loadLayoutConfig() throws BadConfigFormatException {
 		// ArrayList of string
 		List<String> cellList = new ArrayList<>();
 
@@ -138,13 +142,10 @@ public class Board {
 				}
 			}
 			scanner.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-
 		// create board
 		int cellListLocation = 0; // counter
 		this.grid = new BoardCell[this.numRows][this.numColumns];
+		try {
 		for (int row = 0; row < this.numRows; row++) { // adding cells to grid
 			for (int column = 0; column < this.numColumns; column++) {
 				this.grid[row][column] = new BoardCell(row, column);
@@ -198,8 +199,12 @@ public class Board {
 						this.grid[row][column].setInitial(cell.charAt(0));
 					}
 					else {
-						this.grid[row][column].setInitial(cell.charAt(0));
-						this.grid[row][column].setIsRoom(true);
+						if (roomMap.containsKey(cell.charAt(0))) {
+							this.grid[row][column].setInitial(cell.charAt(0));
+							this.grid[row][column].setIsRoom(true);
+						} else {
+							throw new BadConfigFormatException(cell + " is not in the legend");
+						}
 					}
 				}
 				
@@ -207,10 +212,16 @@ public class Board {
 				cellListLocation += 1;
 			}
 		}
+		} catch (IndexOutOfBoundsException e){
+			throw new BadConfigFormatException("LayoutConfig invalid");
+		}
 		
 		this.targets = new HashSet<>();
 		this.visited = new HashSet<>();
 		this.calculateAdjacencies(this.numRows, this.numColumns);
+		} catch (FileNotFoundException e){
+			throw new BadConfigFormatException("Setup Config file not found.");
+		}
 
 	}
 	
