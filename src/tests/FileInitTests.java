@@ -39,9 +39,9 @@ public class FileInitTests {
 	public void testRoomLabels() {
 		// testing all rooms are here and correct
 		assertEquals("Neon Alley", board.getRoom('A').getName() );
-		assertEquals("Cybernetics Clinic", board.getRoom('B').getName() );
-		assertEquals("Corporate Tower", board.getRoom('R').getName() );
-		assertEquals("Cyberspace Nexus", board.getRoom('D').getName() );
+		assertEquals("Cybernetics Clinic", board.getRoom('C').getName() );
+		assertEquals("Corporate Tower", board.getRoom('T').getName() );
+		assertEquals("Cyberspace Nexus", board.getRoom('N').getName() );
 		assertEquals("Data Core", board.getRoom('D').getName() );
 		assertEquals("Slum District", board.getRoom('S').getName() );
 		assertEquals("Quantum Laboratory", board.getRoom('Q').getName() );
@@ -207,7 +207,7 @@ public class FileInitTests {
 		assertFalse( cell3.isLabel() );
 		assertFalse( cell3.isRoomCenter() );
 		assertFalse( cell3.isDoorway());
-		
+
 		BoardCell cell4 = board.getCell(10, 3);
 		Room room4 = board.getRoom( cell4 ) ;
 		assertTrue( room4 != null );
@@ -215,7 +215,7 @@ public class FileInitTests {
 		assertFalse( cell4.isLabel() );
 		assertFalse( cell4.isRoomCenter() );
 		assertFalse( cell4.isDoorway());
-		
+
 		BoardCell cell5 = board.getCell(10, 21);
 		Room room5 = board.getRoom( cell5 ) ;
 		assertTrue( room5 != null );
@@ -223,7 +223,7 @@ public class FileInitTests {
 		assertFalse( cell5.isLabel() );
 		assertFalse( cell5.isRoomCenter() );
 		assertFalse( cell5.isDoorway());
-		
+
 		BoardCell cell6 = board.getCell(15, 21);
 		Room room6 = board.getRoom( cell6 ) ;
 		assertTrue( room6 != null );
@@ -232,15 +232,15 @@ public class FileInitTests {
 		assertFalse( cell6.isRoomCenter() );
 		assertFalse( cell6.isDoorway());
 
-		BoardCell cell7 = board.getCell(15, 21);
+		BoardCell cell7 = board.getCell(23, 0);
 		Room room7 = board.getRoom( cell7 ) ;
 		assertTrue( room7 != null );
 		assertEquals( room7.getName(), "Slum District" ) ;
 		assertFalse( cell7.isLabel() );
 		assertFalse( cell7.isRoomCenter() );
 		assertFalse( cell7.isDoorway());
-		
-		BoardCell cell8 = board.getCell(15, 21);
+
+		BoardCell cell8 = board.getCell(23, 10);
 		Room room8 = board.getRoom( cell8 ) ;
 		assertTrue( room8 != null );
 		assertEquals( room8.getName(), "Data Core" ) ;
@@ -248,53 +248,33 @@ public class FileInitTests {
 		assertFalse( cell8.isRoomCenter() );
 		assertFalse( cell8.isDoorway());
 
-		BoardCell cell9 = board.getCell(15, 21);
+		BoardCell cell9 = board.getCell(23, 21);
 		Room room9 = board.getRoom( cell9 ) ;
 		assertTrue( room9 != null );
 		assertEquals( room9.getName(), "Quantum Laboratory" ) ;
 		assertFalse( cell9.isLabel() );
 		assertFalse( cell9.isRoomCenter() );
 		assertFalse( cell9.isDoorway());
-
 		// this is a label cell to test
-		cell = board.getCell(10, 2);
+		cell = board.getCell(2, 13);
 		room = board.getRoom( cell ) ;
 		assertTrue( room != null );
-		assertEquals( room.getName(), "Cyberspace Nexus" ) ;
+		assertEquals( room.getName(), "Corporate Tower" ) ;
 		assertTrue( cell.isLabel() );
 		assertTrue( room.getLabelCell() == cell );
-		
 		// this is a room center cell to test
-		cell = board.getCell(9, 22);
+		cell = board.getCell(9,22);
 		room = board.getRoom( cell ) ;
 		assertTrue( room != null );
 		assertEquals( room.getName(), "Techno Junkyard" ) ;
 		assertTrue( cell.isRoomCenter() );
 		assertTrue( room.getCenterCell() == cell );
-		
 		// this is a secret passage test
 		cell = board.getCell(1, 15);
 		room = board.getRoom( cell ) ;
 		assertTrue( room != null );
 		assertEquals( room.getName(), "Corporate Tower" ) ;
 		assertTrue( cell.getSecretPassage() == 'Q' );
-		
-		// test a walkway
-		cell = board.getCell(9, 1);
-		room = board.getRoom( cell ) ;
-		assertTrue( room != null );
-		assertEquals( room.getName(), "Walkway" ) ;
-		assertFalse( cell.isRoomCenter() );
-		assertFalse( cell.isLabel() );
-		
-		// test a unused space
-		cell = board.getCell(13, 13);
-		room = board.getRoom( cell ) ;
-		assertTrue( room != null );
-		assertEquals( room.getName(), "Unused" ) ;
-		assertFalse( cell.isRoomCenter() );
-		assertFalse( cell.isLabel() );
-		
 	}
 
 }

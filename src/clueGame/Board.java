@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -101,9 +102,22 @@ public class Board {
 		}
 	}
 	
-	// TODO
 	public void loadSetupConfig() {
-		
+		try {
+			FileReader file = new FileReader("src/data/" + this.setupConfigFile);
+			Scanner scanner = new Scanner(file);
+			while (scanner.hasNextLine()) {
+				String[] row = scanner.nextLine().split(", ");
+				if (row.length >= 3 && (row[0].equals("Room") || row[0].equals("Space"))) {
+					char inital = row[2].charAt(0);
+					Room room = new Room();
+					room.setName(row[1]);
+					this.roomMap.put(inital, room);
+				}
+			}
+		} catch (FileNotFoundException e ) {
+			e.printStackTrace();
+		}
 		
 	
 	}
@@ -142,11 +156,13 @@ public class Board {
 					this.grid[row][column].setInitial(cell.charAt(0));
 					// check if it is a label
 					if (cell.equals(String.valueOf(cell.charAt(0)) + "#")) {
+						this.roomMap.get(cell.charAt(0)).setLabelCell(this.grid[row][column]);
 						this.grid[row][column].setRoomLabel(true);
 						this.grid[row][column].setIsRoom(true);
 					}
 					// check if it is a center
 					else if (cell.equals(String.valueOf(cell.charAt(0)) + "*")) {
+						this.roomMap.get(cell.charAt(0)).setCenterCell(this.grid[row][column]);
 						this.grid[row][column].setRoomCenter(true);
 						this.grid[row][column].setIsRoom(true);
 					}	
@@ -195,7 +211,6 @@ public class Board {
 		this.targets = new HashSet<>();
 		this.visited = new HashSet<>();
 		this.calculateAdjacencies(this.numRows, this.numColumns);
-		this.roomMap = new HashMap<>();
 
 	}
 	
@@ -206,7 +221,7 @@ public class Board {
 	public void setConfigFiles(String layout, String setup) {
 		this.layoutConfigFile = layout;
 		this.setupConfigFile = setup;
-		
+		this.roomMap = new HashMap<>();
 		// get size of board
 		int rows = 0;
 		int columns = 0;
@@ -243,10 +258,7 @@ public class Board {
 	
 	// MAYBE NEED TO BE CHANGED FOR TEST TO WORK
 	public Room getRoom(char initial) {
-		Room room = new Room();
-		roomMap.put(initial, room);
 		return roomMap.get(initial);
-		
 	}
 	
 	public Room getRoom(BoardCell cell) {
