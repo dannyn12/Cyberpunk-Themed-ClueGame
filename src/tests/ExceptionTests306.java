@@ -33,7 +33,7 @@ public class ExceptionTests306 {
 		});
 	}
 
-
+	
 	// Test that an exception is thrown for a Layout file that specifies
 	// a room that is not in the legend. 
 	@Test
@@ -56,5 +56,6 @@ public class ExceptionTests306 {
 			board.loadLayoutConfig();
 		});
 	}
+	
 
 }
