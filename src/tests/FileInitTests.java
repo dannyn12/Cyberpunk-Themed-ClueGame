@@ -71,10 +71,10 @@ public class FileInitTests {
 		assertEquals(DoorDirection.LEFT, cell.getDoorDirection());
 		
 		// Corporate Tower walkways
-		cell = board.getCell(5, 11);
+		cell = board.getCell(5, 12);
 		assertTrue(cell.isDoorway());
 		assertEquals(DoorDirection.UP, cell.getDoorDirection());
-		cell = board.getCell(5, 12);
+		cell = board.getCell(5, 13);
 		assertTrue(cell.isDoorway());
 		assertEquals(DoorDirection.UP, cell.getDoorDirection());
 		
@@ -93,7 +93,7 @@ public class FileInitTests {
 		cell = board.getCell(9, 19);
 		assertTrue(cell.isDoorway());
 		assertEquals(DoorDirection.RIGHT, cell.getDoorDirection());
-		cell = board.getCell(12, 19);
+		cell = board.getCell(12, 21);
 		assertTrue(cell.isDoorway());
 		assertEquals(DoorDirection.UP, cell.getDoorDirection());
 

@@ -7,8 +7,10 @@ package clueGame;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
@@ -51,27 +53,18 @@ public class Board {
 	private Board() {
 		super() ;
 	}
+	
 	// this method returns the only Board
 	public static Board getInstance() {
 		return theInstance;
 	}
+	
 	/*
 	 * initialize the board (since we are using singleton pattern)
 	 */
 	public void initialize()
 	{
-		this.grid = new BoardCell[this.numRows][this.numColumns];
-		for (int row = 0; row < this.numRows; row++) { // adding cells to grid
-			for (int column = 0; column < this.numColumns; column++) {
-				this.grid[row][column] = new BoardCell(row, column);
-			}
-		}
-		this.targets = new HashSet<>();
-		this.visited = new HashSet<>();
-		this.calculateAdjacencies(this.numRows, this.numColumns);
-		this.roomMap = new HashMap<>();
-		
-		// load layout and setup
+		// load setup and layout
 		this.loadSetupConfig();
 		this.loadLayoutConfig();
 	}	
@@ -110,13 +103,100 @@ public class Board {
 	
 	// TODO
 	public void loadSetupConfig() {
+		
+		
 	
 	}
 	
-	// TODO
+	// Initializes the layout of the board
 	public void loadLayoutConfig() {
+		// ArrayList of string
+		List<String> cellList = new ArrayList<>();
 
+		// add each cell initial in layout file to cellList
+		try {
+			FileReader file = new FileReader("src/data/" + this.layoutConfigFile);
+			Scanner scanner = new Scanner(file);
+			while (scanner.hasNextLine()) {
+				String[] row = scanner.nextLine().split(",");
+				for (String cell: row) {
+					cellList.add(cell);
+				}
+			}
+			scanner.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+
+		// create board
+		int cellListLocation = 0; // counter
+		this.grid = new BoardCell[this.numRows][this.numColumns];
+		for (int row = 0; row < this.numRows; row++) { // adding cells to grid
+			for (int column = 0; column < this.numColumns; column++) {
+				this.grid[row][column] = new BoardCell(row, column);
+				String cell = cellList.get(cellListLocation);
+				
+				// if cell is more than one character
+				if (cell.length() > 1) {
+					// set initial
+					this.grid[row][column].setInitial(cell.charAt(0));
+					// check if it is a label
+					if (cell.equals(String.valueOf(cell.charAt(0)) + "#")) {
+						this.grid[row][column].setRoomLabel(true);
+						this.grid[row][column].setIsRoom(true);
+					}
+					// check if it is a center
+					else if (cell.equals(String.valueOf(cell.charAt(0)) + "*")) {
+						this.grid[row][column].setRoomCenter(true);
+						this.grid[row][column].setIsRoom(true);
+					}	
+					// check if it is a door also set the door direction
+					else if (cell.equals(String.valueOf(cell.charAt(0)) + "^")) {
+						this.grid[row][column].setDoorway(true);
+						this.grid[row][column].setDoorDirection(DoorDirection.UP);
+					}
+					else if (cell.equals(String.valueOf(cell.charAt(0)) + ">")) {
+						this.grid[row][column].setDoorway(true);
+						this.grid[row][column].setDoorDirection(DoorDirection.RIGHT);
+					}
+					else if (cell.equals(String.valueOf(cell.charAt(0)) + "v")) {
+						this.grid[row][column].setDoorway(true);
+						this.grid[row][column].setDoorDirection(DoorDirection.DOWN);
+					}
+					else if (cell.equals(String.valueOf(cell.charAt(0)) + "<")) {
+						this.grid[row][column].setDoorway(true);
+						this.grid[row][column].setDoorDirection(DoorDirection.LEFT);
+					}
+					// check if it is a secret passage way
+					else {
+						this.grid[row][column].setSecretPassage(cell.charAt(1));
+						this.grid[row][column].setIsRoom(true);
+					}
+				}
+				else {
+					if (cell.equals("X")) {
+						this.grid[row][column].setInitial(cell.charAt(0));
+						this.grid[row][column].setOccupied(true);
+					}
+					else if (cell.equals("W")) {
+						this.grid[row][column].setInitial(cell.charAt(0));
+					}
+					else {
+						this.grid[row][column].setInitial(cell.charAt(0));
+						this.grid[row][column].setIsRoom(true);
+					}
+				}
+				
+				// increment counter
+				cellListLocation += 1;
+			}
+		}
 		
+		this.targets = new HashSet<>();
+		this.visited = new HashSet<>();
+		this.calculateAdjacencies(this.numRows, this.numColumns);
+		this.roomMap = new HashMap<>();
+
 	}
 	
 	/*
@@ -161,7 +241,7 @@ public class Board {
 		return theInstance;
 	}
 	
-	// TODO OR FIX
+	// MAYBE NEED TO BE CHANGED FOR TEST TO WORK
 	public Room getRoom(char initial) {
 		Room room = new Room();
 		roomMap.put(initial, room);
