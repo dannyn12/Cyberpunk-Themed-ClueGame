@@ -60,7 +60,7 @@ public class FileInitTests {
 
 	// Test a doorway in each direction (RIGHT/LEFT/UP/DOWN), plus
 	// two cells that are not a doorway.
-	// These cells are white on the planning spreadsheet
+	// These cells are White on the planning spreadsheet
 	@Test
 	public void FourDoorDirections() {
 		// Neon Alley walkways
@@ -256,6 +256,7 @@ public class FileInitTests {
 		assertFalse( cell9.isLabel() );
 		assertFalse( cell9.isRoomCenter() );
 		assertFalse( cell9.isDoorway());
+		
 		// this is a label cell to test
 		cell = board.getCell(2, 13);
 		room = board.getRoom( cell ) ;
@@ -263,6 +264,7 @@ public class FileInitTests {
 		assertEquals( room.getName(), "Corporate Tower" ) ;
 		assertTrue( cell.isLabel() );
 		assertTrue( room.getLabelCell() == cell );
+		
 		// this is a room center cell to test
 		cell = board.getCell(9,22);
 		room = board.getRoom( cell ) ;
@@ -270,6 +272,7 @@ public class FileInitTests {
 		assertEquals( room.getName(), "Techno Junkyard" ) ;
 		assertTrue( cell.isRoomCenter() );
 		assertTrue( room.getCenterCell() == cell );
+		
 		// this is a secret passage test
 		cell = board.getCell(1, 15);
 		room = board.getRoom( cell ) ;
