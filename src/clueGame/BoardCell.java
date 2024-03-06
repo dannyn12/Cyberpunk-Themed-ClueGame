@@ -14,13 +14,13 @@ public class BoardCell {
 	private boolean isOccupied;
 	private char initial;
 	private char secretPassage;
-	private DoorDirection DoorDirection;
+	private DoorDirection doorDirection;
 	private boolean roomLabel;
 	private boolean roomCenter;
 	private boolean isDoorway;
 	private boolean isRoom;
 	
-	public BoardCell(int row, int column) {
+	public BoardCell(int row, int col) {
 		super();
 		this.row = row;
 		this.col = col;
@@ -60,7 +60,7 @@ public class BoardCell {
 	}
 
 	public DoorDirection getDoorDirection() {
-		return DoorDirection;
+		return doorDirection;
 	}
 
 	public boolean isLabel() {
@@ -84,7 +84,7 @@ public class BoardCell {
 	}
 	
 	public void setDoorDirection(DoorDirection doorDirection) {
-		DoorDirection = doorDirection;
+		this.doorDirection = doorDirection;
 	}
 
 	public void setInitial(char initial) {
