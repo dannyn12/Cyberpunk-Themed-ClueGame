@@ -94,23 +94,7 @@ public class Board {
 						}
 					}
 					
-					if ((row - 1) >= 0 && cell.getDoorDirection() == DoorDirection.UP) { // above neighbor
-						char initial = grid[row-1][col].getInitial();
-						Room room = this.roomMap.get(initial);
-						cell.addAdj(room.getCenterCell());
-					} else if ((col - 1) >= 0 && cell.getDoorDirection() == DoorDirection.LEFT) { // left neighbor
-						char initial = grid[row][col-1].getInitial();
-						Room room = this.roomMap.get(initial);
-						cell.addAdj(room.getCenterCell());
-					} else if ((row + 1) < rows && cell.getDoorDirection() == DoorDirection.DOWN) { // below neighbor
-						char initial = grid[row+1][col].getInitial();
-						Room room = this.roomMap.get(initial);
-						cell.addAdj(room.getCenterCell());
-					} else  { // right neighbor
-						char initial = grid[row][col+1].getInitial();
-						Room room = this.roomMap.get(initial);
-						cell.addAdj(room.getCenterCell());
-					}
+					this.calculateAdjDoorRoom(cell, rows, cols, row, col);
 					
 				}
 			}
