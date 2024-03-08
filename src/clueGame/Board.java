@@ -31,24 +31,111 @@ public class Board {
 	/*
 	 *  method calculate the adjacencies  of each cell in the board
 	 */
-	private void calculateAdjacencies(int rows, int columns) {
+	private void calculateAdjacencies(int rows, int cols) {
 		for (int row = 0; row < rows; row++) { // going to each cell 
-			for (int column = 0; column < columns; column++) {
-				BoardCell cell = grid[row][column];
-				if ((row - 1) >= 0) { // above neighbor
-					cell.addAdj(grid[row-1][column]);
+			for (int col = 0; col < cols; col++) {
+				BoardCell cell = grid[row][col];
+				if (cell.getInitial() == 'W' && !cell.isDoorway()) { // for walkways
+					if ((row - 1) >= 0) { // above neighbor
+						if(grid[row-1][col].getInitial() == 'W') { // connecting adjacent walkways 
+							cell.addAdj(grid[row-1][col]);
+						} else if (grid[row-1][col].isDoorway()) { // connecting walkways to doors
+							cell.addAdj(grid[row-1][col]);
+						}
+					}
+					if ((col - 1) >= 0) { // left neighbor
+						if(grid[row][col-1].getInitial() == 'W') { 
+							cell.addAdj(grid[row][col-1]);
+						} else if (grid[row][col-1].isDoorway()) {
+							cell.addAdj(grid[row][col-1]);
+						}
+					}
+					if ((row + 1) < rows) { // below neighbor
+						if(grid[row+1][col].getInitial() == 'W') { 
+							cell.addAdj(grid[row+1][col]);
+						} else if (grid[row-1][col].isDoorway()) {
+							cell.addAdj(grid[row+1][col]);
+						}
+					}
+					if ((col + 1) < cols) { // right neighbor
+						if(grid[row][col+1].getInitial() == 'W') { 
+							cell.addAdj(grid[row][col+1]);
+						} else if (grid[row][col-1].isDoorway()) {
+							cell.addAdj(grid[row][col+1]);
+						}
+					}
+				} else if (cell.isDoorway()) { // for doorways 
+					if ((row - 1) >= 0 && cell.getDoorDirection() != DoorDirection.UP) { // above neighbor
+						if(grid[row-1][col].getInitial() == 'W') { // connecting adjacent walkways 
+							cell.addAdj(grid[row-1][col]);
+						} else if (grid[row-1][col].isDoorway()) { // connecting door to adjacent doors
+							cell.addAdj(grid[row-1][col]);
+						}
+					}
+					if ((col - 1) >= 0 && cell.getDoorDirection() != DoorDirection.LEFT) { // left neighbor
+						if(grid[row][col-1].getInitial() == 'W') { 
+							cell.addAdj(grid[row][col-1]);
+						} else if (grid[row][col-1].isDoorway()) {
+							cell.addAdj(grid[row][col-1]);
+						}
+					}
+					if ((row + 1) < rows && cell.getDoorDirection() != DoorDirection.DOWN) { // below neighbor
+						if(grid[row+1][col].getInitial() == 'W') { 
+							cell.addAdj(grid[row+1][col]);
+						} else if (grid[row-1][col].isDoorway()) {
+							cell.addAdj(grid[row+1][col]);
+						}
+					}
+					if ((col + 1) < cols && cell.getDoorDirection() != DoorDirection.RIGHT) { // right neighbor
+						if(grid[row][col+1].getInitial() == 'W') { 
+							cell.addAdj(grid[row][col+1]);
+						} else if (grid[row][col-1].isDoorway()) {
+							cell.addAdj(grid[row][col+1]);
+						}
+					}
+					
+					if ((row - 1) >= 0 && cell.getDoorDirection() == DoorDirection.UP) { // above neighbor
+						char initial = grid[row-1][col].getInitial();
+						Room room = this.roomMap.get(initial);
+						cell.addAdj(room.getCenterCell());
+					} else if ((col - 1) >= 0 && cell.getDoorDirection() == DoorDirection.LEFT) { // left neighbor
+						char initial = grid[row][col-1].getInitial();
+						Room room = this.roomMap.get(initial);
+						cell.addAdj(room.getCenterCell());
+					} else if ((row + 1) < rows && cell.getDoorDirection() == DoorDirection.DOWN) { // below neighbor
+						char initial = grid[row+1][col].getInitial();
+						Room room = this.roomMap.get(initial);
+						cell.addAdj(room.getCenterCell());
+					} else  { // right neighbor
+						char initial = grid[row][col+1].getInitial();
+						Room room = this.roomMap.get(initial);
+						cell.addAdj(room.getCenterCell());
+					}
+					
 				}
-				if ((column - 1) >= 0) { // left neighbor
-					cell.addAdj(grid[row][column-1]);
-				}
-				if ((row + 1) < rows) { // below neighbor
-					cell.addAdj(grid[row+1][column]);
-				}
-				if ((column + 1) < columns) { // right neighbor
-					cell.addAdj(grid[row][column+1]);
-				}
-
 			}
+		}
+	}
+	/*
+	 * helper function for calculateadj function this function will add the room center to the doorway
+	 */
+	private void calculateAdjDoorRoom(BoardCell cell, int rows, int cols, int row, int col) {
+		if ((row - 1) >= 0 && cell.getDoorDirection() == DoorDirection.UP) { // above neighbor
+			char initial = grid[row-1][col].getInitial();
+			Room room = this.roomMap.get(initial);
+			cell.addAdj(room.getCenterCell());
+		} else if ((col - 1) >= 0 && cell.getDoorDirection() == DoorDirection.LEFT) { // left neighbor
+			char initial = grid[row][col-1].getInitial();
+			Room room = this.roomMap.get(initial);
+			cell.addAdj(room.getCenterCell());
+		} else if ((row + 1) < rows && cell.getDoorDirection() == DoorDirection.DOWN) { // below neighbor
+			char initial = grid[row+1][col].getInitial();
+			Room room = this.roomMap.get(initial);
+			cell.addAdj(room.getCenterCell());
+		} else  { // right neighbor
+			char initial = grid[row][col+1].getInitial();
+			Room room = this.roomMap.get(initial);
+			cell.addAdj(room.getCenterCell());
 		}
 	}
 
@@ -183,66 +270,67 @@ public class Board {
 	 */
 	private void createBoard(List<String> cellList, int cellListLocation) throws BadConfigFormatException {
 		for (int row = 0; row < this.numRows; row++) { // adding cells to grid
-			for (int column = 0; column < this.numColumns; column++) {
-				this.grid[row][column] = new BoardCell(row, column);
+			for (int col = 0; col < this.numColumns; col++) {
+				this.grid[row][col] = new BoardCell(row, col);
 				String cell = cellList.get(cellListLocation);
 
 				// if cell is more than one character
 				char charAtIndex1 = cell.charAt(0);
 				if (cell.length() > 1) {
 					// set initial
-					this.grid[row][column].setInitial(charAtIndex1);
+					this.grid[row][col].setInitial(charAtIndex1);
 					// check if it is a label
 					String initial = String.valueOf(charAtIndex1);
 					if (cell.equals(initial + "#")) {
-						this.roomMap.get(charAtIndex1).setLabelCell(this.grid[row][column]);
-						this.grid[row][column].setRoomLabel(true);
-						this.grid[row][column].setIsRoom(true);
+						this.roomMap.get(charAtIndex1).setLabelCell(this.grid[row][col]);
+						this.grid[row][col].setRoomLabel(true);
+						this.grid[row][col].setIsRoom(true);
 					}
 					// check if it is a center
 					else if (cell.equals(initial + "*")) {
-						this.roomMap.get(charAtIndex1).setCenterCell(this.grid[row][column]);
-						this.grid[row][column].setRoomCenter(true);
-						this.grid[row][column].setIsRoom(true);
+						this.roomMap.get(charAtIndex1).setCenterCell(this.grid[row][col]);
+						this.grid[row][col].setRoomCenter(true);
+						this.grid[row][col].setIsRoom(true);
 					}	
 					// check if it is a door also set the door direction
 					else if (cell.equals(initial + "^")) {
-						this.grid[row][column].setDoorway(true);
-						this.grid[row][column].setDoorDirection(DoorDirection.UP);
+						this.grid[row][col].setDoorway(true);
+						this.grid[row][col].setDoorDirection(DoorDirection.UP);
 					}
 					else if (cell.equals(initial + ">")) {
-						this.grid[row][column].setDoorway(true);
-						this.grid[row][column].setDoorDirection(DoorDirection.RIGHT);
+						this.grid[row][col].setDoorway(true);
+						this.grid[row][col].setDoorDirection(DoorDirection.RIGHT);
 					}
 					else if (cell.equals(initial + "v")) {
-						this.grid[row][column].setDoorway(true);
-						this.grid[row][column].setDoorDirection(DoorDirection.DOWN);
+						this.grid[row][col].setDoorway(true);
+						this.grid[row][col].setDoorDirection(DoorDirection.DOWN);
 					}
 					else if (cell.equals(initial + "<")) {
-						this.grid[row][column].setDoorway(true);
-						this.grid[row][column].setDoorDirection(DoorDirection.LEFT);
+						this.grid[row][col].setDoorway(true);
+						this.grid[row][col].setDoorDirection(DoorDirection.LEFT);
 					}
 					// check if it is a secret passage way
 					else {
-						this.grid[row][column].setSecretPassage(cell.charAt(1));
-						this.grid[row][column].setIsRoom(true);
+						this.grid[row][col].setSecretPassage(cell.charAt(1));
+						this.grid[row][col].setIsSecretPassage(true);
+						this.grid[row][col].setIsRoom(true);
 					}
 				}
 				// if cell is one character
 				else {
 					// if cell is a unused space
 					if (cell.equals("X")) {
-						this.grid[row][column].setInitial(charAtIndex1);
-						this.grid[row][column].setOccupied(true);
+						this.grid[row][col].setInitial(charAtIndex1);
+						this.grid[row][col].setOccupied(true);
 					}
 					// if cell is a walkway
 					else if (cell.equals("W")) {
-						this.grid[row][column].setInitial(charAtIndex1);
+						this.grid[row][col].setInitial(charAtIndex1);
 					}
 					else {
 						if (roomMap.containsKey(charAtIndex1)) {
-							this.grid[row][column].setInitial(charAtIndex1);
-							this.grid[row][column].setIsRoom(true);
+							this.grid[row][col].setInitial(charAtIndex1);
+							this.grid[row][col].setIsRoom(true);
 						} 
 						else {
 							throw new BadConfigFormatException(cell + " is not in the legend");
@@ -278,21 +366,21 @@ public class Board {
 	private void getBoardSize(String layout) {
 		// get size of board
 		int rows = 0;
-		int columns = 0;
+		int cols = 0;
 		try {
 			FileReader file = new FileReader("src/data/" + layout);
 			Scanner scanner = new Scanner(file);
 			while (scanner.hasNextLine()) {
 				String[] row = scanner.nextLine().split(",");
 				rows += 1;
-				columns = row.length;
+				cols = row.length;
 			}
 			scanner.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
 		this.numRows = rows;
-		this.numColumns = columns;
+		this.numColumns = cols;
 	}
 	
 	public Set<BoardCell> getAdjList(int row, int col){
