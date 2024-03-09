@@ -37,7 +37,9 @@ public class BoardCell {
 		adjList.add(adj);
 	}
 	
-	
+	/*
+	 * Getters and setters
+	 */
 	public Set<BoardCell> getAdjList() {
 		return adjList;
 	}
@@ -89,7 +91,6 @@ public class BoardCell {
 	public void setIsSecretPassage(boolean isSecretPassage) {
 		this.isSecretPassage = isSecretPassage;
 	}
-
 
 	public boolean isRoomLabel() {
 		return roomLabel;

@@ -29,7 +29,7 @@ public class Board {
 
 
 	/*
-	 *  method calculate the adjacencies of each cell in the board
+	 *  Method calculate the adjacency of each cell in the board
 	 */
 	private void calculateAdjacencies(int rows, int cols) {
 		for (int row = 0; row < rows; row++) { // going to each cell 
@@ -113,6 +113,7 @@ public class Board {
 			}
 		}
 	}
+	
 	/*
 	 * helper function for calculateadj function this function will add the room center to the doorway
 	 */
@@ -193,7 +194,7 @@ public class Board {
 	}
 
 	/*
-	 * calculates legal targets for a move from startCell of length pathlength
+	 * Calculates legal targets for a move from startCell of length pathlength
 	 */
 	public void calcTargets(BoardCell startCell, int pathlength) {
 		targets = new HashSet<>();
@@ -272,12 +273,14 @@ public class Board {
 	}
 	
 	/*
-	 * get all doors and add to door list
+	 * finds the doors and secret passage of each room
 	 */
-	private void findRoomDoorsAndSecretPassage() {
+	private void findDoorsAndPassage() {
+		// parse through layout
 		for (int row = 0; row < this.numRows; row++) {
 			for (int col = 0; col < this.numColumns; col++) {
 				BoardCell cell = this.grid[row][col];
+				// add doorway to room door list
 				if (cell.isDoorway()) {
 					if ( cell.getDoorDirection() == DoorDirection.UP) {
 						char initial = this.grid[row-1][col].getInitial();
@@ -297,7 +300,7 @@ public class Board {
 					}
 					
 				}
-				// get secret passage
+				// get secret passage and add that to room class
 				else if (cell.isSecretPassage()) {
 					char initial = this.grid[row][col].getInitial();
 					Room currentRoom = this.roomMap.get(initial);
@@ -392,7 +395,7 @@ public class Board {
 		
 		this.targets = new HashSet<>();
 		this.visited = new HashSet<>();
-		this.findRoomDoorsAndSecretPassage();
+		this.findDoorsAndPassage();
 		this.calculateAdjacencies(this.numRows, this.numColumns);
 	}
 	

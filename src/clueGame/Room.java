@@ -27,11 +27,15 @@ public class Room {
 		this.labelCell = labelCell;
 	}
 	
-	// add door to door list of room
+	// Add door to door list of room
 	public void addDoor(BoardCell door) {
 		this.doorList.add(door);
 	}
 	
+	
+	/*
+	 * Getters and setters
+	 */
 	public boolean hasSecretPassage() {
 		return this.hasSecretPassage;
 	}
