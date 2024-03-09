@@ -1,3 +1,45 @@
+commit fc7f9277121eaa9a7e4f1a6d4a00432c129ec6f1
+Author: Jordan Lam <jordanlam@mines.edu>
+Date:   Tue Mar 5 01:25:47 2024 -0700
+
+    updated adjtargettests and updated cluelayout
+
+commit 0a6cd6d2c014fb527c16c3c4b79842e2eabdde6e
+Author: Danny Nguyen <dbnguyen@mines.edu>
+Date:   Mon Mar 4 22:07:32 2024 -0700
+
+    added documentation for tests on spreadsheet
+
+commit 1ef12bc472442a9cb7f95c3e4ba74891c927a106
+Author: Danny Nguyen <dbnguyen@mines.edu>
+Date:   Mon Mar 4 21:52:52 2024 -0700
+
+    implemented adjacency tests and some target tests
+
+commit 41a2c0a0f0c4f9efb540c1eb3fa0a14e22a7a0fc
+Author: Danny Nguyen <dbnguyen@mines.edu>
+Date:   Mon Mar 4 13:12:36 2024 -0700
+
+    created BoardAdjTargetTest for personal board
+
+commit 775a4b687f2846a45e24d3bdad12e2ac1fa4cd70
+Author: Jordan Lam <jordanlam@mines.edu>
+Date:   Mon Mar 4 12:44:15 2024 -0700
+
+    implemented getAdjList in Board class
+
+commit 492fe957dcffbcae7ffec56ad0a2fe4de9fd701b
+Author: Danny Nguyen <dbnguyen@mines.edu>
+Date:   Mon Mar 4 12:38:29 2024 -0700
+
+    added BoardAdjTargetTest306
+
+commit a212ad6ec19ef9c2920e0b211dc8cfd05196f011
+Author: Danny Nguyen <dbnguyen@mines.edu>
+Date:   Mon Mar 4 01:53:01 2024 -0700
+
+    added gitrefactor.txt
+
 commit 6d608420a2d9cb802c0d6af0c99dfce7ed366146
 Author: Danny Nguyen <dbnguyen@mines.edu>
 Date:   Mon Mar 4 01:11:55 2024 -0700

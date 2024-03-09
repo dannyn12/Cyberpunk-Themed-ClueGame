@@ -1,3 +1,7 @@
+/* BoardAdjTargetTest contains the test for the adjacency and targets for a cell in rooms and walkways.
+ * Authors: Danny Nguyen and Jordan Lam
+ * 3/5/24
+ */
 package tests;
 
 import static org.junit.Assert.assertEquals;
@@ -118,7 +122,6 @@ class BoardAdjTargetTest {
 	
 	}
 	
-	
 	// Tests out of room center, 1, 3 and 4
 	// These are DARK BLUE on the planning spreadsheet
 	@Test
@@ -179,7 +182,6 @@ class BoardAdjTargetTest {
 		assertTrue(targets.contains(board.getCell(16, 19)));	
 	}
 	
-	// TODO
 	// Tests out of room center J, 
 	// These are DARK BLUE on the planning spreadsheet
 	@Test
