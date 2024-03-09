@@ -29,7 +29,7 @@ public class Board {
 
 
 	/*
-	 *  method calculate the adjacencies  of each cell in the board
+	 *  method calculate the adjacencies of each cell in the board
 	 */
 	private void calculateAdjacencies(int rows, int cols) {
 		for (int row = 0; row < rows; row++) { // going to each cell 
@@ -64,7 +64,8 @@ public class Board {
 							cell.addAdj(grid[row][col+1]);
 						}
 					}
-				} else if (cell.isDoorway()) { // for doorways 
+				} 
+				else if (cell.isDoorway()) { // for doorways 
 					if ((row - 1) >= 0 && cell.getDoorDirection() != DoorDirection.UP) { // above neighbor
 						if(grid[row-1][col].getInitial() == 'W') { // connecting adjacent walkways 
 							cell.addAdj(grid[row-1][col]);
@@ -95,8 +96,20 @@ public class Board {
 					}
 					
 					this.calculateAdjDoorRoom(cell, rows, cols, row, col);
-					
 				}
+				else if (cell.isRoomCenter()) { // for rooms 
+					char initial = cell.getInitial();
+					Room room = this.roomMap.get(initial);
+					List<BoardCell> doorList = room.getDoorList();
+					for (BoardCell door: doorList) {
+						cell.addAdj(door);
+					}
+					if(room.hasSecretPassage()) {
+						cell.addAdj(room.getSecretPassage().get(0));
+					}
+						
+				}
+				
 			}
 		}
 	}
@@ -148,25 +161,23 @@ public class Board {
 		} catch (BadConfigFormatException e) {
 			e.printStackTrace();
 		}
-	}	
-
+	}
+	
 	/*
-	 * calculates legal targets for a move from startCell of length pathlength
+	 * Recursive helper function to calcTargets that find the targets
 	 */
-	public void calcTargets(BoardCell startCell, int pathlength) {
-		// put starting cell visited
-		visited.add(startCell);
+	private void findTarget(BoardCell cell, int length) {
 		// loop through the start cells adjacency list
-		for (BoardCell adjCell: startCell.getAdjList()) {
+		for (BoardCell adjCell: cell.getAdjList()) {
 			// if it is visited continue
-			if (visited.contains(adjCell) || adjCell.isOccupied() == true) {
+			if (visited.contains(adjCell) || adjCell.isOccupied()) {
 				continue;
 			}
 			// add cell to visited if not
 			visited.add(adjCell);
 
 			// if pathlength is 1 or there is a room it is a target
-			if (pathlength == 1 || adjCell.isRoom() == true) {
+			if (length == 1 || adjCell.isRoom()) {
 				// if cell is occupied it is not
 				if (adjCell.isOccupied() == false) {
 					targets.add(adjCell);
@@ -174,13 +185,25 @@ public class Board {
 			}
 			// go next adjCell cell
 			else {
-				calcTargets(adjCell, pathlength - 1);
+				findTarget(adjCell, length - 1);
 			}
 
 			// remove adjCell from visited set
 			visited.remove(adjCell);
 
 		}
+	}
+
+	/*
+	 * calculates legal targets for a move from startCell of length pathlength
+	 */
+	public void calcTargets(BoardCell startCell, int pathlength) {
+		targets = new HashSet<>();
+		visited = new HashSet<>();
+		// put starting cell visited
+		visited.add(startCell);
+		findTarget(startCell, pathlength);
+		
 	}
 	
 	/*
@@ -249,6 +272,48 @@ public class Board {
 		}
 		scanner.close();
 	}
+	
+	/*
+	 * get all doors and add to door list
+	 */
+	private void findRoomDoorsAndSecretPassage() {
+		for (int row = 0; row < this.numRows; row++) {
+			for (int col = 0; col < this.numColumns; col++) {
+				BoardCell cell = this.grid[row][col];
+				if (cell.isDoorway()) {
+					if ( cell.getDoorDirection() == DoorDirection.UP) {
+						char initial = this.grid[row-1][col].getInitial();
+						this.roomMap.get(initial).addDoor(cell);;
+					}
+					else if ( cell.getDoorDirection() == DoorDirection.LEFT) {
+						char initial = this.grid[row][col-1].getInitial();
+						this.roomMap.get(initial).addDoor(cell);;
+					}
+					else if ( cell.getDoorDirection() == DoorDirection.RIGHT) {
+						char initial = this.grid[row][col+1].getInitial();
+						this.roomMap.get(initial).addDoor(cell);;
+					}
+					else if ( cell.getDoorDirection() == DoorDirection.DOWN) {
+						char initial = this.grid[row+1][col+1].getInitial();
+						this.roomMap.get(initial).addDoor(cell);;
+					}
+					
+				}
+				// get secret passage
+				else if (cell.isSecretPassage()) {
+					char initial = this.grid[row][col].getInitial();
+					Room currentRoom = this.roomMap.get(initial);
+					// get center of room secret passage leads too
+					char roomTo = this.grid[row][col].getSecretPassage();
+					Room connectedRoom = this.roomMap.get(roomTo);	
+					currentRoom.addSecretPassage(connectedRoom.getCenterCell());
+					currentRoom.hasSecretPassage(true);
+				}
+			}
+		}
+	}
+	
+	
 	/*
 	 * Creates the board
 	 */
@@ -329,8 +394,10 @@ public class Board {
 		
 		this.targets = new HashSet<>();
 		this.visited = new HashSet<>();
+		this.findRoomDoorsAndSecretPassage();
 		this.calculateAdjacencies(this.numRows, this.numColumns);
 	}
+	
 
 	/*
 	 * Sets layout to layoutConfigFile and setup setupConfigFile. Method also gets the size of
