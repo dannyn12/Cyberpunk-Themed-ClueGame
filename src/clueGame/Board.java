@@ -170,18 +170,16 @@ public class Board {
 		// loop through the start cells adjacency list
 		for (BoardCell adjCell: cell.getAdjList()) {
 			// if it is visited continue
-			if (visited.contains(adjCell) || adjCell.isOccupied()) {
+			if (visited.contains(adjCell) || (adjCell.isOccupied() && !adjCell.isRoomCenter())) {
 				continue;
 			}
 			// add cell to visited if not
 			visited.add(adjCell);
 
 			// if pathlength is 1 or there is a room it is a target
-			if (length == 1 || adjCell.isRoom()) {
+			if (length == 1 || adjCell.isRoomCenter()) {
 				// if cell is occupied it is not
-				if (adjCell.isOccupied() == false) {
-					targets.add(adjCell);
-				}
+				targets.add(adjCell);
 			}
 			// go next adjCell cell
 			else {
