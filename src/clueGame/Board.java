@@ -448,10 +448,6 @@ public class Board {
 		return targets;
 	}
 
-	public static Board getTheInstance() {
-		return theInstance;
-	}
-
 	public Room getRoom(char initial) {
 		return roomMap.get(initial);
 	}
