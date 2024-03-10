@@ -279,18 +279,18 @@ public class Board {
 				// add doorway to room door list
 				if (cell.isDoorway()) {
 					if (cell.getDoorDirection() == DoorDirection.UP) { // check if door direction is going up
-						char initial = this.grid[row-1][col].getInitial();
+						char initial = this.grid[row-1][col].getInitial(); // adds the room it goes into room list
 						this.roomMap.get(initial).addDoor(cell);
 					}
-					else if (cell.getDoorDirection() == DoorDirection.LEFT) { // check if door direction is going left
+					else if (cell.getDoorDirection() == DoorDirection.LEFT) { // check if door direction is going left and adds the room it goes into list
 						char initial = this.grid[row][col-1].getInitial();
 						this.roomMap.get(initial).addDoor(cell);
 					}
-					else if (cell.getDoorDirection() == DoorDirection.RIGHT) { // check if door direction is going right
+					else if (cell.getDoorDirection() == DoorDirection.RIGHT) { // check if door direction is going right and adds the room it goes into list
 						char initial = this.grid[row][col+1].getInitial();
 						this.roomMap.get(initial).addDoor(cell);
 					}
-					else if (cell.getDoorDirection() == DoorDirection.DOWN) { // // check if door direction is going down
+					else if (cell.getDoorDirection() == DoorDirection.DOWN) { // // check if door direction is going down and adds the room it goes into list
 						char initial = this.grid[row+1][col+1].getInitial();
 						this.roomMap.get(initial).addDoor(cell);
 					}
