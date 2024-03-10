@@ -12,7 +12,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -37,80 +36,71 @@ public class Board {
 				BoardCell cell = grid[row][col];
 				if (cell.getInitial() == 'W' && !cell.isDoorway()) { // for walkways
 					if ((row - 1) >= 0) { // above neighbor
-						if(grid[row-1][col].getInitial() == 'W') { // connecting adjacent walkways 
+						if(grid[row-1][col].getInitial() == 'W' || grid[row-1][col].isDoorway()) { // connecting adjacent walkways or connecting walkways to doors
 							cell.addAdj(grid[row-1][col]);
-						} else if (grid[row-1][col].isDoorway()) { // connecting walkways to doors
-							cell.addAdj(grid[row-1][col]);
-						}
+						} 
 					}
 					if ((col - 1) >= 0) { // left neighbor
-						if(grid[row][col-1].getInitial() == 'W') { 
-							cell.addAdj(grid[row][col-1]);
-						} else if (grid[row][col-1].isDoorway()) {
+						if(grid[row][col-1].getInitial() == 'W' || grid[row][col-1].isDoorway()) { 
 							cell.addAdj(grid[row][col-1]);
 						}
 					}
 					if ((row + 1) < rows) { // below neighbor
-						if(grid[row+1][col].getInitial() == 'W') { 
-							cell.addAdj(grid[row+1][col]);
-						} else if (grid[row-1][col].isDoorway()) {
+						if(grid[row+1][col].getInitial() == 'W' || grid[row-1][col].isDoorway()) { 
 							cell.addAdj(grid[row+1][col]);
 						}
 					}
 					if ((col + 1) < cols) { // right neighbor
-						if(grid[row][col+1].getInitial() == 'W') { 
+						if(grid[row][col+1].getInitial() == 'W' || grid[row][col-1].isDoorway()) { 
 							cell.addAdj(grid[row][col+1]);
-						} else if (grid[row][col-1].isDoorway()) {
-							cell.addAdj(grid[row][col+1]);
-						}
+						} 
 					}
 				} 
 				else if (cell.isDoorway()) { // for doorways 
 					if ((row - 1) >= 0 && cell.getDoorDirection() != DoorDirection.UP) { // above neighbor
-						if(grid[row-1][col].getInitial() == 'W') { // connecting adjacent walkways 
+						if(grid[row-1][col].getInitial() == 'W' || grid[row-1][col].isDoorway()) { // connecting adjacent walkways or connecting door to adjacent doors
 							cell.addAdj(grid[row-1][col]);
-						} else if (grid[row-1][col].isDoorway()) { // connecting door to adjacent doors
-							cell.addAdj(grid[row-1][col]);
-						}
+						} 
 					}
 					if ((col - 1) >= 0 && cell.getDoorDirection() != DoorDirection.LEFT) { // left neighbor
-						if(grid[row][col-1].getInitial() == 'W') { 
+						if(grid[row][col-1].getInitial() == 'W' || grid[row][col-1].isDoorway()) { 
 							cell.addAdj(grid[row][col-1]);
-						} else if (grid[row][col-1].isDoorway()) {
-							cell.addAdj(grid[row][col-1]);
-						}
+						} 
 					}
 					if ((row + 1) < rows && cell.getDoorDirection() != DoorDirection.DOWN) { // below neighbor
-						if(grid[row+1][col].getInitial() == 'W') { 
-							cell.addAdj(grid[row+1][col]);
-						} else if (grid[row-1][col].isDoorway()) {
+						if(grid[row+1][col].getInitial() == 'W' || grid[row-1][col].isDoorway()) { 
 							cell.addAdj(grid[row+1][col]);
 						}
 					}
 					if ((col + 1) < cols && cell.getDoorDirection() != DoorDirection.RIGHT) { // right neighbor
-						if(grid[row][col+1].getInitial() == 'W') { 
+						if(grid[row][col+1].getInitial() == 'W' || grid[row][col-1].isDoorway()) { 
 							cell.addAdj(grid[row][col+1]);
-						} else if (grid[row][col-1].isDoorway()) {
-							cell.addAdj(grid[row][col+1]);
-						}
+						} 
 					}
-					
+					// calculate adjacent door room cells
 					this.calculateAdjDoorRoom(cell, rows, cols, row, col);
 				}
 				else if (cell.isRoomCenter()) { // for rooms 
-					char initial = cell.getInitial();
-					Room room = this.roomMap.get(initial);
-					List<BoardCell> doorList = room.getDoorList();
-					for (BoardCell door: doorList) {
-						cell.addAdj(door);
-					}
-					if(room.hasSecretPassage()) {
-						cell.addAdj(room.getSecretPassage().get(0));
-					}
+					calcAdjRoomCenter(cell);
 						
 				}
 				
 			}
+		}
+	}
+	
+	/*
+	 * Helper function  for calculateadj that adds adjacent cells in room centers 
+	 */
+	private void calcAdjRoomCenter(BoardCell cell) {
+		char initial = cell.getInitial();
+		Room room = this.roomMap.get(initial);
+		List<BoardCell> doorList = room.getDoorList();
+		for (BoardCell door: doorList) {
+			cell.addAdj(door);
+		}
+		if(room.hasSecretPassage()) {
+			cell.addAdj(room.getSecretPassage().get(0));
 		}
 	}
 	
