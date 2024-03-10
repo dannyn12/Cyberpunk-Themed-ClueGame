@@ -144,8 +144,7 @@ public class Board {
 	/*
 	 * initialize the board 
 	 */
-	public void initialize() 
-	{
+	public void initialize() {
 		try {
 			this.loadSetupConfig();
 			this.loadLayoutConfig();
@@ -279,28 +278,30 @@ public class Board {
 				BoardCell cell = this.grid[row][col];
 				// add doorway to room door list
 				if (cell.isDoorway()) {
-					if ( cell.getDoorDirection() == DoorDirection.UP) {
+					if (cell.getDoorDirection() == DoorDirection.UP) { // check if door direction is going up
 						char initial = this.grid[row-1][col].getInitial();
-						this.roomMap.get(initial).addDoor(cell);;
+						this.roomMap.get(initial).addDoor(cell);
 					}
-					else if ( cell.getDoorDirection() == DoorDirection.LEFT) {
+					else if (cell.getDoorDirection() == DoorDirection.LEFT) { // check if door direction is going left
 						char initial = this.grid[row][col-1].getInitial();
-						this.roomMap.get(initial).addDoor(cell);;
+						this.roomMap.get(initial).addDoor(cell);
 					}
-					else if ( cell.getDoorDirection() == DoorDirection.RIGHT) {
+					else if (cell.getDoorDirection() == DoorDirection.RIGHT) { // check if door direction is going right
 						char initial = this.grid[row][col+1].getInitial();
-						this.roomMap.get(initial).addDoor(cell);;
+						this.roomMap.get(initial).addDoor(cell);
 					}
-					else if ( cell.getDoorDirection() == DoorDirection.DOWN) {
+					else if (cell.getDoorDirection() == DoorDirection.DOWN) { // // check if door direction is going down
 						char initial = this.grid[row+1][col+1].getInitial();
-						this.roomMap.get(initial).addDoor(cell);;
+						this.roomMap.get(initial).addDoor(cell);
 					}
 					
 				}
 				// get secret passage and add that to room class
 				else if (cell.isSecretPassage()) {
+					// get initial current room
 					char initial = this.grid[row][col].getInitial();
 					Room currentRoom = this.roomMap.get(initial);
+					
 					// get center of room secret passage leads too
 					char roomTo = this.grid[row][col].getSecretPassage();
 					Room connectedRoom = this.roomMap.get(roomTo);	
