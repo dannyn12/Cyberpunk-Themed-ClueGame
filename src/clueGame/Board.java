@@ -78,7 +78,7 @@ public class Board {
 						} 
 					}
 					// calculate adjacent door room cells
-					this.calculateAdjDoorRoom(cell, rows, cols, row, col);
+					this.calcAdjDoorRoom(cell, rows, row, col);
 				}
 				else if (cell.isRoomCenter()) { // for rooms 
 					calcAdjRoomCenter(cell);
@@ -107,7 +107,7 @@ public class Board {
 	/*
 	 * helper function for calculateadj function this function will add the room center to the doorway
 	 */
-	private void calculateAdjDoorRoom(BoardCell cell, int rows, int cols, int row, int col) {
+	private void calcAdjDoorRoom(BoardCell cell, int rows, int row, int col) {
 		if ((row - 1) >= 0 && cell.getDoorDirection() == DoorDirection.UP) { // above neighbor
 			char initial = grid[row-1][col].getInitial();
 			Room room = this.roomMap.get(initial);
@@ -200,7 +200,7 @@ public class Board {
 	 */
 	public void loadSetupConfig() throws BadConfigFormatException {
 		try {
-			SetupGame();
+			setupGame();
 		} catch (FileNotFoundException e ) {
 			throw new BadConfigFormatException("Setup Config file not found.");
 		}
@@ -209,7 +209,7 @@ public class Board {
 	/*
 	 * Reads setupConfigFile and set up game
 	 */
-	private void SetupGame() throws FileNotFoundException {
+	private void setupGame() throws FileNotFoundException {
 		FileReader file = new FileReader("src/data/" + this.setupConfigFile);
 		Scanner scanner = new Scanner(file);
 		while (scanner.hasNextLine()) {
@@ -235,15 +235,22 @@ public class Board {
 			setupLayout(cellList); // read layout file and add each cell initial in layout file to cellList
 			int cellListLocation = 0; // list index
 			this.grid = new BoardCell[this.numRows][this.numColumns];
-			
-			try {
-				createBoard(cellList, cellListLocation);
-			} catch (IndexOutOfBoundsException e){
-				throw new BadConfigFormatException("LayoutConfig invalid");
-			}
+			// checks and create board if file is valid
+			tryCreateBoard(cellList, cellListLocation);
 
 		} catch (FileNotFoundException e){
 			throw new BadConfigFormatException("Setup Config file not found.");
+		}
+	}
+	
+	/*
+	 * Checks if board can be created
+	 */
+	private void tryCreateBoard(List<String> cellList, int cellListLocation) throws BadConfigFormatException {
+		try {
+			createBoard(cellList, cellListLocation);
+		} catch (IndexOutOfBoundsException e){
+			throw new BadConfigFormatException("LayoutConfig invalid");
 		}
 	}
 	
@@ -382,7 +389,6 @@ public class Board {
 				cellListLocation += 1;
 			}
 		}
-		
 		this.targets = new HashSet<>();
 		this.visited = new HashSet<>();
 		this.findDoorsAndPassage();
