@@ -1,3 +1,21 @@
+commit 7e13d5d65a22469ee779900e93d56825b5143975
+Author: Jordan Lam <jordanlam@mines.edu>
+Date:   Sun Mar 10 22:12:44 2024 -0600
+
+    updated room class by adding better comments and reorganizing functions and variable locations
+
+commit 1cdba487492ac4dba19a49287bd1644e62b5f497
+Author: Jordan Lam <jordanlam@mines.edu>
+Date:   Sun Mar 10 22:10:42 2024 -0600
+
+    added function headers in BoardCell class
+
+commit 8d816ed3ccdd60ee97b0ce20e437ca8f533d4cdf
+Author: Jordan Lam <jordanlam@mines.edu>
+Date:   Sun Mar 10 22:08:36 2024 -0600
+
+    added class description to BadConfigFormatException
+
 commit bf2083a435d5c74bd6c676bafcf4b9f6fd38de73
 Author: Jordan Lam <jordanlam@mines.edu>
 Date:   Sun Mar 10 21:58:35 2024 -0600
