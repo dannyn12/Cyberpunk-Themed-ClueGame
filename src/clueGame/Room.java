@@ -12,9 +12,8 @@ public class Room {
 	private BoardCell centerCell;
 	private BoardCell labelCell;
 	private boolean hasSecretPassage;
-	// door list
-	private List<BoardCell> doorList = new ArrayList<>();
-	private List<BoardCell> secretPassageList = new ArrayList<>();
+	private List<BoardCell> doorList = new ArrayList<>(); // list of each door in the room
+	private List<BoardCell> secretPassageList = new ArrayList<>(); // list of the secretpassage in the rom
 	
  	
 	// Constructors for Room
