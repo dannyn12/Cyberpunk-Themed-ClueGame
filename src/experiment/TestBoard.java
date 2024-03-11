@@ -51,7 +51,7 @@ public class TestBoard {
 	}
 	
 	/*
-	 * Calculates legal targets for a move from startCell of length pathlength
+	 * Calculates legal targets for a move from startCell of length path length
 	 */
 	public void calcTargets(TestBoardCell startCell, int pathlength) {
 		// put starting cell visited
@@ -65,7 +65,7 @@ public class TestBoard {
 			// add cell to visited if not
 			visited.add(adjCell);
 			
-			// if pathlength is 1 or there is a room it is a target
+			// if path length is 1 or there is a room it is a target
 			if (pathlength == 1 || adjCell.isRoom() == true) {
 				// if cell is occupied it is not
 				if (adjCell.isOccupied() == false) {
@@ -78,7 +78,7 @@ public class TestBoard {
 				calcTargets(adjCell, pathlength - 1);
 			}
 			
-			// romove adjCell from visited set
+			// Remove adjCell from visited set
 			visited.remove(adjCell);
 			
 		}

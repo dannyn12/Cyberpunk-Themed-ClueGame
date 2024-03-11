@@ -1,3 +1,39 @@
+commit bf2083a435d5c74bd6c676bafcf4b9f6fd38de73
+Author: Jordan Lam <jordanlam@mines.edu>
+Date:   Sun Mar 10 21:58:35 2024 -0600
+
+    refractored setupLayout function
+
+commit fc297994ebcb08c73f213aa4818cfb2ec14aac51
+Author: Danny Nguyen <dbnguyen@mines.edu>
+Date:   Sun Mar 10 17:04:46 2024 -0600
+
+    fixed comments in findDoorsAndPassge method
+
+commit 0fe19263cbd0719ad88924826dadb3165829b279
+Author: Danny Nguyen <dbnguyen@mines.edu>
+Date:   Sun Mar 10 17:01:28 2024 -0600
+
+    added more comments to findDoorsAndPassage method
+
+commit 09e303b61a7219bd45666a13af780137fdcd9216
+Author: Danny Nguyen <dbnguyen@mines.edu>
+Date:   Sun Mar 10 16:50:51 2024 -0600
+
+    refactored loadLayoutConfig to make code more readable
+
+commit e372365dbaaa7f1856149d5475820b89b960c3f6
+Author: Danny Nguyen <dbnguyen@mines.edu>
+Date:   Sun Mar 10 16:23:31 2024 -0600
+
+    refactored calculateAdjacencies method to make it more readable
+
+commit 07ec7c09b6fc5f8ac223c362049c58fe03beb8d9
+Author: Danny Nguyen <dbnguyen@mines.edu>
+Date:   Sun Mar 10 15:21:29 2024 -0600
+
+    got rid of duplicate getInstance getter
+
 commit e045e746bbfb404f0128266ebc8dc0a92c963fef
 Author: Danny Nguyen <dbnguyen@mines.edu>
 Date:   Fri Mar 8 22:36:16 2024 -0700
