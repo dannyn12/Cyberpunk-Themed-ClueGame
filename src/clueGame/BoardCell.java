@@ -21,6 +21,10 @@ public class BoardCell {
 	private boolean isDoorway;
 	private boolean isRoom;
 	
+	/*
+	 * constructor for BoardCell class 
+	 * Boards are init with nothing active
+	 */
 	public BoardCell(int row, int col) {
 		super();
 		this.row = row;
@@ -32,7 +36,9 @@ public class BoardCell {
 		this.isOccupied = false;
 	}
 	
-	//  adds a cell to this cells adjacency list
+	/*
+	 * this will add a cell to this cells adjList
+	 */
 	public void addAdj(BoardCell adj) {
 		adjList.add(adj);
 	}
