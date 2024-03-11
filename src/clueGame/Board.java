@@ -8,6 +8,7 @@ package clueGame;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -25,6 +26,7 @@ public class Board {
 	private Set<BoardCell> targets;
 	private Set<BoardCell> visited;
 	private static Board theInstance = new Board();
+	private static String fileLoc = "src/data/";
 
 
 	/*
@@ -209,7 +211,7 @@ public class Board {
 	 * Reads setupConfigFile and set up game
 	 */
 	private void setupGame() throws FileNotFoundException {
-		FileReader file = new FileReader("src/data/" + this.setupConfigFile);
+		FileReader file = new FileReader(fileLoc + this.setupConfigFile);
 		Scanner scanner = new Scanner(file);
 		while (scanner.hasNextLine()) {
 			String[] row = scanner.nextLine().split(", ");
@@ -257,13 +259,11 @@ public class Board {
 	 * Sets up the layout of the board
 	 */
 	private void setupLayout(List<String> cellList) throws FileNotFoundException {
-		FileReader file = new FileReader("src/data/" + this.layoutConfigFile);
+		FileReader file = new FileReader(fileLoc + this.layoutConfigFile);
 		Scanner scanner = new Scanner(file);
 		while (scanner.hasNextLine()) {
-			String[] row = scanner.nextLine().split(",");
-			for (String cell: row) {
-				cellList.add(cell);
-			}
+			String[] row = scanner.nextLine().split(",");	
+			Collections.addAll(cellList, row);
 		}
 		scanner.close();
 	}
@@ -417,7 +417,7 @@ public class Board {
 		int rows = 0;
 		int cols = 0;
 		try {
-			FileReader file = new FileReader("src/data/" + layout);
+			FileReader file = new FileReader(fileLoc + layout);
 			Scanner scanner = new Scanner(file);
 			while (scanner.hasNextLine()) {
 				String[] row = scanner.nextLine().split(",");

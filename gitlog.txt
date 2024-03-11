@@ -1,3 +1,52 @@
+commit e045e746bbfb404f0128266ebc8dc0a92c963fef
+Author: Danny Nguyen <dbnguyen@mines.edu>
+Date:   Fri Mar 8 22:36:16 2024 -0700
+
+    Fixed BoardAdjTargetTest tests
+
+commit e4175b1f256325ded9e3919e15f7d4f6eda9ca64
+Author: Jordan Lam <jordanlam@mines.edu>
+Date:   Fri Mar 8 21:28:25 2024 -0700
+
+    fixed calc targets
+
+commit 1622249738c3e25ef734e31829c04c8c0b13a361
+Merge: f600883 9bdb2b8
+Author: Jordan Lam <jordanlam@mines.edu>
+Date:   Fri Mar 8 21:05:32 2024 -0700
+
+    Merge remote-tracking branch 'refs/remotes/origin/main'
+
+commit 9bdb2b8c4b85c869e6572aa0d169834dbd1bc929
+Author: Danny Nguyen <dbnguyen@mines.edu>
+Date:   Fri Mar 8 21:02:08 2024 -0700
+
+    added logic to finding adjacent cells to secret paths and center room cells
+
+commit f600883e7880575d5c0df4f7fb28330c41cb9f9a
+Author: Jordan Lam <jordanlam@mines.edu>
+Date:   Thu Mar 7 22:14:20 2024 -0700
+
+    corrected incorrect test
+
+commit 2f5d090fb43250f35017feca5172b8fccd0e3614
+Author: Jordan Lam <jordanlam@mines.edu>
+Date:   Thu Mar 7 22:02:58 2024 -0700
+
+    added helperfunction for calcadj and removed debug comments from tests
+
+commit ffc71463f8095b0e70842d2bd1eba9cdc6494f02
+Author: Jordan Lam <jordanlam@mines.edu>
+Date:   Thu Mar 7 21:50:46 2024 -0700
+
+    added logic to handle adjacency calculations for walkways and doors
+
+commit a64d86e6cf03e7a0b11edfb13e25568b68d3f98a
+Author: Jordan Lam <jordanlam@mines.edu>
+Date:   Wed Mar 6 12:37:39 2024 -0700
+
+    fixed variable names
+
 commit fc7f9277121eaa9a7e4f1a6d4a00432c129ec6f1
 Author: Jordan Lam <jordanlam@mines.edu>
 Date:   Tue Mar 5 01:25:47 2024 -0700

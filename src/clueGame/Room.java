@@ -17,6 +17,7 @@ public class Room {
 	private List<BoardCell> secretPassageList = new ArrayList<>();
 	
  	
+	// Constructors for Room
 	public Room() {
 		super();
 	}
