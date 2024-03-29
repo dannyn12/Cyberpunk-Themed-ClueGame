@@ -5,8 +5,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.ArrayList;
 import java.util.HashSet;
 
-//import javax.smartcardio.Card;
-
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
