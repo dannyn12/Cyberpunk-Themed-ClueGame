@@ -25,4 +25,3 @@ Weapon, EMP Grenade
 Weapon, Neural Interface Virus
 Weapon, Data Spike
 Weapon, Cybernetic Augmentation
-
