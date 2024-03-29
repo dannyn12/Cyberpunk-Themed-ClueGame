@@ -83,7 +83,7 @@ class GameSetupTest {
 	 */
 	@Test
 	public void testDeck() {
-		assertEquals(board.getDeck().size(), 23);
+		assertEquals(board.getDeck().size(), 21);
 		assertEquals(board.getPeopleCards().size(), 6);
 		assertEquals(board.getWeaponCards().size(), 6);
 		assertEquals(board.getRoomCards().size(), 9);

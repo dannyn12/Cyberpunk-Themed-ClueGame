@@ -225,6 +225,13 @@ public class Board {
 	private void setupGame() throws FileNotFoundException {
 		FileReader file = new FileReader(fileLoc + this.setupConfigFile);
 		Scanner scanner = new Scanner(file);
+		this.peopleCards = new ArrayList<Card>();
+		this.weaponCards = new ArrayList<Card>();
+		this.roomCards = new ArrayList<Card>();
+		this.deck = new ArrayList<Card>();
+		this.players = new ArrayList<Player>();
+		boolean humanPlayer = true;
+		
 		while (scanner.hasNextLine()) {
 			String[] row = scanner.nextLine().split(", ");
 			if (row.length >= 3 && (row[0].equals("Room") || row[0].equals("Space"))) {
@@ -232,6 +239,27 @@ public class Board {
 				Room room = new Room();
 				room.setName(row[1]);
 				this.roomMap.put(inital, room);
+				if (row[0].equals("Room")) {
+					Card card = new Card(row[1], CardType.ROOM);
+					this.roomCards.add(card);
+					this.deck.add(card);
+				}
+			} else if (row.length >= 3 && (row[0].equals("Player"))) {
+				Card card = new Card(row[1], CardType.PERSON);
+				this.peopleCards.add(card);
+				this.deck.add(card);
+				if(humanPlayer) {
+					HumanPlayer player = new HumanPlayer(row[1], row[2], Integer.valueOf(row[3]), Integer.valueOf(row[4]));
+					this.players.add(player);
+					humanPlayer = false;
+				} else {
+					ComputerPlayer player = new ComputerPlayer(row[1], row[2], Integer.valueOf(row[3]), Integer.valueOf(row[4]));
+					this.players.add(player);
+				}
+			} else if (row.length >= 2 && (row[0].equals("Weapon"))) {
+				Card card = new Card(row[1], CardType.WEAPON);
+				this.weaponCards.add(card);
+				this.deck.add(card);
 			}
 		}
 	}
