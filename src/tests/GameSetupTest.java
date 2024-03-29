@@ -16,6 +16,7 @@ import clueGame.BoardCell;
 import clueGame.Solution;
 import clueGame.Card;
 import clueGame.CardType;
+import clueGame.HumanPlayer;
 import clueGame.Player;
 import java.util.Set;
 
@@ -58,13 +59,27 @@ class GameSetupTest {
 		
 	}
 	/*
-	 * Test to check that there is 1 human player and 5 computer plays
+	 * Test to check that there is 1 human player and 5 computer player
 	 */
 	@Test
 	public void testProperPlayers() {
+		ArrayList<Player> players = board.getPlayers();
+		int numHuman = 0;
+		int numComputer = 0;
 		
+		for (Player player: players) {
+			if (player instanceof HumanPlayer) {
+				numHuman += 1;
+			}
+			else {
+				numComputer += 1;
+			}
+		}
 		
+		assertEquals(numHuman, 1);
+		assertEquals(numComputer, 5);
 	}
+	
 	/*
 	 * Test to check that deck includes all cards 
 	 */
