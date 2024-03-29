@@ -27,7 +27,13 @@ public class Board {
 	private Set<BoardCell> visited;
 	private static Board theInstance = new Board();
 	private static String fileLoc = "src/data/";
-
+	private ArrayList<Card> peopleCards;
+	private ArrayList<Card> weaponCards;
+	private ArrayList<Card> roomCards;
+	private ArrayList<Card> deck;
+	private Solution solution;
+	private ArrayList<Player> players;
+	
 
 	/*
 	 *  Method calculate the adjacency of each cell in the board
@@ -155,6 +161,14 @@ public class Board {
 		}
 	}
 	
+	
+	
+	/*
+	 * functions to deal cards to dealer
+	 */
+	public void deal() {
+		// 
+	}
 	/*
 	 * Recursive helper function to calcTargets that find the targets
 	 */
@@ -461,6 +475,29 @@ public class Board {
 	public int getNumColumns() {
 		return numColumns;
 	}
+	
+	public ArrayList<Card> getPeopleCards() {
+		return peopleCards;
+	}
 
+	public ArrayList<Card> getWeaponCards() {
+		return weaponCards;
+	}
+
+	public ArrayList<Card> getRoomCards() {
+		return roomCards;
+	}
+
+	public Solution getSolution() {
+		return solution;
+	}
+
+	public ArrayList<Player> getPlayers() {
+		return players;
+	}
+
+	public ArrayList<Card> getDeck(){
+		return deck;
+	}
 	
 }
