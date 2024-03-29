@@ -8,6 +8,21 @@ Room, Slum District, S
 Room, Quantum Laboratory, Q
 Room, Underground Bunker, U
 Room, Techno Junkyard, J
-// other spaces on board
+// Other Spaces On Board
 Space, Unused, X
 Space, Walkway, W
+// Player, Player Cards and Color
+Player, Cipher, Green
+Player, Nova, Purple
+Player, Neon, Pink
+Player, Vortex, Orange
+Player, Spectre, Blue
+Player, Rebel, Red
+// Weapon and Weapon Cards
+Weapon, Neural Disruptor
+Weapon, Nanobot Injector
+Weapon, EMP Grenade 
+Weapon, Neural Interface Virus
+Weapon, Data Spike
+Weapon, Cybernetic Augmentation
+
