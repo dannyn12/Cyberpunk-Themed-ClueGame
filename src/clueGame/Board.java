@@ -161,14 +161,13 @@ public class Board {
 		}
 	}
 	
-	
-	
 	/*
 	 * functions to deal cards to dealer
 	 */
 	public void deal() {
 		// 
 	}
+	
 	/*
 	 * Recursive helper function to calcTargets that find the targets
 	 */
@@ -191,7 +190,6 @@ public class Board {
 			else {
 				findTarget(adjCell, length - 1);
 			}
-
 			// remove adjCell from visited set
 			visited.remove(adjCell);
 

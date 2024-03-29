@@ -5,18 +5,20 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.ArrayList;
 import java.util.HashSet;
 
-import javax.smartcardio.Card;
+//import javax.smartcardio.Card;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import clueGame.BadConfigFormatException;
 import clueGame.Board;
+import clueGame.BoardCell;
 import clueGame.Solution;
 import clueGame.Card;
 import clueGame.CardType;
 import clueGame.Player;
 import java.util.Set;
+
 class GameSetupTest {
 	public static final int LEGEND_SIZE = 11;
 	public static final int NUM_ROWS = 28;
@@ -43,6 +45,16 @@ class GameSetupTest {
 	 */
 	@Test
 	public void testPeopleLoaded() {
+		ArrayList<Player> players = board.getPlayers();
+		assertEquals(players.size(), 6);
+		
+		// check if each player is loaded on correct cell
+		for (Player person: players) {
+			int row = person.getRow();
+			int col = person.getCol();
+			BoardCell playerCells = board.getCell(row, col);
+			assertTrue(playerCells.isOccupied());
+		}
 		
 	}
 	/*
@@ -50,6 +62,7 @@ class GameSetupTest {
 	 */
 	@Test
 	public void testProperPlayers() {
+		
 		
 	}
 	/*
