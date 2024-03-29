@@ -433,6 +433,7 @@ public class Board {
 		this.targets = new HashSet<>();
 		this.visited = new HashSet<>();
 		this.findDoorsAndPassage();
+		this.addPlayersOnBoard();
 		this.calculateAdjacencies(this.numRows, this.numColumns);
 	}
 	
@@ -447,6 +448,16 @@ public class Board {
 		this.roomMap = new HashMap<>();
 		getBoardSize(layout);
 
+	}
+	
+	/*
+	 * place players at there starting location
+	 */
+	public void addPlayersOnBoard() {
+		for(Player player: this.players) {
+			int[] location = player.getLocation();
+			this.grid[location[0]][location[1]].setOccupied(true);
+		}
 	}
 	
 	/*
@@ -525,5 +536,6 @@ public class Board {
 	public ArrayList<Card> getDeck(){
 		return deck;
 	}
+	
 	
 }
