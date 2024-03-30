@@ -16,8 +16,8 @@ Player, Cipher, Green, 19, 0
 Player, Nova, Purple, 7, 0
 Player, Neon, Pink, 0, 9
 Player, Vortex, Orange, 0, 17
-Player, Spectre, Blue, 26, 7
-Player, Rebel, Red, 26, 18
+Player, Spectre, Blue, 0, 2
+Player, Rebel, Red, 0, 1
 // Weapon and Weapon Cards
 Weapon, Neural Disruptor
 Weapon, Nanobot Injector
