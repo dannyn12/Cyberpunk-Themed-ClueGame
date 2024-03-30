@@ -52,6 +52,7 @@ public class BoardAdjTargetTest306 {
 	}
 
 	
+	
 	// Ensure door locations include their rooms and also additional walkways
 	// These cells are LIGHT ORANGE on the planning spreadsheet
 	@Test
