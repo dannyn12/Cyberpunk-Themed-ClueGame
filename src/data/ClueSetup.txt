@@ -12,12 +12,12 @@ Room, Techno Junkyard, J
 Space, Unused, X
 Space, Walkway, W
 // Player, Player Cards and Color and Location
-Player, Cipher, Green, 9, 24
-Player, Nova, Purple, 14, 24
-Player, Neon, Pink, 23, 17
-Player, Vortex, Orange, 23, 7
-Player, Spectre, Blue, 16, 0
-Player, Rebel, Red, 7, 0
+Player, Cipher, Green, 0, 9
+Player, Nova, Purple, 0, 17
+Player, Neon, Pink, 7, 0
+Player, Vortex, Orange, 19, 0
+Player, Spectre, Blue, 19, 26
+Player, Rebel, Red, 7, 26
 // Weapon and Weapon Cards
 Weapon, Neural Disruptor
 Weapon, Nanobot Injector

@@ -26,12 +26,12 @@ public class BoardAdjTargetTest306 {
 		// Initialize will load config files 
 		board.initialize();
 		
-		board.getCell(19, 0).setOccupied(false);
-		board.getCell(7, 0).setOccupied(false);
-		board.getCell(0, 9).setOccupied(false);
-		board.getCell(0, 17).setOccupied(false);
-		board.getCell(0, 2).setOccupied(false);
-		board.getCell(0, 1).setOccupied(false);
+		board.getCell(18, 0).setOccupied(false);
+		board.getCell(24, 9).setOccupied(false);
+		board.getCell(5, 0).setOccupied(false);
+		board.getCell(0, 6).setOccupied(false);
+		board.getCell(0, 16).setOccupied(false);
+		board.getCell(7, 23).setOccupied(false);
 	}
 
 	// Ensure that player does not move around within room

@@ -12,12 +12,12 @@ Room, Hall, H
 Space, Unused, X
 Space, Walkway, W
 // Player, Player Cards and Color and Location
-Player, Cipher, Green, 19, 0
-Player, Nova, Purple, 7, 0
-Player, Neon, Pink, 0, 9
-Player, Vortex, Orange, 0, 17
-Player, Spectre, Blue, 0, 2
-Player, Rebel, Red, 0, 1
+Player, Cipher, Green, 18, 0
+Player, Nova, Purple, 24, 9
+Player, Neon, Pink, 5, 0
+Player, Vortex, Orange, 0, 6
+Player, Spectre, Blue, 0, 16
+Player, Rebel, Red, 7, 23
 // Weapon and Weapon Cards
 Weapon, Neural Disruptor
 Weapon, Nanobot Injector
