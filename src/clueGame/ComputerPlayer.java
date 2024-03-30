@@ -7,8 +7,4 @@ public class ComputerPlayer extends Player {
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
-	public void updateHand(Card card) {
-		// write class
-	}
 }
