@@ -6,7 +6,7 @@ public abstract class Player {
 	private String name;
 	private String color;
 	private int row, col;
-	private ArrayList<Card> hand;
+	private ArrayList<Card> hand = new ArrayList<>();
 	
 	public Player(String name, String color, int row, int col) {
 		this.name = name;
@@ -25,7 +25,7 @@ public abstract class Player {
 	 * 
 	 */
 	public void updateHand(Card card) {
-		
+		this.hand.add(card);
 	}
 	
 	/*

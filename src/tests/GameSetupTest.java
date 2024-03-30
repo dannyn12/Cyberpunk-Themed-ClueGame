@@ -123,6 +123,7 @@ class GameSetupTest {
 		 */
 		for(Player player: players) {
 			ArrayList<Card> hand = player.getHand();
+			System.out.println(hand.size());
 			assertTrue(hand.size() > 2);
 			for(Card card: hand) {
 				assertFalse(seen.contains(card));

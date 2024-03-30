@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -156,6 +157,7 @@ public class Board {
 		try {
 			this.loadSetupConfig();
 			this.loadLayoutConfig();
+			this.deal();
 		} catch (BadConfigFormatException e) {
 			e.printStackTrace();
 		}
@@ -165,7 +167,40 @@ public class Board {
 	 * functions to deal cards to dealer
 	 */
 	public void deal() {
-		// 
+		ArrayList<Card> dealingDeck = new ArrayList<>(this.deck);
+		
+		// get random solution
+		ArrayList<Integer> randomNums = new ArrayList<>();
+		Random random = new Random();
+		
+		int randomNumber = random.nextInt(6);
+		randomNums.add(randomNumber);
+		randomNumber = random.nextInt(6);
+		randomNums.add(randomNumber);		
+		randomNumber = random.nextInt(9);
+		randomNums.add(randomNumber);
+		
+		
+		// get player, weapon, room solutions
+		Card playerSol = peopleCards.get(randomNums.get(0));
+		Card weaponSol = weaponCards.get(randomNums.get(1));
+		Card roomSol = roomCards.get(randomNums.get(2));
+		// remove cards from deck so that it cant be picked again
+		dealingDeck.remove(playerSol);
+		dealingDeck.remove(weaponSol);
+		dealingDeck.remove(roomSol);
+		this.solution = new Solution(roomSol, playerSol, weaponSol);
+		
+		
+		// shuffle deck and not deal cards to players
+		Collections.shuffle(dealingDeck);
+		
+		while (!dealingDeck.isEmpty()) {
+			for (Player player: this.players) {
+				player.updateHand(dealingDeck.get(0));
+				dealingDeck.remove(0);
+			}
+		}
 	}
 	
 	/*
@@ -262,6 +297,7 @@ public class Board {
 				this.deck.add(card);
 			}
 		}
+		//this.deal();
 	}
 
 	/*
@@ -536,6 +572,5 @@ public class Board {
 	public ArrayList<Card> getDeck(){
 		return deck;
 	}
-	
 	
 }
