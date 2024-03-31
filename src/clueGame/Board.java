@@ -32,8 +32,8 @@ public class Board {
 	private ArrayList<Card> weaponCards;
 	private ArrayList<Card> roomCards;
 	private ArrayList<Card> deck;
-	private Solution solution;
 	private ArrayList<Player> players;
+	private Solution solution;
 	
 
 	/*
@@ -114,7 +114,7 @@ public class Board {
 	}
 	
 	/*
-	 * helper function for calculateadj function this function will add the room center to the doorway
+	 * Helper function for calculateadj function this function will add the room center to the doorway
 	 */
 	private void calcAdjDoorRoom(BoardCell cell, int rows, int row, int col) {
 		if ((row - 1) >= 0 && cell.getDoorDirection() == DoorDirection.UP) { // above neighbor
@@ -137,21 +137,21 @@ public class Board {
 	}
 
 	/*
-	 * constructor is private to ensure only one can be created
+	 * Constructor is private to ensure only one can be created
 	 */
 	private Board() {
 		super() ;
 	}
 
 	/*
-	 * this method returns the only Board
+	 * This method returns the only Board
 	 */
 	public static Board getInstance() {
 		return theInstance;
 	}
 
 	/*
-	 * initialize the board 
+	 * Initialize the board 
 	 */
 	public void initialize() {
 		try {
@@ -164,7 +164,7 @@ public class Board {
 	}
 	
 	/*
-	 * functions to deal cards to dealer
+	 * Functions to deal cards to players and get a solution
 	 */
 	public void deal() {
 		ArrayList<Card> dealingDeck = new ArrayList<>(this.deck);
@@ -192,7 +192,7 @@ public class Board {
 		this.solution = new Solution(roomSol, playerSol, weaponSol);
 		
 		
-		// shuffle deck and not deal cards to players
+		// shuffle deck and deal cards to players
 		Collections.shuffle(dealingDeck);
 		
 		while (!dealingDeck.isEmpty()) {
@@ -202,6 +202,21 @@ public class Board {
 			}
 		}
 	}
+	
+	/*
+	 * TODO: Functions checks accusation made by player
+	 */
+	public boolean checkAccusation() {
+		return false;
+	}
+	
+	/*
+	 * TODO: Function checks the user suggestion and returns if they have seen another players card.
+	 */
+	public Card handleSuggestion() {
+		return null;
+	}
+	
 	
 	/*
 	 * Recursive helper function to calcTargets that find the targets
@@ -297,7 +312,6 @@ public class Board {
 				this.deck.add(card);
 			}
 		}
-		//this.deal();
 	}
 
 	/*
