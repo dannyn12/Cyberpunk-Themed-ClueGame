@@ -10,6 +10,8 @@ import org.junit.jupiter.api.Test;
 import clueGame.BadConfigFormatException;
 import clueGame.Board;
 import clueGame.BoardCell;
+import clueGame.Card;
+import clueGame.CardType;
 import clueGame.Player;
 
 class GameSolutionTest {
@@ -19,6 +21,7 @@ class GameSolutionTest {
 
 	// since singleton board class
 	private static Board board;
+	private static Card neonAllyCard, clinicCard, towerCard, nexusCard, coreCard, districtCard, labCard, bunkerCard, junkCard, cipherCard, novaCard, neonCard, vortexCard, spectreCard, rebalCard, disrupterCard, injectorCard, grenadeCard, virusCard, spikeCard, augmentationCard;
 
 	@BeforeAll
 	public static void setUp() throws BadConfigFormatException {
@@ -28,6 +31,35 @@ class GameSolutionTest {
 		board.setConfigFiles("ClueLayout.csv", "ClueSetup.txt");
 		// Initialize will load BOTH config files
 		board.initialize();
+		
+		// Create some card constants for test
+		//
+		// 9 rooms
+		neonAllyCard = new Card("Neon Alley", CardType.ROOM);
+		clinicCard = new Card("Cybernetics Clinic", CardType.ROOM);
+		towerCard = new Card("Corporate Tower", CardType.ROOM);
+		nexusCard = new Card("Cyberspace Nexus", CardType.ROOM);
+		coreCard = new Card("Data Core", CardType.ROOM);
+		districtCard = new Card("Slum District", CardType.ROOM);
+		labCard = new Card("Quantum Laboratory", CardType.ROOM);
+		bunkerCard = new Card("Underground Bunker", CardType.ROOM);
+		junkCard = new Card("Techno Junkyard", CardType.ROOM);
+		// 6 players
+		cipherCard = new Card("Cipher", CardType.PERSON);
+		novaCard = new Card("Nova", CardType.PERSON);
+		neonCard = new Card("Neon", CardType.PERSON);
+		vortexCard = new Card("Vortex", CardType.PERSON);
+		spectreCard = new Card("Sprectre", CardType.PERSON);
+		rebalCard = new Card("Rebal", CardType.PERSON);
+		// 6 weapons
+		disrupterCard = new Card("Neural Disruptor", CardType.WEAPON);
+		injectorCard = new Card("Nanobot Injector", CardType.WEAPON);
+		grenadeCard = new Card("EMP Grenade", CardType.WEAPON);
+		virusCard = new Card("Neural Interface Virus", CardType.WEAPON);
+		spikeCard = new Card("Data Spike", CardType.WEAPON);
+		augmentationCard = new Card("Cybernetic Augmentation", CardType.WEAPON);
+		
+		
 	}
 
 	/*
