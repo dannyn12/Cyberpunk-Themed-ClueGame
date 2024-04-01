@@ -1,5 +1,7 @@
 package clueGame;
 
+import java.util.Set;
+
 public class ComputerPlayer extends Player {
 	
 	public ComputerPlayer(String name, String color, int row, int col) {
@@ -9,14 +11,14 @@ public class ComputerPlayer extends Player {
 	/*
 	 * TODO
 	 */
-	public void createSuggestion() {
-		
+	public Solution createSuggestion() {
+		return null;
 	}
 	
 	/*
 	 * TODO
 	 */
-	public BoardCell selectTarget() {
+	public BoardCell selectTarget(Set<BoardCell> targets) {
 		return null;
 	}
 

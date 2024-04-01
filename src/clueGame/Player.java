@@ -74,6 +74,13 @@ public abstract class Player {
 	}
 	
 	/*
+	 * Clears all seen cards
+	 */
+	public void clearCards() {
+		this.seenCards.clear();
+	}
+	
+	/*
 	 * 	Gets location of player
 	 */
 	public int[] getLocation() {
