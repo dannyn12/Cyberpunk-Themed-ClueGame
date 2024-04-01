@@ -12,6 +12,7 @@ import clueGame.Board;
 import clueGame.BoardCell;
 import clueGame.Card;
 import clueGame.CardType;
+import clueGame.HumanPlayer;
 import clueGame.Player;
 import clueGame.Solution;
 
@@ -89,7 +90,29 @@ class GameSolutionTest {
 	 */
 	@Test
 	public void testDisproveSuggestion() {
+		// create a player with known cards
+		Player player = new HumanPlayer("testPlayer", "white", 0, 0);
+		player.updateHand(augmentationCard);
+		player.updateHand(rebalCard);
+		player.updateHand(junkCard);
 		
+		// test if player has only one matching card it should be returned
+		assertEquals(player.disproveSuggestion(augmentationCard, cipherCard, coreCard), augmentationCard);
+		
+		// test if players has >1 matching card, returned card should be chosen randomly
+		ArrayList<Card> match = new ArrayList<>();
+		while (match.size() != 2) {
+			Card cardReturn = player.disproveSuggestion(augmentationCard, rebalCard, coreCard);
+			if (!match.contains(cardReturn)) {
+				match.add(cardReturn);
+			}
+		}
+		assertTrue(match.contains(augmentationCard));
+		assertTrue(match.contains(rebalCard));
+		
+		// If player has no matching cards, null is returned
+		assertNull(player.disproveSuggestion(virusCard, cipherCard, coreCard));
+	
 	}
 	
 	/*
