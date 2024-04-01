@@ -20,6 +20,5 @@ public class Card {
 	public CardType getType() {
 		return type;
 	}
-	
-	
+		
 }

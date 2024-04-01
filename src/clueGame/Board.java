@@ -204,10 +204,18 @@ public class Board {
 	}
 	
 	/*
-	 * TODO: Functions checks accusation made by player
+	 * Functions checks accusation made by player
 	 */
-	public boolean checkAccusation() {
-		return false;
+	public boolean checkAccusation(Card room, Card person, Card weapon) {
+		String roomSolution = solution.getRoom().getCardName();
+		String personSolution = solution.getPerson().getCardName();
+		String weaponSolution = solution.getWeapon().getCardName();
+		
+		if (room.getCardName() == roomSolution && person.getCardName() == personSolution && weapon.getCardName() == weaponSolution) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	/*
@@ -585,6 +593,10 @@ public class Board {
 
 	public ArrayList<Card> getDeck(){
 		return deck;
+	}
+
+	public void setSolution(Solution solution) {
+		this.solution = solution;
 	}
 	
 }

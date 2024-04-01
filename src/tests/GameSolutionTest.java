@@ -13,6 +13,7 @@ import clueGame.BoardCell;
 import clueGame.Card;
 import clueGame.CardType;
 import clueGame.Player;
+import clueGame.Solution;
 
 class GameSolutionTest {
 	public static final int LEGEND_SIZE = 11;
@@ -67,6 +68,18 @@ class GameSolutionTest {
 	 */
 	@Test
 	public void testAccusation() {
+		// set solution
+		Solution solution = new Solution(neonAllyCard, cipherCard, disrupterCard);
+		board.setSolution(solution);
+		// test solution is correct
+		assertTrue(board.checkAccusation(neonAllyCard, cipherCard, disrupterCard));
+		//test solution with wrong person
+		assertFalse(board.checkAccusation(neonAllyCard, novaCard, disrupterCard));
+		// test solution with wrong weapon
+		assertFalse(board.checkAccusation(neonAllyCard, cipherCard, virusCard));
+		// test solution with wrong room
+		assertFalse(board.checkAccusation(coreCard, cipherCard, disrupterCard));
+		
 	}
 	
 	/*
