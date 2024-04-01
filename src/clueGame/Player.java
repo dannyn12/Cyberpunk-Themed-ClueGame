@@ -20,7 +20,7 @@ public abstract class Player {
 	}
 	
 	/*
-	 * 
+	 * 	Updates location of player
 	 */
 	public void updateLocation(int row, int col) {
 		this.row = row;
@@ -35,31 +35,38 @@ public abstract class Player {
 	}
 	
 	/*
-	 * 
+	 *  Updates that are seen by player
 	 */
 	public void updateSeen(Card seenCard) {
 		this.seenCards.add(seenCard);
 	}
 	
 	/*
-	 * TODO
+	 * A player tries to dispute a suggestion with the cards in their hand. 
+	 * If the player cannot, null is returned. If a player can, the player returns the card. 
+	 * If is more than one card that can dispute the suggestion, one is randomly chosen.
 	 */
 	public Card disproveSuggestion(Card room, Card person, Card weapon) {
 		ArrayList<Card> cardAvailable = new ArrayList<>();
+
+		// check for all card that matches the suggestion
 		for (Card card: hand) {
 			if (card.getCardName() == room.getCardName() || card.getCardName() == person.getCardName() || card.getCardName() == weapon.getCardName()) {
 				cardAvailable.add(card);
 			}
 		}
 		
+		// if the suggestion has more than once correct suggestion pick a random card to show
 		if (cardAvailable.size() > 1) {
 			Random random = new Random();
 			int randomIndex = random.nextInt(cardAvailable.size());
 			return cardAvailable.get(randomIndex);
 		}
+		// if only one card show that card
 		else if (cardAvailable.size() == 1){
 			return cardAvailable.get(0);
 		}
+		// if no matching return null
 		else {
 			return null;
 		}

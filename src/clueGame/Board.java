@@ -219,13 +219,18 @@ public class Board {
 	}
 	
 	/*
-	 * TODO: Function checks the user suggestion and returns if they have seen another players card.
+	 * Function checks the user suggestion and returns if they have seen another players card.
 	 */
-	public Card handleSuggestion() {
+	public Card handleSuggestion(Card room, Card person, Card weapon, Player suggestingPlayer) {
+		for (Player player: players) {
+			if ( !player.equals(suggestingPlayer) && (player.getHand().contains(room) || player.getHand().contains(person) || player.getHand().contains(weapon))) {
+				return player.disproveSuggestion(room, person, weapon);
+			}
+		}
 		return null;
 	}
 	
-	
+	 
 	/*
 	 * Recursive helper function to calcTargets that find the targets
 	 */
@@ -597,6 +602,10 @@ public class Board {
 
 	public void setSolution(Solution solution) {
 		this.solution = solution;
+	}
+
+	public void setPlayers(ArrayList<Player> players) {
+		this.players = players;
 	}
 	
 }

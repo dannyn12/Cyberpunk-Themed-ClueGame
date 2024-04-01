@@ -12,6 +12,7 @@ import clueGame.Board;
 import clueGame.BoardCell;
 import clueGame.Card;
 import clueGame.CardType;
+import clueGame.ComputerPlayer;
 import clueGame.HumanPlayer;
 import clueGame.Player;
 import clueGame.Solution;
@@ -120,6 +121,38 @@ class GameSolutionTest {
 	 */
 	@Test
 	public void testHandleSuggestion() {
+		// create a small number of players with known cards
+		ArrayList<Player> playerList = new ArrayList<>();
+		Player player = new HumanPlayer("testPlayer", "white", 0, 0);
+		player.updateHand(augmentationCard);
+		player.updateHand(rebalCard);
+		player.updateHand(junkCard);
+		playerList.add(player);
 		
+		Player player2 = new HumanPlayer("testPlayer2", "black", 1, 1);
+		player2.updateHand(disrupterCard);
+		player2.updateHand(cipherCard);
+		player2.updateHand(neonAllyCard);
+		playerList.add(player2);
+		
+		Player player3 = new HumanPlayer("testPlayer3", "grey", 2, 2);
+		player3.updateHand(virusCard);
+		player3.updateHand(novaCard);
+		player3.updateHand(clinicCard);
+		playerList.add(player3);
+		
+		// set player list to test players
+		board.setPlayers(playerList);
+		
+		// test suggestion no one can disprove returns null
+		assertNull(board.handleSuggestion(coreCard, vortexCard, injectorCard, player));
+		// test suggestion only suggesting player can disprove returns null
+		assertNull(board.handleSuggestion(junkCard, vortexCard, injectorCard, player));
+		// test suggestion only human can disprove returns answer (i.e., card that disproves suggestion)
+		assertEquals(board.handleSuggestion(neonAllyCard, vortexCard, injectorCard, player), neonAllyCard);
+		// test suggestion that two players can disprove, correct player (based on starting with next player in list) returns answer
+		assertEquals(board.handleSuggestion(neonAllyCard, novaCard, injectorCard, player), neonAllyCard);
+		
+	
 	}
 }
