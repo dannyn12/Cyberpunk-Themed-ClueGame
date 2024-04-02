@@ -1,6 +1,6 @@
-/*
- * Authors: Jordan Lam & Danny Nguyen
- * This is the Room class *insert information about room class*
+/* Room class contains information about each room in the game
+ * Authors: Jordan Lam and Danny Nguyen
+ * 
  */
 package clueGame;
 

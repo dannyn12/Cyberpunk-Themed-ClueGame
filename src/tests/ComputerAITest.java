@@ -1,3 +1,7 @@
+/* ComputerAITest contains test that test if the computer player works correctly in the Clue game.
+ * Authors: Danny Nguyen and Jordan Lam
+ * 4/1/24
+ */
 package tests;
 
 import static org.junit.jupiter.api.Assertions.*;

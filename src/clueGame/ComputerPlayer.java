@@ -1,3 +1,7 @@
+/* ComputerPlayer class is the child of the player class.
+ * Authors: Danny Nguyen and Jordan Lam
+ * 
+ */
 package clueGame;
 
 import java.util.ArrayList;

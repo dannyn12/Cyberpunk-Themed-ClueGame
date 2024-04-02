@@ -1,3 +1,7 @@
+/* Card class contains methods and information about the card.
+ * Authors: Danny Nguyen and Jordan Lam
+ * 
+ */
 package clueGame;
 
 public class Card {

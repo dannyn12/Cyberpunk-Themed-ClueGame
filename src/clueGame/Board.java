@@ -1,7 +1,6 @@
 /* Board class that holds the information on the game board 
- * this class will calculate adjacenies and give critical information to determining movement around the board
+ * This class will calculate adjacenies and give critical information to determining movement around the board
  * Authors: Danny Nguyen and Jordan Lam
- * 2/26/24
  */
 package clueGame;
 
@@ -164,7 +163,7 @@ public class Board {
 	}
 	
 	/*
-	 * Functions to deal cards to players and get a solution
+	 * Functions deals cards to players and get a solution
 	 */
 	public void deal() {
 		ArrayList<Card> dealingDeck = new ArrayList<>(this.deck);
@@ -213,7 +212,8 @@ public class Board {
 		
 		if (room.getCardName() == roomSolution && person.getCardName() == personSolution && weapon.getCardName() == weaponSolution) {
 			return true;
-		} else {
+		} 
+		else {
 			return false;
 		}
 	}
@@ -229,9 +229,11 @@ public class Board {
 				break;
 			} 
 		}
+		
 		if (card == null) {
 			return null;
-		} else {
+		} 
+		else {
 			for(Player player: players) {
 				if(player.equals(suggestingPlayer)){
 					player.updateSeen(card);

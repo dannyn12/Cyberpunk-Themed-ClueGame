@@ -1,3 +1,7 @@
+/* GameSolutionTest contains tests that test if an accusation and suggestion is handled correctly in the Clue game.
+ * Authors: Danny Nguyen and Jordan Lam
+ * 4/1/24
+ */
 package tests;
 
 import static org.junit.jupiter.api.Assertions.*;

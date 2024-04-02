@@ -1,3 +1,7 @@
+/*
+ * Player class holds all the information about the players in Clue and is an abstract class.
+ * Authors: Danny Nguyen and Jordan Lam
+ */
 package clueGame;
 
 import java.util.ArrayList;

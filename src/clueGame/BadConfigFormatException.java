@@ -1,7 +1,7 @@
-/*
- * Author: Jordan Lam & Danny Nguyen
- * This is the BadConfigFormatException class this class will give error messages and log them to explain why
+/* This is the BadConfigFormatException class this class will give error messages and log them to explain why
  * the file was not properly initalized
+ * Author: Jordan Lam & Danny Nguyen
+ * 
  */
 
 package clueGame;

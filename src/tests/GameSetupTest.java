@@ -1,3 +1,7 @@
+/* GameSetupTest contains test that checks if players, cards, and solution are setup correctly.
+ * Authors: Danny Nguyen and Jordan Lam
+ * 4/1/24
+ */
 package tests;
 
 import static org.junit.jupiter.api.Assertions.*;
