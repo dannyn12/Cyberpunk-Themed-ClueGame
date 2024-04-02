@@ -50,8 +50,8 @@ class ComputerAITest {
 		novaCard = new Card("Nova", CardType.PERSON);
 		neonCard = new Card("Neon", CardType.PERSON);
 		vortexCard = new Card("Vortex", CardType.PERSON);
-		spectreCard = new Card("Sprectre", CardType.PERSON);
-		rebalCard = new Card("Rebal", CardType.PERSON);
+		spectreCard = new Card("Spectre", CardType.PERSON);
+		rebalCard = new Card("Rebel", CardType.PERSON);
 		// 6 weapons
 		disrupterCard = new Card("Neural Disruptor", CardType.WEAPON);
 		injectorCard = new Card("Nanobot Injector", CardType.WEAPON);
@@ -75,7 +75,7 @@ class ComputerAITest {
 		// no rooms in target list select randomly
 		ComputerPlayer testPlayer1 = new ComputerPlayer("test" , "black", 6, 8);
 		Set<BoardCell> seen = new HashSet<>();
-		Set<BoardCell> targets = new HashSet<>();
+		Set<BoardCell> targets = new HashSet<>();	
 		board.calcTargets(board.getCell(6, 8), 1);
 		targets = board.getTargets();
 		
@@ -89,6 +89,7 @@ class ComputerAITest {
 		seen.clear();
 		board.calcTargets(board.getCell(12, 22), 2);
 		targets = board.getTargets();
+		seen.add(testPlayer2.selectTarget(targets));
 		for(int i = 0; i < 100; i++) {
 			seen.add(testPlayer2.selectTarget(targets));
 		}
@@ -114,8 +115,8 @@ class ComputerAITest {
 		ComputerPlayer testPlayer = new ComputerPlayer("test" , "black", 4, 22);
 		// room matches current location
 		testPlayer.updateHand(bunkerCard);
-		Solution solution = testPlayer.createSuggestion();
-		assertTrue(solution.getRoom().equals(clinicCard));
+		Solution solution0 = testPlayer.createSuggestion();
+		assertTrue(solution0.getRoom().equals(clinicCard));
 		testPlayer.clearCards();
 		// if only one weapon not seen, it is selected
 		testPlayer.updateHand(disrupterCard);
@@ -123,8 +124,8 @@ class ComputerAITest {
 		testPlayer.updateHand(augmentationCard);
 		testPlayer.updateHand(grenadeCard);
 		testPlayer.updateHand(spikeCard);
-		solution = testPlayer.createSuggestion();
-		assertTrue(solution.getWeapon().equals(virusCard));
+		Solution solution1 = testPlayer.createSuggestion();
+		assertTrue(solution1.getWeapon().equals(virusCard));
 		testPlayer.clearCards();
 		// if only one person not seen, it is selected
 		testPlayer.updateHand(cipherCard);
@@ -132,8 +133,8 @@ class ComputerAITest {
 		testPlayer.updateHand(neonCard);
 		testPlayer.updateHand(vortexCard);
 		testPlayer.updateHand(spectreCard);
-		solution = testPlayer.createSuggestion();
-		assertTrue(solution.getPerson().equals(rebalCard));
+		Solution solution2 = testPlayer.createSuggestion();
+		assertTrue(solution2.getPerson().equals(rebalCard));
 		testPlayer.clearCards();
 		// if multiple weapons not seen, one of them is randomly selected
 		testPlayer.updateHand(disrupterCard);
@@ -143,8 +144,8 @@ class ComputerAITest {
 		seen.add(disrupterCard);
 		seen.add(injectorCard);
 		seen.add(augmentationCard);
-		solution = testPlayer.createSuggestion();
-		assertFalse(seen.contains(solution.getWeapon()));
+		Solution solution3 = testPlayer.createSuggestion();
+		assertFalse(seen.contains(solution3.getWeapon()));
 		testPlayer.clearCards();
 		// if multiple persons not seen, one of them is randomly selected
 		testPlayer.updateHand(cipherCard);
@@ -154,8 +155,9 @@ class ComputerAITest {
 		seen.add(cipherCard);
 		seen.add(novaCard);
 		seen.add(neonCard);
-		solution = testPlayer.createSuggestion();
-		assertFalse(seen.contains(solution.getPerson()));
+		Solution solution4 = testPlayer.createSuggestion();
+		assertFalse(seen.contains(solution4.getPerson()));
 	}
+
 
 }

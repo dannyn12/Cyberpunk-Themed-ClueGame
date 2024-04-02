@@ -222,12 +222,24 @@ public class Board {
 	 * Function checks the user suggestion and returns if they have seen another players card.
 	 */
 	public Card handleSuggestion(Card room, Card person, Card weapon, Player suggestingPlayer) {
+		Card card = null;
 		for (Player player: players) {
 			if ( !player.equals(suggestingPlayer) && (player.getHand().contains(room) || player.getHand().contains(person) || player.getHand().contains(weapon))) {
-				return player.disproveSuggestion(room, person, weapon);
+				card = player.disproveSuggestion(room, person, weapon);
+				break;
+			} 
+		}
+		if (card == null) {
+			return null;
+		} else {
+			for(Player player: players) {
+				if(player.equals(suggestingPlayer)){
+					player.updateSeen(card);
+					return card;
+				}
 			}
 		}
-		return null;
+		return card;
 	}
 	
 	 

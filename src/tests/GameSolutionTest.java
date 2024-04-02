@@ -52,8 +52,8 @@ class GameSolutionTest {
 		novaCard = new Card("Nova", CardType.PERSON);
 		neonCard = new Card("Neon", CardType.PERSON);
 		vortexCard = new Card("Vortex", CardType.PERSON);
-		spectreCard = new Card("Sprectre", CardType.PERSON);
-		rebalCard = new Card("Rebal", CardType.PERSON);
+		spectreCard = new Card("Spectre", CardType.PERSON);
+		rebalCard = new Card("Rebel", CardType.PERSON);
 		// 6 weapons
 		disrupterCard = new Card("Neural Disruptor", CardType.WEAPON);
 		injectorCard = new Card("Nanobot Injector", CardType.WEAPON);

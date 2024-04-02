@@ -125,5 +125,9 @@ public class BoardCell {
 	public void setDoorway(boolean isDoorway) {
 		this.isDoorway = isDoorway;
 	}
+	
+	public void getLocation() {
+		System.out.println(this.row + " "+ this.col);
+	}
 
 }

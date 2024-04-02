@@ -78,6 +78,7 @@ public abstract class Player {
 	 */
 	public void clearCards() {
 		this.seenCards.clear();
+		this.hand.clear();
 	}
 	
 	/*
