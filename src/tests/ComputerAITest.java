@@ -115,7 +115,7 @@ class ComputerAITest {
 	 * Test to check if computer player can make a suggestion with a player, room, and weapon.
 	 */
 	@Test
-	public void testcreateSuggestion() {
+	public void testCreateSuggestion() {
 		ComputerPlayer testPlayer = new ComputerPlayer("test" , "black", 4, 22);
 		// room matches current location
 		testPlayer.updateHand(bunkerCard);
