@@ -8,6 +8,7 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridLayout;
 
+import javax.swing.AbstractButton;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -18,6 +19,7 @@ import javax.swing.border.TitledBorder;
 
 public class GameControlPanel extends JPanel{
 	private JPanel mainPanel;
+	// top variables
 	private JPanel subPanelTop;
 	private JPanel subPanelTop1;
 	private JTextField who;
@@ -25,11 +27,18 @@ public class GameControlPanel extends JPanel{
 	private JPanel subPanelTop2;
 	private JButton subButtonTop1;
 	private JButton subButtonTop2;
+	// bottom variables
+	private JPanel subPanelBottom;
+	private JPanel subPanelBottom1;
+	private JPanel subPanelBottom2;
+	private JTextField theGuess;
+	private JTextField GuessResult;
+	private JTextField theResult;
+	
 	/*
 	 * Constructor for the panel
 	 */
 	public GameControlPanel() {
-		// Create a layout with 2 rows
         // Create a layout with 2 rows and 0 columns for the main panel
         this.mainPanel = new JPanel(new GridLayout(2, 0));
 
@@ -39,10 +48,9 @@ public class GameControlPanel extends JPanel{
         // Add components to the first sub-panel
         this.subPanelTop1 = new JPanel(new GridLayout(2,0));
         subPanelTop1.add(new JLabel("<html><b>Whose turn?</b></html>"));
-        this.who = new JTextField(10);
+        this.who = new JTextField(17);
         who.setEditable(false);
         subPanelTop1.add(who);
-        
         
         this.subPanelTop2 = new JPanel();
         this.roll = new JTextField(5);
@@ -63,13 +71,36 @@ public class GameControlPanel extends JPanel{
         subButtonTop1.setBorderPainted(false);
         subButtonTop2.setBorderPainted(false);
         
-        
+        // add top sub panels to bottom panel
         subPanelTop.add(subPanelTop1);
         subPanelTop.add(subPanelTop2);
         subPanelTop.add(subButtonTop1);
         subPanelTop.add(subButtonTop2);
         
         mainPanel.add(subPanelTop);
+        
+        // Create the second sub-panel with a GridLayout of 0 row and 2 columns
+        this.subPanelBottom = new JPanel(new GridLayout(0, 2));
+        
+        // Left bottom sub panel
+        this.subPanelBottom1 = new JPanel(new GridLayout(1,0));
+        this.subPanelBottom1.setBorder(new TitledBorder (new EtchedBorder(), "Guess"));
+        this.theGuess = new JTextField(17);
+        theGuess.setEditable(false);
+        subPanelBottom1.add(theGuess);
+        
+        // Right bottom sub panel
+        this.subPanelBottom2 = new JPanel(new GridLayout(1,0));
+        this.subPanelBottom2.setBorder(new TitledBorder (new EtchedBorder(), "Guess Result"));
+        this.theResult = new JTextField(17);
+        theResult.setEditable(false);
+        subPanelBottom2.add(theResult);       
+        
+        // add bottom sub panels to bottom panel
+        subPanelBottom.add(subPanelBottom1);
+        subPanelBottom.add(subPanelBottom2);
+        // add bottom panel to main panel
+        mainPanel.add(subPanelBottom);
 
         // Add the main panel to this GameControlPanel
         add(mainPanel);
@@ -114,8 +145,12 @@ public class GameControlPanel extends JPanel{
 		
 	}
 	
-	private void setGuess(String string) {
-		// TODO Auto-generated method stub
+	private void setGuess(String guess) {
+		theGuess.setText(guess);	
+	}
+	
+	private void setGuessResult(String result) {
+		theResult.setText(result);
 		
 	}
 	
@@ -134,8 +169,8 @@ public class GameControlPanel extends JPanel{
 		
 		// test filling in the data
 		panel.setTurn(new ComputerPlayer( "Col. Mustard", "Orange", 0, 0), 5);
-		//panel.setGuess( "I have no guess!");
-		//panel.setGuess( "So you have nothing?");
+		panel.setGuess( "I have no guess!");
+		panel.setGuessResult( "So you have nothing?");
 	}
 
 
