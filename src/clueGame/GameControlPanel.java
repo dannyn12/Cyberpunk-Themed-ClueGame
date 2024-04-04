@@ -17,13 +17,14 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
 public class GameControlPanel extends JPanel{
+	private JPanel mainPanel;
+	private JPanel subPanelTop;
+	private JPanel subPanelTop1;
 	private JTextField who;
-	JPanel mainPanel;
-	JPanel subPanelTop;
-	JPanel subPanelTop1;
-	JPanel subPanelTop2;
-	JButton subButtonTop1;
-	JButton subButtonTop2;
+	private JTextField roll;
+	private JPanel subPanelTop2;
+	private JButton subButtonTop1;
+	private JButton subButtonTop2;
 	/*
 	 * Constructor for the panel
 	 */
@@ -38,11 +39,16 @@ public class GameControlPanel extends JPanel{
         // Add components to the first sub-panel
         this.subPanelTop1 = new JPanel(new GridLayout(2,0));
         subPanelTop1.add(new JLabel("<html><b>Whose turn?</b></html>"));
-        subPanelTop1.add(new JTextField(10));
+        this.who = new JTextField(10);
+        who.setEditable(false);
+        subPanelTop1.add(who);
+        
         
         this.subPanelTop2 = new JPanel();
+        this.roll = new JTextField(5);
+        roll.setEditable(false);
         subPanelTop2.add(new JLabel("<html><b>Roll:</b></html>"));
-        subPanelTop2.add(new JTextField(5));
+        subPanelTop2.add(roll);
         
         this.subButtonTop1 = new JButton("<html><b>Make Accusation</b></html>");
         this.subButtonTop2 = new JButton("<html><b>NEXT!</b></html>");
@@ -72,7 +78,39 @@ public class GameControlPanel extends JPanel{
 	
 	
 	private void setTurn(ComputerPlayer computerPlayer, int i) {
-		// TODO Auto-generated method stub
+		if (computerPlayer.getColor().equals("Blue")) {
+			who.setBackground(Color.BLUE);
+			who.setText(computerPlayer.getName());
+			roll.setText(String.valueOf(i));
+		} else if (computerPlayer.getColor().equals("Green")) {
+			who.setBackground(Color.green);
+			who.setText(computerPlayer.getName());
+			roll.setText(String.valueOf(i));
+		} else if (computerPlayer.getColor().equals("Red")) {
+			who.setBackground(Color.red);
+			who.setText(computerPlayer.getName());
+			roll.setText(String.valueOf(i));
+		} else if (computerPlayer.getColor().equals("Orange")) {
+			who.setBackground(Color.orange);
+			who.setText(computerPlayer.getName());
+			roll.setText(String.valueOf(i));
+		} else if (computerPlayer.getColor().equals("Yellow")) {
+			who.setBackground(Color.yellow);
+			who.setText(computerPlayer.getName());
+			roll.setText(String.valueOf(i));
+		} else if (computerPlayer.getColor().equals("Pink")) {
+			who.setBackground(Color.pink);
+			who.setText(computerPlayer.getName());
+			roll.setText(String.valueOf(i));
+		} else if (computerPlayer.getColor().equals("Magenta")) {
+			who.setBackground(Color.magenta);
+			who.setText(computerPlayer.getName());
+			roll.setText(String.valueOf(i));
+		} else if (computerPlayer.getColor().equals("White")) {
+			who.setBackground(Color.white);
+			who.setText(computerPlayer.getName());
+			roll.setText(String.valueOf(i));
+		}
 		
 	}
 	
@@ -95,7 +133,7 @@ public class GameControlPanel extends JPanel{
 		frame.setVisible(true); // make it visible
 		
 		// test filling in the data
-		//panel.setTurn(new ComputerPlayer( "Col. Mustard", "orange", 0, 0), 5);
+		panel.setTurn(new ComputerPlayer( "Col. Mustard", "Orange", 0, 0), 5);
 		//panel.setGuess( "I have no guess!");
 		//panel.setGuess( "So you have nothing?");
 	}
