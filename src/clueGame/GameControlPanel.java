@@ -71,12 +71,13 @@ public class GameControlPanel extends JPanel{
         subButtonTop1.setBorderPainted(false);
         subButtonTop2.setBorderPainted(false);
         
-        // add top sub panels to bottom panel
+        // add top sub panels to top panel
         subPanelTop.add(subPanelTop1);
         subPanelTop.add(subPanelTop2);
         subPanelTop.add(subButtonTop1);
         subPanelTop.add(subButtonTop2);
         
+        // add top panel to main panel
         mainPanel.add(subPanelTop);
         
         // Create the second sub-panel with a GridLayout of 0 row and 2 columns
