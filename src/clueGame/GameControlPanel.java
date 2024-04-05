@@ -48,7 +48,7 @@ public class GameControlPanel extends JPanel{
         // Add components to the first sub-panel
         this.subPanelTop1 = new JPanel(new GridLayout(2,0));
         subPanelTop1.add(new JLabel("<html><b>Whose turn?</b></html>"));
-        this.who = new JTextField(17);
+        this.who = new JTextField(14);
         who.setEditable(false);
         subPanelTop1.add(who);
         
@@ -60,22 +60,17 @@ public class GameControlPanel extends JPanel{
         
         this.subButtonTop1 = new JButton("<html><b>Make Accusation</b></html>");
         this.subButtonTop2 = new JButton("<html><b>NEXT!</b></html>");
-        subButtonTop1.setBackground(Color.cyan);
-        subButtonTop2.setBackground(Color.cyan);
-        subButtonTop1.setForeground(Color.YELLOW);
-        subButtonTop2.setForeground(Color.YELLOW);
-        subButtonTop1.setPreferredSize(new Dimension(50,50));
-        subButtonTop2.setPreferredSize(new Dimension(50,50));
+        subButtonTop1.setSize(new Dimension(40,50));
+        subButtonTop2.setSize(new Dimension(40,50));
         subButtonTop1.setOpaque(true);
         subButtonTop2.setOpaque(true);
-        subButtonTop1.setBorderPainted(false);
-        subButtonTop2.setBorderPainted(false);
+
         
         // add top sub panels to top panel
         subPanelTop.add(subPanelTop1);
         subPanelTop.add(subPanelTop2);
-        subPanelTop.add(subButtonTop1);
-        subPanelTop.add(subButtonTop2);
+        subPanelTop.add(subButtonTop1, BorderLayout.CENTER);
+        subPanelTop.add(subButtonTop2, BorderLayout.CENTER);
         
         // add top panel to main panel
         mainPanel.add(subPanelTop);
@@ -86,16 +81,18 @@ public class GameControlPanel extends JPanel{
         // Left bottom sub panel
         this.subPanelBottom1 = new JPanel(new GridLayout(1,0));
         this.subPanelBottom1.setBorder(new TitledBorder (new EtchedBorder(), "Guess"));
-        this.theGuess = new JTextField(17);
+        this.theGuess = new JTextField(15);
+        //theGuess.setPreferredSize(new Dimension(50,100));
         theGuess.setEditable(false);
-        subPanelBottom1.add(theGuess);
+        subPanelBottom1.add(theGuess, BorderLayout.NORTH);
         
         // Right bottom sub panel
         this.subPanelBottom2 = new JPanel(new GridLayout(1,0));
         this.subPanelBottom2.setBorder(new TitledBorder (new EtchedBorder(), "Guess Result"));
-        this.theResult = new JTextField(17);
+        this.theResult = new JTextField(15);
+        //theResult.setPreferredSize(new Dimension(50,100));
         theResult.setEditable(false);
-        subPanelBottom2.add(theResult);       
+        subPanelBottom2.add(theResult, BorderLayout.NORTH);       
         
         // add bottom sub panels to bottom panel
         subPanelBottom.add(subPanelBottom1);
