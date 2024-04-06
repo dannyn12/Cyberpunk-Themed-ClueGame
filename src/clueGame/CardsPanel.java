@@ -18,6 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
+
 public class CardsPanel extends JPanel {
 	private static JPanel peoplePanel;
 	private static JPanel roomPanel;
@@ -28,6 +29,7 @@ public class CardsPanel extends JPanel {
 	private static JPanel seenRoom;
 	private static JPanel inHandWeapon;
 	private static JPanel seenWeapon;
+	
 	public CardsPanel() {
 		setLayout(new GridLayout(3,0));
 		setBorder(new TitledBorder (new EtchedBorder(), "Known Cards"));
@@ -80,7 +82,7 @@ public class CardsPanel extends JPanel {
 	 	inHandRoom.setLayout(new GridLayout(0,1));
 	 	roomPanel.add(inHandRoom);
 	 	
-	 	// Seen cards:
+	 	// Seen cards
 	 	JLabel seenLabel = new JLabel("Seen:");
 	 	roomPanel.add(seenLabel);
 	 	seenRoom = new JPanel();
@@ -105,7 +107,7 @@ public class CardsPanel extends JPanel {
 	 	inHandWeapon.setLayout(new GridLayout(0,1));
 	 	weaponsPanel.add(inHandWeapon);
 	 	
-	 	// Seen cards:
+	 	// Seen cards
 	 	JLabel seenLabel = new JLabel("Seen:");
 	 	weaponsPanel.add(seenLabel);
 	 	seenWeapon = new JPanel();
@@ -127,12 +129,17 @@ public class CardsPanel extends JPanel {
 	    cardTextField.setEditable(false);
 	    cardTextField.setText(name);
 	    cardPanel.add(cardTextField);
-	    changeColor(cardTextField, color);
-	    // Add the card panel to the specified panel
+	    
+	    // If card is in hand it has no color
+	    if (panel == inHandPeople || panel == inHandRoom || panel == inHandWeapon) {
+	    	changeColor(cardTextField, "None");
+	    }
+	    else {
+	    	changeColor(cardTextField, color);
+	    }
+	    // Add the card panel to panel
 	    panel.add(cardPanel);
-	    // Repaint the panel to reflect the changes
 	    panel.revalidate();
-	    panel.repaint();
 	}
 	
 	/*
