@@ -1,3 +1,9 @@
+/*
+ * Authors: Jordan Lam & Danny Nguyen
+ * this is the cardsPanel class
+ * this draws a GUI showing the human players
+ * seen and in hand cards
+ */
 package clueGame;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -23,7 +29,7 @@ public class CardsPanel extends JPanel {
 	private static JPanel inHandWeapon;
 	private static JPanel seenWeapon;
 	public CardsPanel() {
-		setLayout(new GridLayout(3,1));
+		setLayout(new GridLayout(3,0));
 		setBorder(new TitledBorder (new EtchedBorder(), "Known Cards"));
 		JPanel panel = peoplePanel();
 		add(panel);
@@ -31,14 +37,13 @@ public class CardsPanel extends JPanel {
 		add(panel);
 		panel = weaponsPanel();
 		add(panel);
-	
 	}
 	
 	/*
 	 * Create GUI for in hand and seen people cards
 	 */
 	private JPanel peoplePanel() {
-		peoplePanel = new JPanel();
+		this.peoplePanel = new JPanel();
 		peoplePanel.setLayout(new GridLayout(0,1));
 		peoplePanel.setBorder(new TitledBorder (new EtchedBorder(), "People"));
 	 	
@@ -113,19 +118,45 @@ public class CardsPanel extends JPanel {
 	/*
 	 * Updates panel to include new card in hand or seen
 	 */
-	private void update(JPanel panel, Card card) {
+	public void update(JPanel panel, Card card, String color) {
 	    // Create a panel for the card
 	    JPanel cardPanel = new JPanel();
-	    cardPanel.setLayout(new GridLayout(1, 1));
+	    cardPanel.setLayout(new GridLayout(1, 0));
 	    String name = card.getCardName();
 	    JTextField cardTextField = new JTextField();
+	    cardTextField.setEditable(false);
 	    cardTextField.setText(name);
 	    cardPanel.add(cardTextField);
+	    changeColor(cardTextField, color);
 	    // Add the card panel to the specified panel
 	    panel.add(cardPanel);
 	    // Repaint the panel to reflect the changes
 	    panel.revalidate();
 	    panel.repaint();
+	}
+	
+	/*
+	 * Changes textField color based off string 
+	 */
+	private void changeColor(JTextField panel, String color) {
+		if (color.equals("Blue")) {
+			panel.setBackground(Color.BLUE);
+		} else if (color.equals("Green")) {
+			panel.setBackground(Color.green);
+		} else if (color.equals("Red")) {
+			panel.setBackground(Color.red);
+		} else if (color.equals("Orange")) {
+			panel.setBackground(Color.orange);
+		} else if (color.equals("Yellow")) {
+			panel.setBackground(Color.yellow);
+		} else if (color.equals("Pink")) {
+			panel.setBackground(Color.pink);
+		} else if (color.equals("Magenta") || color.equals("Purple")) {
+			panel.setBackground(Color.magenta);
+		} else if (color.equals("White")) {
+			panel.setBackground(Color.white);
+		}
+
 	}
 	
 	/*
@@ -142,21 +173,21 @@ public class CardsPanel extends JPanel {
 		frame.setVisible(true); // make it visible
 		
 		// test filling in the data
-		panel.update(inHandPeople, new Card("Cipher", CardType.PERSON));
-		panel.update(seenPeople, new Card("Nova", CardType.PERSON));
-		panel.update(seenPeople, new Card("Neon", CardType.PERSON));
-		panel.update(seenPeople, new Card("Vortex", CardType.PERSON));
+		panel.update(inHandPeople, new Card("Cipher", CardType.PERSON), "Green");
+		panel.update(seenPeople, new Card("Nova", CardType.PERSON), "Purple");
+		panel.update(seenPeople, new Card("Neon", CardType.PERSON), "Pink");
+		panel.update(seenPeople, new Card("Vortex", CardType.PERSON), "Orange");
 		
-		panel.update(inHandRoom, new Card("None", CardType.ROOM));
-		panel.update(seenRoom, new Card("Neon Ally", CardType.ROOM));
-		panel.update(seenRoom, new Card("Corporate Tower", CardType.ROOM));
-		panel.update(seenRoom, new Card("Data Core", CardType.ROOM));
-		panel.update(seenRoom, new Card("Slum District", CardType.ROOM));
+		panel.update(inHandRoom, new Card("None", CardType.ROOM), "None");
+		panel.update(seenRoom, new Card("Neon Ally", CardType.ROOM), "Pink");
+		panel.update(seenRoom, new Card("Corporate Tower", CardType.ROOM), "Blue");
+		panel.update(seenRoom, new Card("Data Core", CardType.ROOM), "Green");
+		panel.update(seenRoom, new Card("Slum District", CardType.ROOM), "Red");
 		
-		panel.update(inHandWeapon, new Card("Data Spike", CardType.WEAPON));
-		panel.update(inHandWeapon, new Card("EMP Grenade", CardType.WEAPON));
-		panel.update(seenWeapon, new Card("Cybernetic Augmentation", CardType.WEAPON));
-		panel.update(seenWeapon, new Card("Nanobot Injector", CardType.WEAPON));
+		panel.update(inHandWeapon, new Card("Data Spike", CardType.WEAPON), "Green");
+		panel.update(inHandWeapon, new Card("EMP Grenade", CardType.WEAPON), "Blue");
+		panel.update(seenWeapon, new Card("Cybernetic Augmentation", CardType.WEAPON), "Blue");
+		panel.update(seenWeapon, new Card("Nanobot Injector", CardType.WEAPON), "Orange");
 		
 		
 		

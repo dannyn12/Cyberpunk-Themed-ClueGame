@@ -1,3 +1,9 @@
+/*
+ * Authors: Jordan Lam & Danny Nguyen
+ * this is the GameControlPanel which draws a GUI
+ * showing the player buttons to make guesses and assumtions
+ * and shows results 
+ */
 package clueGame;
 
 import javax.swing.JFrame;
@@ -61,7 +67,6 @@ public class GameControlPanel extends JPanel{
         this.subButtonTop1 = new JButton("<html><b>Make Accusation</b></html>");
         this.subButtonTop2 = new JButton("<html><b>NEXT!</b></html>");
         subButtonTop1.setPreferredSize(new Dimension(70,70));
-        //subButtonTop2.setSize(new Dimension(40,50));
         subButtonTop1.setOpaque(true);
         subButtonTop2.setOpaque(true);
 
@@ -166,7 +171,7 @@ public class GameControlPanel extends JPanel{
 		frame.setVisible(true); // make it visible
 		
 		// test filling in the data
-		panel.setTurn(new ComputerPlayer( "Col. Mustard", "Orange", 0, 0), 5);
+		panel.setTurn(new ComputerPlayer( "Cipher", "Green", 0, 0), 5);
 		panel.setGuess( "I have no guess!");
 		panel.setGuessResult( "So you have nothing?");
 	}
