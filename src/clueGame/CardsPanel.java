@@ -142,22 +142,21 @@ public class CardsPanel extends JPanel {
 		frame.setVisible(true); // make it visible
 		
 		// test filling in the data
-		panel.update(inHandPeople, new Card("Colonel Mustard", CardType.PERSON));
-		panel.update(seenPeople, new Card("Mrs. White", CardType.PERSON));
-		panel.update(seenPeople, new Card("Miss Scarlett", CardType.PERSON));
-		panel.update(seenPeople, new Card("Mrs. Peacock", CardType.PERSON));
-		panel.update(seenPeople, new Card("Reverend Green", CardType.PERSON));
+		panel.update(inHandPeople, new Card("Cipher", CardType.PERSON));
+		panel.update(seenPeople, new Card("Nova", CardType.PERSON));
+		panel.update(seenPeople, new Card("Neon", CardType.PERSON));
+		panel.update(seenPeople, new Card("Vortex", CardType.PERSON));
 		
 		panel.update(inHandRoom, new Card("None", CardType.ROOM));
-		panel.update(seenRoom, new Card("Hall", CardType.ROOM));
-		panel.update(seenRoom, new Card("Ballroom", CardType.ROOM));
-		panel.update(seenRoom, new Card("Kitchen", CardType.ROOM));
-		panel.update(seenRoom, new Card("Billiard Room", CardType.ROOM));
+		panel.update(seenRoom, new Card("Neon Ally", CardType.ROOM));
+		panel.update(seenRoom, new Card("Corporate Tower", CardType.ROOM));
+		panel.update(seenRoom, new Card("Data Core", CardType.ROOM));
+		panel.update(seenRoom, new Card("Slum District", CardType.ROOM));
 		
-		panel.update(inHandWeapon, new Card("Wrench", CardType.WEAPON));
-		panel.update(inHandWeapon, new Card("Rope", CardType.WEAPON));
-		panel.update(seenWeapon, new Card("Lead Pipe", CardType.WEAPON));
-		panel.update(seenWeapon, new Card("Dagger", CardType.WEAPON));
+		panel.update(inHandWeapon, new Card("Data Spike", CardType.WEAPON));
+		panel.update(inHandWeapon, new Card("EMP Grenade", CardType.WEAPON));
+		panel.update(seenWeapon, new Card("Cybernetic Augmentation", CardType.WEAPON));
+		panel.update(seenWeapon, new Card("Nanobot Injector", CardType.WEAPON));
 		
 		
 		
