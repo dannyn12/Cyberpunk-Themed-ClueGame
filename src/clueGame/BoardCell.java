@@ -49,8 +49,14 @@ public class BoardCell {
 	public void draw(Graphics g, int cellSize) {
 	    int x = col * cellSize;
 	    int y = row * cellSize;
-	    g.setColor(Color.CYAN); 
-	    g.fillRect(x, y, cellSize, cellSize); 
+	    if (initial == 'W' || isRoom) {
+		    g.setColor(Color.CYAN); 
+		    g.fillRect(x, y, cellSize, cellSize); 
+	    }
+	    else {
+		    g.setColor(Color.MAGENTA); 
+		    g.fillRect(x, y, cellSize, cellSize); 
+	    }
 	    g.setColor(Color.BLACK);
 	    g.drawRect(x, y, cellSize, cellSize); 
 	}
