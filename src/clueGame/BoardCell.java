@@ -51,14 +51,14 @@ public class BoardCell {
 	    int y = row * cellSize;
 	    if (initial == 'W' || isRoom) {
 		    g.setColor(Color.CYAN); 
-		    g.fillRect(x, y, cellSize, cellSize); 
+		    g.fillRect(x, y, cellSize, cellSize);
+		    g.setColor(Color.BLACK);
+		    g.drawRect(x, y, cellSize, cellSize); 
 	    }
 	    else {
 		    g.setColor(Color.MAGENTA); 
 		    g.fillRect(x, y, cellSize, cellSize); 
 	    }
-	    g.setColor(Color.BLACK);
-	    g.drawRect(x, y, cellSize, cellSize); 
 	}
 	
 	/*

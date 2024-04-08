@@ -39,13 +39,14 @@ public class BoardPanel extends JPanel {
         	int playerX = player.getCol() * cellSize + cellSize / 2;
         	int playerY = player.getRow() * cellSize + cellSize / 2;
 
-        	// set color
+        	// Set color
         	switch (player.getColor()) {
         	case "Green":
         		g.setColor(Color.GREEN);
         		break;
         	case "Purple":
-        		g.setColor(Color.MAGENTA);
+        		Color purple = new Color(148,0,211);
+        		g.setColor(purple);
         		break;
         	case "Pink":
         		g.setColor(Color.PINK);
