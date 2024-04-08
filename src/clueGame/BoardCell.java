@@ -3,6 +3,8 @@
  * Authors: Jordan Lam, Danny Nguyen
  */
 package clueGame;
+import java.awt.Color;
+import java.awt.Graphics;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -39,6 +41,18 @@ public class BoardCell {
 	 */
 	public void addAdj(BoardCell adj) {
 		adjList.add(adj);
+	}
+	
+	/*
+	 * Draws player on board
+	 */
+	public void draw(Graphics g, int cellSize) {
+	    int x = col * cellSize;
+	    int y = row * cellSize;
+	    g.setColor(Color.CYAN); 
+	    g.fillRect(x, y, cellSize, cellSize); 
+	    g.setColor(Color.BLACK);
+	    g.drawRect(x, y, cellSize, cellSize); 
 	}
 	
 	/*
@@ -127,5 +141,6 @@ public class BoardCell {
 	public void getLocation() {
 		System.out.println(this.row + " "+ this.col);
 	}
+
 
 }

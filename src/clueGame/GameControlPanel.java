@@ -54,12 +54,12 @@ public class GameControlPanel extends JPanel{
         // Add components to the first sub-panel
         this.subPanelTop1 = new JPanel(new GridLayout(2,0));
         subPanelTop1.add(new JLabel("<html><b>Whose turn?</b></html>"));
-        this.who = new JTextField(14);
+        this.who = new JTextField(14); // 14
         who.setEditable(false);
         subPanelTop1.add(who, BorderLayout.NORTH);
         
         this.subPanelTop2 = new JPanel();
-        this.roll = new JTextField(5);
+        this.roll = new JTextField(5); // 5
         roll.setEditable(false);
         subPanelTop2.add(new JLabel("<html><b>Roll:</b></html>"));
         subPanelTop2.add(roll);
@@ -85,17 +85,17 @@ public class GameControlPanel extends JPanel{
         
         // Left bottom sub panel
         this.subPanelBottom1 = new JPanel(new GridLayout(1,0));
-        this.subPanelBottom1.setSize(new Dimension(375, 90));
+        //this.subPanelBottom1.setSize(new Dimension(375, 90));
         this.subPanelBottom1.setBorder(new TitledBorder (new EtchedBorder(), "Guess"));
-        this.theGuess = new JTextField(15);
+        this.theGuess = new JTextField(); // 15
         theGuess.setEditable(false);
         subPanelBottom1.add(theGuess, BorderLayout.CENTER);
         
         // Right bottom sub panel
         this.subPanelBottom2 = new JPanel(new GridLayout(1,0));
-        this.subPanelBottom2.setSize(375, 90);
+        //this.subPanelBottom2.setSize(375, 90);
         this.subPanelBottom2.setBorder(new TitledBorder (new EtchedBorder(), "Guess Result"));
-        this.theResult = new JTextField(15);
+        this.theResult = new JTextField(); // 15
         theResult.setEditable(false);
         subPanelBottom2.add(theResult, BorderLayout.CENTER);       
         

@@ -194,9 +194,7 @@ public class CardsPanel extends JPanel {
 		panel.update(inHandWeapon, new Card("Data Spike", CardType.WEAPON), "Green");
 		panel.update(inHandWeapon, new Card("EMP Grenade", CardType.WEAPON), "Blue");
 		panel.update(seenWeapon, new Card("Cybernetic Augmentation", CardType.WEAPON), "Blue");
-		panel.update(seenWeapon, new Card("Nanobot Injector", CardType.WEAPON), "Orange");
-		
-		
+		panel.update(seenWeapon, new Card("Nanobot Injector", CardType.WEAPON), "Orange");		
 		
 	}
 }
