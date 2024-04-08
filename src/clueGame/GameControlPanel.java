@@ -47,6 +47,7 @@ public class GameControlPanel extends JPanel{
 	public GameControlPanel() {
         // Create a layout with 2 rows and 0 columns for the main panel
         this.mainPanel = new JPanel(new GridLayout(2, 0));
+        mainPanel.setPreferredSize(new Dimension(895,120));
 
         // Create the first sub-panel with a GridLayout of 1 row and 4 columns
         this.subPanelTop = new JPanel(new GridLayout(0, 4));
@@ -166,7 +167,7 @@ public class GameControlPanel extends JPanel{
 		GameControlPanel panel = new GameControlPanel();  // create the panel
 		JFrame frame = new JFrame();  // create the frame 
 		frame.setContentPane(panel); // put the panel in the frame
-		frame.setSize(750, 180);  // size the frame
+		frame.setSize(900, 180);  // size the frame
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // allow it to close
 		frame.setVisible(true); // make it visible
 		

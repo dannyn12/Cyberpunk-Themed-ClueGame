@@ -20,7 +20,7 @@ public class BoardPanel extends JPanel {
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        setSize(new Dimension(650, 702));
+        setSize(new Dimension(659, 711));
 
         // Calculate cell size 
         int cellSize = getWidth() / board.getNumColumns();
