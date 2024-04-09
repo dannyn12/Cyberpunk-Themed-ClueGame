@@ -33,6 +33,14 @@ public class BoardPanel extends JPanel {
               
             }
         }
+        
+        // Draw Doors and Labels
+        for (int row = 0; row < board.getNumRows(); row++) {
+            for (int col = 0; col < board.getNumColumns(); col++) {
+                BoardCell cell = board.getCell(row, col);
+                cell.drawLabelDoor(g, cellSize);
+            }
+        }
 
         // Draw players
         for (Player player : board.getPlayers()) {

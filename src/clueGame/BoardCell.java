@@ -44,20 +44,47 @@ public class BoardCell {
 	}
 	
 	/*
-	 * Draws player on board
+	 * Draws players & rooms & doors on board
 	 */
 	public void draw(Graphics g, int cellSize) {
 	    int x = col * cellSize;
 	    int y = row * cellSize;
-	    if (initial == 'W' || isRoom) {
+	    if (initial == 'W') {
 		    g.setColor(Color.CYAN); 
 		    g.fillRect(x, y, cellSize, cellSize);
 		    g.setColor(Color.BLACK);
 		    g.drawRect(x, y, cellSize, cellSize); 
-	    }
-	    else {
+	    } else if (initial == 'X'){
 		    g.setColor(Color.MAGENTA); 
 		    g.fillRect(x, y, cellSize, cellSize); 
+	    } else if (isRoom) {
+	    	g.setColor(Color.YELLOW);
+	    	g.fillRect(x, y, cellSize, cellSize); 
+	    }
+	}
+	
+	public void drawLabelDoor(Graphics g, int cellSize) {
+	    int x = col * cellSize;
+	    int y = row * cellSize;
+	    if (isDoorway) {
+	    	if(doorDirection == DoorDirection.DOWN) {
+		    	g.setColor(Color.BLACK);
+		    	g.fillRect(x, y + cellSize, cellSize, 5);
+	    	} else if (doorDirection == DoorDirection.LEFT) {
+	    		g.setColor(Color.BLACK);
+		    	g.fillRect(x-5, y,  5, cellSize);
+	    	} else if (doorDirection == DoorDirection.RIGHT) {
+	    		g.setColor(Color.BLACK);
+		    	g.fillRect(x+cellSize, y,  5, cellSize);
+	    	} else {
+	    		g.setColor(Color.BLACK);
+		    	g.fillRect(x, y-5,  cellSize, 5);
+	    	}
+	    } else if (roomCenter) {
+	    	Board board = Board.getInstance();
+	    	Room room = board.getRoom(initial);
+	    	String name = room.getName();
+	    	g.drawString(name, x, y);
 	    }
 	}
 	
