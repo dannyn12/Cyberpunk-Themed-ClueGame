@@ -157,7 +157,6 @@ public class GameControlPanel extends JPanel{
 		theResult.setText(result);
 		
 	}
-	// 375 90
 	/*
 	 * Main to test the panel
 	 * 

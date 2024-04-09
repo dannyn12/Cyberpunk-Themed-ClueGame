@@ -1,3 +1,7 @@
+/* ClueGame class creates the GUI of the game. It contains the known cards panel, gameControl panel, and board panel which all form
+ * to make the game GUI. 
+ * Authors: Jordan Lam, Danny Nguyen
+ */
 package clueGame;
 
 import java.awt.BorderLayout;
@@ -21,12 +25,17 @@ public class ClueGame extends JFrame {
 		add(boardPanel, BorderLayout.CENTER);
 		add(gameControl, BorderLayout.SOUTH);
 		add(cardsPanel, BorderLayout.EAST);
-
+		
 	}
 	
+	/*
+	 * Initialize board
+	 */
 	public static void main(String[] args) {
 		ClueGame frame = new ClueGame();
-		frame.setSize(900, 900);
+		frame.setTitle("Clue Game");
+		frame.setSize(925, 900);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 	}
 }
