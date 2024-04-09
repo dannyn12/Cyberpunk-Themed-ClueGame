@@ -98,7 +98,7 @@ class ComputerAITest {
 			seen.add(testPlayer2.selectTarget(targets));
 		}
 		assertTrue(seen.size() == 1);
-		assertTrue(seen.contains(board.getCell(14, 21)));
+		assertTrue(seen.contains(board.getCell(15, 22)));
 		// if room in list that has been seen, each target (including room) selected randomly
 		ComputerPlayer testPlayer3 = new ComputerPlayer("test" , "black", 14, 7);
 		testPlayer3.updateHand(nexusCard);

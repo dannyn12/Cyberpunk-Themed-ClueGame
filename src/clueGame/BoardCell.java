@@ -80,7 +80,7 @@ public class BoardCell {
 	    		g.setColor(Color.BLACK);
 		    	g.fillRect(x, y-5,  cellSize, 5);
 	    	}
-	    } else if (roomCenter) {
+	    } else if (roomLabel) {
 	    	Board board = Board.getInstance();
 	    	Room room = board.getRoom(initial);
 	    	String name = room.getName();
