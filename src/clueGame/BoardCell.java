@@ -51,15 +51,20 @@ public class BoardCell {
 	    int y = row * cellHeight;
 	    
 	    if (initial == 'W') {
-		    g.setColor(Color.CYAN); 
+		    g.setColor(Color.yellow); 
 		    g.fillRect(x, y, cellWidth, cellHeight);
+		    Color cyberPurple = new Color(214,0,255);
 		    g.setColor(Color.BLACK);
 		    g.drawRect(x, y, cellWidth, cellHeight); 
 	    } else if (initial == 'X'){
-		    g.setColor(Color.MAGENTA); 
+		    g.setColor(Color.black); 
 		    g.fillRect(x, y, cellWidth, cellHeight); 
+		    Color cyberPurple = new Color(214,0,255);
+		    g.setColor(cyberPurple);
+		    g.drawRect(x, y, cellWidth, cellHeight); 
 	    } else if (isRoom) {
-	    	g.setColor(Color.YELLOW);
+	    	Color cyberBlue = new Color(0,184,255);
+	    	g.setColor(cyberBlue);
 	    	g.fillRect(x, y, cellWidth, cellHeight); 
 	    }
 	}
