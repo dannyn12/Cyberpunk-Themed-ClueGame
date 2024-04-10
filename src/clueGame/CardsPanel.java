@@ -20,15 +20,15 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
 public class CardsPanel extends JPanel {
-	private static JPanel peoplePanel;
-	private static JPanel roomPanel;
-	private static JPanel weaponsPanel;
-	private static JPanel inHandPeople;
-	private static JPanel seenPeople;
-	private static JPanel inHandRoom;
-	private static JPanel seenRoom;
-	private static JPanel inHandWeapon;
-	private static JPanel seenWeapon;
+	private JPanel peoplePanel;
+	private JPanel roomPanel;
+	private JPanel weaponsPanel;
+	private static JPanel INHAND_PEOPLE;
+	private static JPanel SEEN_PEOPLE;
+	private static JPanel INHAND_ROOM;
+	private static JPanel SEEN_ROOM;
+	private static JPanel INHAND_WEAPON;
+	private static JPanel SEEN_WEAPON;
 	
 	public CardsPanel() {
 		setLayout(new GridLayout(3,0));
@@ -52,16 +52,16 @@ public class CardsPanel extends JPanel {
 	 	// In hand cards
 	 	JLabel inHandLabel = new JLabel("In Hand:");
 	 	peoplePanel.add(inHandLabel);
-	 	inHandPeople = new JPanel();
-	 	inHandPeople.setLayout(new GridLayout(0,1));
-	 	peoplePanel.add(inHandPeople);
+	 	INHAND_PEOPLE = new JPanel();
+	 	INHAND_PEOPLE.setLayout(new GridLayout(0,1));
+	 	peoplePanel.add(INHAND_PEOPLE);
 	 	
 	 	// Seen cards:
 	 	JLabel seenLabel = new JLabel("Seen:");
 	 	peoplePanel.add(seenLabel);
-	 	seenPeople = new JPanel();
-	 	seenPeople.setLayout(new GridLayout(0,1));
-	 	peoplePanel.add(seenPeople);
+	 	SEEN_PEOPLE = new JPanel();
+	 	SEEN_PEOPLE.setLayout(new GridLayout(0,1));
+	 	peoplePanel.add(SEEN_PEOPLE);
 	 	
 		return peoplePanel;
 		
@@ -78,16 +78,16 @@ public class CardsPanel extends JPanel {
 	 	// In hand cards
 	 	JLabel inHandLabel = new JLabel("In Hand:");
 	 	roomPanel.add(inHandLabel);
-	 	inHandRoom = new JPanel();
-	 	inHandRoom.setLayout(new GridLayout(0,1));
-	 	roomPanel.add(inHandRoom);
+	 	INHAND_ROOM = new JPanel();
+	 	INHAND_ROOM.setLayout(new GridLayout(0,1));
+	 	roomPanel.add(INHAND_ROOM);
 	 	
 	 	// Seen cards
 	 	JLabel seenLabel = new JLabel("Seen:");
 	 	roomPanel.add(seenLabel);
-	 	seenRoom = new JPanel();
-	 	seenRoom.setLayout(new GridLayout(0,1));
-	 	roomPanel.add(seenRoom);
+	 	SEEN_ROOM = new JPanel();
+	 	SEEN_ROOM.setLayout(new GridLayout(0,1));
+	 	roomPanel.add(SEEN_ROOM);
 	 	
 		return roomPanel;
 	}
@@ -103,16 +103,16 @@ public class CardsPanel extends JPanel {
 	 	// In hand cards
 	 	JLabel inHandLabel = new JLabel("In Hand:");
 	 	weaponsPanel.add(inHandLabel);
-	 	inHandWeapon = new JPanel();
-	 	inHandWeapon.setLayout(new GridLayout(0,1));
-	 	weaponsPanel.add(inHandWeapon);
+	 	INHAND_WEAPON = new JPanel();
+	 	INHAND_WEAPON.setLayout(new GridLayout(0,1));
+	 	weaponsPanel.add(INHAND_WEAPON);
 	 	
 	 	// Seen cards
 	 	JLabel seenLabel = new JLabel("Seen:");
 	 	weaponsPanel.add(seenLabel);
-	 	seenWeapon = new JPanel();
-	 	seenWeapon.setLayout(new GridLayout(0,1));
-	 	weaponsPanel.add(seenWeapon);
+	 	SEEN_WEAPON = new JPanel();
+	 	SEEN_WEAPON.setLayout(new GridLayout(0,1));
+	 	weaponsPanel.add(SEEN_WEAPON);
 	 	
 		return weaponsPanel;
 	}
@@ -131,7 +131,7 @@ public class CardsPanel extends JPanel {
 	    cardPanel.add(cardTextField);
 	    
 	    // If card is in hand it has no color
-	    if (panel == inHandPeople || panel == inHandRoom || panel == inHandWeapon) {
+	    if (panel == INHAND_PEOPLE || panel == INHAND_ROOM || panel == INHAND_WEAPON) {
 	    	changeColor(cardTextField, "None");
 	    }
 	    else {
@@ -180,22 +180,47 @@ public class CardsPanel extends JPanel {
 		frame.setVisible(true); // make it visible
 		
 		// test filling in the data
-		panel.update(inHandPeople, new Card("Cipher", CardType.PERSON), "Green");
-		panel.update(seenPeople, new Card("Nova", CardType.PERSON), "Purple");
-		panel.update(seenPeople, new Card("Neon", CardType.PERSON), "Pink");
-		panel.update(seenPeople, new Card("Vortex", CardType.PERSON), "Orange");
+		panel.update(INHAND_PEOPLE, new Card("Cipher", CardType.PERSON), "Green");
+		panel.update(SEEN_PEOPLE, new Card("Nova", CardType.PERSON), "Purple");
+		panel.update(SEEN_PEOPLE, new Card("Neon", CardType.PERSON), "Pink");
+		panel.update(SEEN_PEOPLE, new Card("Vortex", CardType.PERSON), "Orange");
 		
-		panel.update(inHandRoom, new Card("None", CardType.ROOM), "None");
-		panel.update(seenRoom, new Card("Neon Ally", CardType.ROOM), "Pink");
-		panel.update(seenRoom, new Card("Corporate Tower", CardType.ROOM), "Blue");
-		panel.update(seenRoom, new Card("Data Core", CardType.ROOM), "Green");
-		panel.update(seenRoom, new Card("Slum District", CardType.ROOM), "Red");
+		panel.update(INHAND_ROOM, new Card("None", CardType.ROOM), "None");
+		panel.update(SEEN_ROOM, new Card("Neon Ally", CardType.ROOM), "Pink");
+		panel.update(SEEN_ROOM, new Card("Corporate Tower", CardType.ROOM), "Blue");
+		panel.update(SEEN_ROOM, new Card("Data Core", CardType.ROOM), "Green");
+		panel.update(SEEN_ROOM, new Card("Slum District", CardType.ROOM), "Red");
 		
-		panel.update(inHandWeapon, new Card("Data Spike", CardType.WEAPON), "Green");
-		panel.update(inHandWeapon, new Card("EMP Grenade", CardType.WEAPON), "Blue");
-		panel.update(seenWeapon, new Card("Cybernetic Augmentation", CardType.WEAPON), "Blue");
-		panel.update(seenWeapon, new Card("Nanobot Injector", CardType.WEAPON), "Orange");		
+		panel.update(INHAND_WEAPON, new Card("Data Spike", CardType.WEAPON), "Green");
+		panel.update(INHAND_WEAPON, new Card("EMP Grenade", CardType.WEAPON), "Blue");
+		panel.update(SEEN_WEAPON, new Card("Cybernetic Augmentation", CardType.WEAPON), "Blue");
+		panel.update(SEEN_WEAPON, new Card("Nanobot Injector", CardType.WEAPON), "Orange");		
 		
+	}
+
+	public static JPanel getInHandPeople() {
+		return INHAND_PEOPLE;
+	}
+
+
+	public static JPanel getSeenPeople() {
+		return SEEN_PEOPLE;
+	}
+
+	public static JPanel getInHandRoom() {
+		return INHAND_ROOM;
+	}
+
+	public static JPanel getSeenRoom() {
+		return SEEN_ROOM;
+	}
+
+	public static JPanel getInHandWeapon() {
+		return INHAND_WEAPON;
+	}
+
+	public static JPanel getSeenWeapon() {
+		return SEEN_WEAPON;
 	}
 }
 
