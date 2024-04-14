@@ -27,7 +27,6 @@ public class ClueGame extends JFrame {
 		add(gameControl, BorderLayout.SOUTH);
 		add(cardsPanel, BorderLayout.EAST);
 		
-		
 	}
 	
 	
