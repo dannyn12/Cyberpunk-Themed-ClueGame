@@ -77,7 +77,7 @@ public class BoardPanel extends JPanel {
                     g.setColor(Color.GREEN);
                     break;
                 case "Purple":
-                    Color purple = new Color(148, 0, 211);
+                	Color purple = new Color(148, 150, 211);
                     g.setColor(purple);
                     break;
                 case "Pink":
@@ -87,7 +87,7 @@ public class BoardPanel extends JPanel {
                     g.setColor(Color.ORANGE);
                     break;
                 case "Blue":
-                    g.setColor(Color.BLUE);
+                    g.setColor(Color.CYAN);
                     break;
                 case "Red":
                     g.setColor(Color.RED);

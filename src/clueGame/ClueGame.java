@@ -18,7 +18,7 @@ public class ClueGame extends JFrame {
 	public ClueGame() {
 		boardPanel = new BoardPanel();
 		cardsPanel = new CardsPanel();
-		gameControl = new GameControlPanel();
+		gameControl = new GameControlPanel(this);
 		
 		gameControl.setPreferredSize(new Dimension(900, 130));
 		cardsPanel.setPreferredSize(new Dimension(243, getHeight()));
@@ -27,9 +27,9 @@ public class ClueGame extends JFrame {
 		add(gameControl, BorderLayout.SOUTH);
 		add(cardsPanel, BorderLayout.EAST);
 		
-		JOptionPane.showMessageDialog(null, "You are Nova. \n" + "Can you find the solution \n" + "before the Computer players.", "Welcome to Clue", JOptionPane.INFORMATION_MESSAGE);
 		
 	}
+	
 	
 	/*
 	 * Initialize board
@@ -40,5 +40,7 @@ public class ClueGame extends JFrame {
 		frame.setSize(925, 900);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
+		// add pop-up starting message
+		JOptionPane.showMessageDialog(frame, "You are Cipher. \n" + "Can you find the solution \n" + "before the Computer players.", "Welcome to Clue", JOptionPane.INFORMATION_MESSAGE);
 	}
 }

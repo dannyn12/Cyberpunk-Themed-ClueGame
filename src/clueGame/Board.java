@@ -33,6 +33,7 @@ public class Board {
 	private ArrayList<Card> deck;
 	private ArrayList<Player> players;
 	private Solution solution;
+	private int rollNumber;
 	
 
 	/*
@@ -614,6 +615,13 @@ public class Board {
 		return deck;
 	}
 
+	public int getRollNumber() {
+		Random random = new Random();
+        int randomRoll = random.nextInt(6) + 1;
+        this.rollNumber = randomRoll;
+        return randomRoll;
+	}
+
 	public void setSolution(Solution solution) {
 		this.solution = solution;
 	}
@@ -621,5 +629,7 @@ public class Board {
 	public void setPlayers(ArrayList<Player> players) {
 		this.players = players;
 	}
+
+	
 	
 }
