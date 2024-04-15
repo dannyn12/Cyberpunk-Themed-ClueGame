@@ -47,26 +47,33 @@ public class BoardCell {
 	 * Draws players & rooms & doors on board
 	 */
 	public void draw(Graphics g, int cellWidth, int cellHeight) {
-	    int x = col * cellWidth;
-	    int y = row * cellHeight;
-	    
-	    if (initial == 'W') {
-		    g.setColor(Color.yellow); 
-		    g.fillRect(x, y, cellWidth, cellHeight);
-		    Color cyberPurple = new Color(214,0,255);
-		    g.setColor(Color.BLACK);
-		    g.drawRect(x, y, cellWidth, cellHeight); 
-	    } else if (initial == 'X'){
-		    g.setColor(Color.black); 
-		    g.fillRect(x, y, cellWidth, cellHeight); 
-		    Color cyberPurple = new Color(214,0,255);
-		    g.setColor(cyberPurple);
-		    g.drawRect(x, y, cellWidth, cellHeight); 
-	    } else if (isRoom) {
-	    	Color cyberBlue = new Color(0,184,255);
-	    	g.setColor(cyberBlue);
-	    	g.fillRect(x, y, cellWidth, cellHeight); 
-	    }
+		// find location of cell
+		int x = col * cellWidth;
+		int y = row * cellHeight;
+
+		// draw walkway
+		if (initial == 'W') {
+			g.setColor(Color.yellow); 
+			g.fillRect(x, y, cellWidth, cellHeight);
+			Color cyberPurple = new Color(214,0,255);
+			g.setColor(Color.BLACK);
+			g.drawRect(x, y, cellWidth, cellHeight);  
+		} 
+		// draw unused space 
+		else if (initial == 'X'){
+			g.setColor(Color.black); 
+			g.fillRect(x, y, cellWidth, cellHeight); 
+			Color cyberPurple = new Color(214,0,255);
+			g.setColor(cyberPurple);
+			g.drawRect(x, y, cellWidth, cellHeight); 
+
+		} 
+		// draw room
+		else if (isRoom) {
+			Color cyberBlue = new Color(0,184,255);
+			g.setColor(cyberBlue);
+			g.fillRect(x, y, cellWidth, cellHeight); 
+		}
 	}
 	
 	/*
