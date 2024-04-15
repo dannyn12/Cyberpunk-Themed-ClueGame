@@ -29,6 +29,8 @@ public class CardsPanel extends JPanel {
 	private static JPanel SEEN_ROOM;
 	private static JPanel INHAND_WEAPON;
 	private static JPanel SEEN_WEAPON;
+	private static final String SEEN = "Seen:";
+	private static final String IN_HAND = "In Hand:";
 	
 	/*
 	 * Constructor that makes the card panel
@@ -54,14 +56,14 @@ public class CardsPanel extends JPanel {
 		peoplePanel.setBorder(new TitledBorder (new EtchedBorder(), "People"));
 	 	
 	 	// In hand cards
-	 	JLabel inHandLabel = new JLabel("In Hand:");
+	 	JLabel inHandLabel = new JLabel(IN_HAND);
 	 	peoplePanel.add(inHandLabel);
 	 	INHAND_PEOPLE = new JPanel();
 	 	INHAND_PEOPLE.setLayout(new GridLayout(0,1));
 	 	peoplePanel.add(INHAND_PEOPLE);
 	 	
 	 	// Seen cards:
-	 	JLabel seenLabel = new JLabel("Seen:");
+	 	JLabel seenLabel = new JLabel(SEEN);
 	 	peoplePanel.add(seenLabel);
 	 	SEEN_PEOPLE = new JPanel();
 	 	SEEN_PEOPLE.setLayout(new GridLayout(0,1));
@@ -81,14 +83,14 @@ public class CardsPanel extends JPanel {
 	 	roomPanel.setBorder(new TitledBorder (new EtchedBorder(), "Rooms"));
 	 	
 	 	// In hand cards
-	 	JLabel inHandLabel = new JLabel("In Hand:");
+	 	JLabel inHandLabel = new JLabel(IN_HAND);
 	 	roomPanel.add(inHandLabel);
 	 	INHAND_ROOM = new JPanel();
 	 	INHAND_ROOM.setLayout(new GridLayout(0,1));
 	 	roomPanel.add(INHAND_ROOM);
 	 	
 	 	// Seen cards
-	 	JLabel seenLabel = new JLabel("Seen:");
+	 	JLabel seenLabel = new JLabel(SEEN);
 	 	roomPanel.add(seenLabel);
 	 	SEEN_ROOM = new JPanel();
 	 	SEEN_ROOM.setLayout(new GridLayout(0,1));
@@ -107,14 +109,14 @@ public class CardsPanel extends JPanel {
 	 	weaponsPanel.setBorder(new TitledBorder (new EtchedBorder(), "Weapons"));
 	 	
 	 	// In hand cards
-	 	JLabel inHandLabel = new JLabel("In Hand:");
+	 	JLabel inHandLabel = new JLabel(IN_HAND);
 	 	weaponsPanel.add(inHandLabel);
 	 	INHAND_WEAPON = new JPanel();
 	 	INHAND_WEAPON.setLayout(new GridLayout(0,1));
 	 	weaponsPanel.add(INHAND_WEAPON);
 	 	
 	 	// Seen cards
-	 	JLabel seenLabel = new JLabel("Seen:");
+	 	JLabel seenLabel = new JLabel(SEEN);
 	 	weaponsPanel.add(seenLabel);
 	 	SEEN_WEAPON = new JPanel();
 	 	SEEN_WEAPON.setLayout(new GridLayout(0,1));
