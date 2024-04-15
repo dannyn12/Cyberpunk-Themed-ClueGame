@@ -7,6 +7,7 @@ package clueGame;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -39,7 +40,9 @@ public class ClueGame extends JFrame {
 		frame.setSize(925, 900);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
-		// add pop-up starting message
+		Board board = Board.getInstance();
+		// showing the welcome screen
 		JOptionPane.showMessageDialog(frame, "You are Cipher. \n" + "Can you find the solution \n" + "before the Computer players.", "Welcome to Clue", JOptionPane.INFORMATION_MESSAGE);
+		board.startGame();
 	}
 }

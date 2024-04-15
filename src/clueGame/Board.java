@@ -35,7 +35,24 @@ public class Board {
 	private Solution solution;
 	private int rollNumber;
 	
-
+	/*
+	 * this function will begin the game
+	 */
+	public void startGame() {
+		int playerNum = 0;
+		int maxPlayer = 5;
+		Player currPlayer;
+		
+		// finding human player to begin game logic
+		for(Player player: players) {
+			if(player instanceof HumanPlayer) {
+				currPlayer = player;
+				break;
+			} else {
+				playerNum += 1;
+			}
+		}
+	}
 	/*
 	 *  Method calculate the adjacency of each cell in the board
 	 */
