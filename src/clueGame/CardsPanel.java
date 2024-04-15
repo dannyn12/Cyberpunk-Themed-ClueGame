@@ -30,6 +30,9 @@ public class CardsPanel extends JPanel {
 	private static JPanel INHAND_WEAPON;
 	private static JPanel SEEN_WEAPON;
 	
+	/*
+	 * Constructor that makes the card panel
+	 */
 	public CardsPanel() {
 		setLayout(new GridLayout(3,0));
 		setBorder(new TitledBorder (new EtchedBorder(), "Known Cards"));
@@ -45,6 +48,7 @@ public class CardsPanel extends JPanel {
 	 * Create GUI for in hand and seen people cards
 	 */
 	private JPanel peoplePanel() {
+		// Make border
 		this.peoplePanel = new JPanel();
 		peoplePanel.setLayout(new GridLayout(0,1));
 		peoplePanel.setBorder(new TitledBorder (new EtchedBorder(), "People"));
@@ -71,6 +75,7 @@ public class CardsPanel extends JPanel {
 	 * Create GUI for in hand and seen rooms cards
 	 */
 	private JPanel roomsPanel() {
+		// Make boroder
 		roomPanel = new JPanel();
 		roomPanel.setLayout(new GridLayout(0,1));
 	 	roomPanel.setBorder(new TitledBorder (new EtchedBorder(), "Rooms"));
@@ -96,6 +101,7 @@ public class CardsPanel extends JPanel {
 	 * Create GUI for in hand and seen rooms cards
 	 */
 	private JPanel weaponsPanel() {
+		// Make border
 		weaponsPanel = new JPanel();
 		weaponsPanel.setLayout(new GridLayout(0,1));
 	 	weaponsPanel.setBorder(new TitledBorder (new EtchedBorder(), "Weapons"));
@@ -166,6 +172,31 @@ public class CardsPanel extends JPanel {
 
 	}
 	
+	public static JPanel getInHandPeople() {
+		return INHAND_PEOPLE;
+	}
+
+
+	public static JPanel getSeenPeople() {
+		return SEEN_PEOPLE;
+	}
+
+	public static JPanel getInHandRoom() {
+		return INHAND_ROOM;
+	}
+
+	public static JPanel getSeenRoom() {
+		return SEEN_ROOM;
+	}
+
+	public static JPanel getInHandWeapon() {
+		return INHAND_WEAPON;
+	}
+
+	public static JPanel getSeenWeapon() {
+		return SEEN_WEAPON;
+	}
+	
 	/*
 	 * Main to test the panel
 	 *
@@ -198,29 +229,5 @@ public class CardsPanel extends JPanel {
 		
 	}
 
-	public static JPanel getInHandPeople() {
-		return INHAND_PEOPLE;
-	}
-
-
-	public static JPanel getSeenPeople() {
-		return SEEN_PEOPLE;
-	}
-
-	public static JPanel getInHandRoom() {
-		return INHAND_ROOM;
-	}
-
-	public static JPanel getSeenRoom() {
-		return SEEN_ROOM;
-	}
-
-	public static JPanel getInHandWeapon() {
-		return INHAND_WEAPON;
-	}
-
-	public static JPanel getSeenWeapon() {
-		return SEEN_WEAPON;
-	}
 }
 

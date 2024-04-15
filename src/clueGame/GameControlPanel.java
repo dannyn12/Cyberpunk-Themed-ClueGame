@@ -161,6 +161,9 @@ public class GameControlPanel extends JPanel{
 
 	}
 	
+	/*
+	 * Method sets GUI to display who the player that has the current turn with color
+	 */
 	private void setTurn(List<Player> player, int currentPlayerIndex, int rollNumber) {
 	    Player currentPlayer = player.get(currentPlayerIndex);
 	    String color = currentPlayer.getColor();
@@ -197,12 +200,14 @@ public class GameControlPanel extends JPanel{
 	            bgColor = Color.BLACK; 
 	            break;
 	    }
-
+	    
+	    // change color and name of GUI
 	    who.setBackground(bgColor);
 	    who.setText(player.get(currentPlayerIndex).getName());
 	    roll.setText(String.valueOf(rollNumber));
 	   
 	}
+	
 	
 	private void setGuess(String guess) {
 		theGuess.setText(guess);	

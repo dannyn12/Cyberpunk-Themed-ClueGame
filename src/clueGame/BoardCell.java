@@ -22,8 +22,8 @@ public class BoardCell {
 	private boolean isRoom;
 	
 	/*
-	 * constructor for BoardCell class 
-	 * Boards are init with nothing active
+	 * Constructor for BoardCell class 
+	 * 
 	 */
 	public BoardCell(int row, int col) {
 		super();
@@ -80,9 +80,11 @@ public class BoardCell {
 	 * Draws doors & labels of the room
 	 */
 	public void drawLabelDoor(Graphics g, int cellWidth, int cellHeight) {
+		// find location of cell
 	    int x = col * cellWidth;
 	    int y = row * cellHeight;
-
+	    
+	    // draw doorway
 	    if (isDoorway) {
 	        if (doorDirection == DoorDirection.DOWN) {
 	            g.setColor(Color.BLACK);
@@ -97,7 +99,8 @@ public class BoardCell {
 	            g.setColor(Color.BLACK);
 	            g.fillRect(x, y - 5, cellWidth, 5);
 	        }
-	    } 
+	    }
+	    // draw room label
 	    else if (roomLabel) {
 	        Board board = Board.getInstance();
 	        Room room = board.getRoom(initial);
