@@ -55,14 +55,56 @@ public class GameControlPanel extends JPanel{
 	 * Constructor for the panel
 	 */
 	public GameControlPanel(ClueGame clueGame) {
-		// Board is singleton, get the only instance
-		Board board = Board.getInstance();
-		// set the file names to use my config files
-		board.setConfigFiles("ClueLayout.csv", "ClueSetup.txt");		
-		// Initialize will load config files 
-		board.initialize();
-		
-        // Create a layout with 2 rows and 0 columns for the main panel
+		board = gameSetUp();
+        createTopPanel();
+        createBottomPanel();   
+
+	}
+	
+	/*
+	 * Creates to bottom half of the control panel
+	 */
+	private void createBottomPanel() {
+		// Create the second sub-panel with a GridLayout of 0 row and 2 columns
+        this.subPanelBottom = new JPanel(new GridLayout(0, 2));
+        
+        // Left bottom sub panel
+        this.subPanelBottom1 = new JPanel(new GridLayout(1,0));
+        this.subPanelBottom1.setBorder(new TitledBorder (new EtchedBorder(), "Guess"));
+        this.theGuess = new JTextField(); 
+        theGuess.setEditable(false);
+        subPanelBottom1.add(theGuess);
+        
+        // Right bottom sub panel
+        this.subPanelBottom2 = new JPanel(new GridLayout(1,0));
+        this.subPanelBottom2.setBorder(new TitledBorder (new EtchedBorder(), "Guess Result"));
+        this.theResult = new JTextField(); 
+        theResult.setEditable(false);
+        subPanelBottom2.add(theResult);       
+        
+        // add bottom sub panels to bottom panel
+        subPanelBottom.add(subPanelBottom1);
+        subPanelBottom.add(subPanelBottom2);
+        // add bottom panel to main panel
+        mainPanel.add(subPanelBottom);
+
+        // add the main panel to this GameControlPanel
+        add(mainPanel);
+        
+        // add action listeners to the accusation button
+        subButtonTop1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(GameControlPanel.this, "Make Accusation button clicked");
+            }
+        });
+	}
+
+	/*
+	 * Creates top half of board
+	 */
+	private void createTopPanel() {
+		// Create a layout with 2 rows and 0 columns for the main panel
         this.mainPanel = new JPanel(new GridLayout(2, 0));
         mainPanel.setPreferredSize(new Dimension(895,120));
 
@@ -98,41 +140,6 @@ public class GameControlPanel extends JPanel{
         // add top panel to main panel
         mainPanel.add(subPanelTop);
         
-        
-        // Create the second sub-panel with a GridLayout of 0 row and 2 columns
-        this.subPanelBottom = new JPanel(new GridLayout(0, 2));
-        
-        // Left bottom sub panel
-        this.subPanelBottom1 = new JPanel(new GridLayout(1,0));
-        this.subPanelBottom1.setBorder(new TitledBorder (new EtchedBorder(), "Guess"));
-        this.theGuess = new JTextField(); 
-        theGuess.setEditable(false);
-        subPanelBottom1.add(theGuess);
-        
-        // Right bottom sub panel
-        this.subPanelBottom2 = new JPanel(new GridLayout(1,0));
-        this.subPanelBottom2.setBorder(new TitledBorder (new EtchedBorder(), "Guess Result"));
-        this.theResult = new JTextField(); 
-        theResult.setEditable(false);
-        subPanelBottom2.add(theResult);       
-        
-        // add bottom sub panels to bottom panel
-        subPanelBottom.add(subPanelBottom1);
-        subPanelBottom.add(subPanelBottom2);
-        // add bottom panel to main panel
-        mainPanel.add(subPanelBottom);
-
-        // add the main panel to this GameControlPanel
-        add(mainPanel);   
-        
-        // add action listeners to the accusation button
-        subButtonTop1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(GameControlPanel.this, "Make Accusation button clicked");
-            }
-        });
-        
         // set up first person turn
         setTurn(board.getPlayers(), currentPlayer, board.getRollNumber());
         
@@ -153,12 +160,24 @@ public class GameControlPanel extends JPanel{
                 }
                 // else human player turn not finish error message pops up
                 else {
-                	JOptionPane.showMessageDialog(clueGame, "Please Finish your turn!");
+                	JOptionPane.showMessageDialog(clueGame, "Please finish your turn!");
                 }
 
             }
         });
-
+	}
+	
+	/*
+	 * Initialize game to create board
+	 */
+	private Board gameSetUp() {
+		// Board is singleton, get the only instance
+		board = Board.getInstance();
+		// set the file names to use my config files
+		board.setConfigFiles("ClueLayout.csv", "ClueSetup.txt");		
+		// Initialize will load config files 
+		board.initialize();
+		return board;
 	}
 	
 	/*
