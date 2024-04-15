@@ -237,7 +237,6 @@ public class GameControlPanel extends JPanel{
 		
 	}
 	
-	
 	/*
 	 * Main to test the panel
 	 * 

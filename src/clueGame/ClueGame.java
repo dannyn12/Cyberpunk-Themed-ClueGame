@@ -12,9 +12,9 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 public class ClueGame extends JFrame {
-	BoardPanel boardPanel;
-	CardsPanel cardsPanel;
-	GameControlPanel gameControl;
+	private BoardPanel boardPanel;
+	private CardsPanel cardsPanel;
+	private GameControlPanel gameControl;
 
 	public ClueGame() {
 		boardPanel = new BoardPanel();
