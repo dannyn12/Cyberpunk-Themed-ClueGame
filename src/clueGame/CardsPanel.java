@@ -20,15 +20,12 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
 public class CardsPanel extends JPanel {
-	private JPanel peoplePanel;
-	private JPanel roomPanel;
-	private JPanel weaponsPanel;
-	private static JPanel inhandPeople;
-	private static JPanel seenPeople;
-	private static JPanel inhandRoom;
-	private static JPanel seenRoom;
-	private static JPanel inhandWeapon;
-	private static JPanel seenWeapon;
+	private static JPanel inhandPeople = new JPanel();
+	private static JPanel seenPeople = new JPanel();
+	private static JPanel inhandRoom = new JPanel();
+	private static JPanel seenRoom = new JPanel();
+	private static JPanel inhandWeapon = new JPanel();
+	private static JPanel seenWeapon = new JPanel();
 	private static final String SEEN = "Seen:";
 	private static final String IN_HAND = "In Hand:";
 	
@@ -45,57 +42,54 @@ public class CardsPanel extends JPanel {
 		panel = weaponsPanel();
 		add(panel);
 	}
-	
+
 	/*
 	 * Create GUI for in hand and seen people cards
 	 */
 	private JPanel peoplePanel() {
+		JPanel peoplePanel;
 		// Make border
-		this.peoplePanel = new JPanel();
+		peoplePanel = new JPanel();
 		peoplePanel.setLayout(new GridLayout(0,1));
 		peoplePanel.setBorder(new TitledBorder (new EtchedBorder(), "People"));
-	 	
-	 	// In hand cards
-	 	JLabel inHandLabel = new JLabel(IN_HAND);
-	 	peoplePanel.add(inHandLabel);
-	 	inhandPeople = new JPanel();
-	 	inhandPeople.setLayout(new GridLayout(0,1));
-	 	peoplePanel.add(inhandPeople);
-	 	
-	 	// Seen cards:
-	 	JLabel seenLabel = new JLabel(SEEN);
-	 	peoplePanel.add(seenLabel);
-	 	seenPeople = new JPanel();
-	 	seenPeople.setLayout(new GridLayout(0,1));
-	 	peoplePanel.add(seenPeople);
-	 	
+
+		// In hand cards
+		JLabel inHandLabel = new JLabel(IN_HAND);
+		peoplePanel.add(inHandLabel);
+		inhandPeople.setLayout(new GridLayout(0,1));
+		peoplePanel.add(inhandPeople);
+
+		// Seen cards:
+		JLabel seenLabel = new JLabel(SEEN);
+		peoplePanel.add(seenLabel);
+		seenPeople.setLayout(new GridLayout(0,1));
+		peoplePanel.add(seenPeople);
+
 		return peoplePanel;
-		
 	}
 	
 	/*
 	 * Create GUI for in hand and seen rooms cards
 	 */
 	private JPanel roomsPanel() {
+		JPanel roomPanel;
 		// Make boroder
 		roomPanel = new JPanel();
 		roomPanel.setLayout(new GridLayout(0,1));
-	 	roomPanel.setBorder(new TitledBorder (new EtchedBorder(), "Rooms"));
-	 	
-	 	// In hand cards
-	 	JLabel inHandLabel = new JLabel(IN_HAND);
-	 	roomPanel.add(inHandLabel);
-	 	inhandRoom = new JPanel();
-	 	inhandRoom.setLayout(new GridLayout(0,1));
-	 	roomPanel.add(inhandRoom);
-	 	
-	 	// Seen cards
-	 	JLabel seenLabel = new JLabel(SEEN);
-	 	roomPanel.add(seenLabel);
-	 	seenRoom = new JPanel();
-	 	seenRoom.setLayout(new GridLayout(0,1));
-	 	roomPanel.add(seenRoom);
-	 	
+		roomPanel.setBorder(new TitledBorder (new EtchedBorder(), "Rooms"));
+
+		// In hand cards
+		JLabel inHandLabel = new JLabel(IN_HAND);
+		roomPanel.add(inHandLabel);
+		inhandRoom.setLayout(new GridLayout(0,1));
+		roomPanel.add(inhandRoom);
+
+		// Seen cards
+		JLabel seenLabel = new JLabel(SEEN);
+		roomPanel.add(seenLabel);
+		seenRoom.setLayout(new GridLayout(0,1));
+		roomPanel.add(seenRoom);
+
 		return roomPanel;
 	}
 	
@@ -103,28 +97,27 @@ public class CardsPanel extends JPanel {
 	 * Create GUI for in hand and seen rooms cards
 	 */
 	private JPanel weaponsPanel() {
+		JPanel weaponsPanel;
 		// Make border
 		weaponsPanel = new JPanel();
 		weaponsPanel.setLayout(new GridLayout(0,1));
-	 	weaponsPanel.setBorder(new TitledBorder (new EtchedBorder(), "Weapons"));
-	 	
-	 	// In hand cards
-	 	JLabel inHandLabel = new JLabel(IN_HAND);
-	 	weaponsPanel.add(inHandLabel);
-	 	inhandWeapon = new JPanel();
-	 	inhandWeapon.setLayout(new GridLayout(0,1));
-	 	weaponsPanel.add(inhandWeapon);
-	 	
-	 	// Seen cards
-	 	JLabel seenLabel = new JLabel(SEEN);
-	 	weaponsPanel.add(seenLabel);
-	 	seenWeapon = new JPanel();
-	 	seenWeapon.setLayout(new GridLayout(0,1));
-	 	weaponsPanel.add(seenWeapon);
-	 	
+		weaponsPanel.setBorder(new TitledBorder (new EtchedBorder(), "Weapons"));
+
+		// In hand cards
+		JLabel inHandLabel = new JLabel(IN_HAND);
+		weaponsPanel.add(inHandLabel);
+		inhandWeapon.setLayout(new GridLayout(0,1));
+		weaponsPanel.add(inhandWeapon);
+
+		// Seen cards
+		JLabel seenLabel = new JLabel(SEEN);
+		weaponsPanel.add(seenLabel);
+		seenWeapon.setLayout(new GridLayout(0,1));
+		weaponsPanel.add(seenWeapon);
+
 		return weaponsPanel;
 	}
-	
+
 	/*
 	 * Updates panel to include new card in hand or seen
 	 */

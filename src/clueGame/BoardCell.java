@@ -55,7 +55,6 @@ public class BoardCell {
 		if (initial == 'W') {
 			g.setColor(Color.yellow); 
 			g.fillRect(x, y, cellWidth, cellHeight);
-			Color cyberPurple = new Color(214,0,255);
 			g.setColor(Color.BLACK);
 			g.drawRect(x, y, cellWidth, cellHeight);  
 		} 
@@ -190,10 +189,6 @@ public class BoardCell {
 
 	public void setDoorway(boolean isDoorway) {
 		this.isDoorway = isDoorway;
-	}
-	
-	public void getLocation() {
-		System.out.println(this.row + " "+ this.col);
 	}
 
 
