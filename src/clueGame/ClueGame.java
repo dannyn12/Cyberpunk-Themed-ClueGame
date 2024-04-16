@@ -62,6 +62,7 @@ public class ClueGame extends JFrame implements MouseListener, ActionListener{
 			//resets painted target cells
 			this.clearTurn();
 			this.nextPlayerNum();
+			currPlayer = board.getPlayers().get(playerNum);
 		} else {
 			firstTurn += 1;
 		}
@@ -93,7 +94,7 @@ public class ClueGame extends JFrame implements MouseListener, ActionListener{
 			ComputerPlayer player = (ComputerPlayer)currPlayer;
 			BoardCell selectedCell = player.selectTarget(targets);
 			player.move(selectedCell.getRow(), selectedCell.getCol());
-			
+			currPlayer.isPlayerFinished(true);
 			repaint();
 		}
 	}
