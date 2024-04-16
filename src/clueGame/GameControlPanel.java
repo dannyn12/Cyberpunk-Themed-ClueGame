@@ -54,7 +54,7 @@ public class GameControlPanel extends JPanel{
 	/*
 	 * Constructor for the panel
 	 */
-	public GameControlPanel(ClueGame clueGame) {
+	public GameControlPanel() {
 		board = gameSetUp();
         createTopPanel();
         createBottomPanel();   
@@ -243,7 +243,7 @@ public class GameControlPanel extends JPanel{
 	 * @param args
 	 */
 	   public static void main(String[] args) {
-			GameControlPanel panel = new GameControlPanel(clueGame); // Pass the board instance to the panel constructor
+			GameControlPanel panel = new GameControlPanel(); // Pass the board instance to the panel constructor
 	        JFrame frame = new JFrame(); // create the frame
 	        frame.setContentPane(panel); // put the panel in the frame
 	        frame.setSize(900, 180); // size the frame

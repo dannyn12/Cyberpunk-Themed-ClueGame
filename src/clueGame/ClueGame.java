@@ -19,7 +19,7 @@ public class ClueGame extends JFrame {
 	public ClueGame() {
 		boardPanel = new BoardPanel();
 		cardsPanel = new CardsPanel();
-		gameControl = new GameControlPanel(this);
+		gameControl = new GameControlPanel();
 		
 		gameControl.setPreferredSize(new Dimension(900, 130));
 		cardsPanel.setPreferredSize(new Dimension(243, getHeight()));
@@ -29,7 +29,6 @@ public class ClueGame extends JFrame {
 		add(cardsPanel, BorderLayout.EAST);
 		
 	}
-	
 	
 	/*
 	 * Initialize board

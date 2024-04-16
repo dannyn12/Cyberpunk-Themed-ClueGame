@@ -13,7 +13,9 @@ import javax.swing.JPanel;
 
 public class BoardPanel extends JPanel {
     private Board board;
-
+    private int cellWidth;
+    private int cellHeight;
+    
     public BoardPanel() {
 		board = Board.getInstance();
 		// set the file names to use my config files
@@ -26,10 +28,6 @@ public class BoardPanel extends JPanel {
      * Draws board cells and rooms
      */
     public void drawCell(Graphics g) {
-        // Calculate cell size 
-        int cellWidth = getWidth() / board.getNumColumns();
-        int cellHeight = getHeight() / board.getNumRows();
-
         // Draw board cells
         for (int row = 0; row < board.getNumRows(); row++) {
             for (int col = 0; col < board.getNumColumns(); col++) {
@@ -43,11 +41,7 @@ public class BoardPanel extends JPanel {
     /*
      * Draw doors and room labels
      */
-    public void drawDoorAndLabel(Graphics g) {
-    	// Calculate cell size 
-        int cellWidth = getWidth() / board.getNumColumns();
-        int cellHeight = getHeight() / board.getNumRows();
-        
+    public void drawDoorAndLabel(Graphics g) { 
         // Draw Doors and Labels
         for (int row = 0; row < board.getNumRows(); row++) {
             for (int col = 0; col < board.getNumColumns(); col++) {
@@ -62,10 +56,6 @@ public class BoardPanel extends JPanel {
      * Draw game players
      */
     public void drawPlayers(Graphics g) {
-        // Calculate cell size 
-        int cellWidth = getWidth() / board.getNumColumns();
-        int cellHeight = getHeight() / board.getNumRows();
-        
         // Draw players
         for (Player player : board.getPlayers()) {
             int playerX = player.getCol() * cellWidth + cellWidth / 2;
@@ -101,6 +91,14 @@ public class BoardPanel extends JPanel {
         repaint();
     }
     
+	private int calcCellHeight() {
+		return getHeight() / board.getNumRows();
+	}
+
+	private int calcCellSize() {
+		return getWidth() / board.getNumColumns();
+	}
+    
     /*
      * Paint component
      */
@@ -109,6 +107,8 @@ public class BoardPanel extends JPanel {
         drawCell(g);
         drawPlayers(g);
         drawDoorAndLabel(g);
+		cellWidth = calcCellSize();
+		cellHeight = calcCellHeight();
         
     }
 }
