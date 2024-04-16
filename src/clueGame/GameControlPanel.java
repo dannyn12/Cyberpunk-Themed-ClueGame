@@ -182,7 +182,7 @@ public class GameControlPanel extends JPanel{
 	            bgColor = Color.RED;
 	            break;
 	        case "Orange":
-	            bgColor = Color.ORANGE;
+	            bgColor = new Color(255, 95, 31);
 	            break;
 	        case "Yellow":
 	            bgColor = Color.YELLOW;
