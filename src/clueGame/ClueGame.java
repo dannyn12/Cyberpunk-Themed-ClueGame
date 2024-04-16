@@ -125,8 +125,10 @@ public class ClueGame extends JFrame implements MouseListener, ActionListener{
 			currPlayer.isPlayerFinished(true);
 			currPlayer.move(selectedCell.getRow(), selectedCell.getCol());
 			this.clearTurn();
+		} else {
+			JOptionPane.showMessageDialog(null, "You can't move here!");
 		}
-		
+	
 		repaint();
 	}
 	
