@@ -91,80 +91,80 @@ public class GameControlPanel extends JPanel{
         // add the main panel to this GameControlPanel
         add(mainPanel);
         
-        // add action listeners to the accusation button
-        subButtonTop1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(GameControlPanel.this, "Make Accusation button clicked");
-            }
-        });
 	}
 
 	/*
-	 * Creates top half of board
+	 * Creates top half of control panel
 	 */
 	private void createTopPanel() {
 		// Create a layout with 2 rows and 0 columns for the main panel
-        this.mainPanel = new JPanel(new GridLayout(2, 0));
-        mainPanel.setPreferredSize(new Dimension(895,120));
+		this.mainPanel = new JPanel(new GridLayout(2, 0));
+		mainPanel.setPreferredSize(new Dimension(895,120));
 
-        // Create the first sub-panel with a GridLayout of 1 row and 4 columns
-        this.subPanelTop = new JPanel(new GridLayout(0, 4));
-        
-        // Add components to the first sub-panel
-        this.subPanelTop1 = new JPanel(new GridLayout(2,0));
-        subPanelTop1.add(new JLabel("<html><b>Whose turn?</b></html>"));
-        this.who = new JTextField(14); // 14
-        who.setEditable(false);
-        subPanelTop1.add(who, BorderLayout.NORTH);
-        
-        this.subPanelTop2 = new JPanel();
-        this.roll = new JTextField(5); // 5
-        roll.setEditable(false);
-        subPanelTop2.add(new JLabel("<html><b>Roll:</b></html>"));
-        subPanelTop2.add(roll);
-        
-        this.subButtonTop1 = new JButton("<html><b>Make Accusation</b></html>");
-        this.subButtonTop2 = new JButton("<html><b>NEXT!</b></html>");
-        subButtonTop1.setPreferredSize(new Dimension(70,70));
-        subButtonTop1.setOpaque(true);
-        subButtonTop2.setOpaque(true);
+		// Create the first sub-panel with a GridLayout of 1 row and 4 columns
+		this.subPanelTop = new JPanel(new GridLayout(0, 4));
 
-        
-        // add top sub panels to top panel
-        subPanelTop.add(subPanelTop1);
-        subPanelTop.add(subPanelTop2);
-        subPanelTop.add(subButtonTop1);
-        subPanelTop.add(subButtonTop2);
-        
-        // add top panel to main panel
-        mainPanel.add(subPanelTop);
-        
-        // set up first person turn
-        setTurn(board.getPlayers(), currentPlayer, board.getRollNumber());
-        
-        
-        // add action listeners to the next button
-        subButtonTop2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // increment the current player index
-                currentPlayer++;
-                if (currentPlayer >= board.getPlayers().size()) {
-                    currentPlayer = 0; 
-                }
+		// Add components to the first sub-panel
+		this.subPanelTop1 = new JPanel(new GridLayout(2,0));
+		subPanelTop1.add(new JLabel("<html><b>Whose turn?</b></html>"));
+		this.who = new JTextField(14); // 14
+		who.setEditable(false);
+		subPanelTop1.add(who, BorderLayout.NORTH);
 
-                // if human player turn is finished(true) go to next player      
-                if (turnFinished) {
-                	setTurn(board.getPlayers(), currentPlayer, board.getRollNumber());
-                }
-                // else human player turn not finish error message pops up
-                else {
-                	JOptionPane.showMessageDialog(clueGame, "Please finish your turn!");
-                }
+		this.subPanelTop2 = new JPanel();
+		this.roll = new JTextField(5); // 5
+		roll.setEditable(false);
+		subPanelTop2.add(new JLabel("<html><b>Roll:</b></html>"));
+		subPanelTop2.add(roll);
 
-            }
-        });
+		this.subButtonTop1 = new JButton("<html><b>Make Accusation</b></html>");
+		this.subButtonTop2 = new JButton("<html><b>NEXT!</b></html>");
+		subButtonTop1.setPreferredSize(new Dimension(70,70));
+		subButtonTop1.setOpaque(true);
+		subButtonTop2.setOpaque(true);
+
+
+		// add top sub panels to top panel
+		subPanelTop.add(subPanelTop1);
+		subPanelTop.add(subPanelTop2);
+		subPanelTop.add(subButtonTop1);
+		subPanelTop.add(subButtonTop2);
+
+		// add top panel to main panel
+		mainPanel.add(subPanelTop);
+
+		// set up first person turn
+		setTurn(board.getPlayers(), currentPlayer, board.getRollNumber());
+
+		// add action listeners to the accusation button
+		subButtonTop1.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(GameControlPanel.this, "Make Accusation button clicked");
+			}
+		});
+
+		// add action listeners to the next button
+		subButtonTop2.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// increment the current player index
+				currentPlayer++;
+				if (currentPlayer >= board.getPlayers().size()) {
+					currentPlayer = 0; 
+				}
+
+				// if human player turn is finished(true) go to next player      
+				if (turnFinished) {
+					setTurn(board.getPlayers(), currentPlayer, board.getRollNumber());
+				}
+				// else human player turn not finish error message pops up
+				else {
+					JOptionPane.showMessageDialog(clueGame, "Please finish your turn!");
+				}
+
+			}
+		});
 	}
 	
 	/*

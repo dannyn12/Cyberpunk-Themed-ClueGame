@@ -147,25 +147,38 @@ public class CardsPanel extends JPanel {
 	 * Changes textField color based off string 
 	 */
 	private void changeColor(JTextField panel, String color) {
-		if (color.equals("Blue")) {
-			panel.setBackground(Color.BLUE);
-		} else if (color.equals("Green")) {
-			panel.setBackground(Color.green);
-		} else if (color.equals("Red")) {
-			panel.setBackground(Color.red);
-		} else if (color.equals("Orange")) {
-			panel.setBackground(Color.orange);
-		} else if (color.equals("Yellow")) {
-			panel.setBackground(Color.yellow);
-		} else if (color.equals("Pink")) {
-			panel.setBackground(Color.pink);
-		} else if (color.equals("Magenta") || color.equals("Purple")) {
-			panel.setBackground(Color.magenta);
-		} else if (color.equals("White")) {
-			panel.setBackground(Color.white);
-		}
-
+	    switch (color.toLowerCase()) {
+	        case "blue":
+	            panel.setBackground(Color.cyan);
+	            break;
+	        case "green":
+	            panel.setBackground(Color.green);
+	            break;
+	        case "red":
+	            panel.setBackground(Color.red);
+	            break;
+	        case "orange":
+	            panel.setBackground(Color.orange);
+	            break;
+	        case "yellow":
+	            panel.setBackground(Color.yellow);
+	            break;
+	        case "pink":
+	            panel.setBackground(Color.pink);
+	            break;
+	        case "purple":
+	            Color purple = new Color(148, 150, 211);
+	            panel.setBackground(purple);
+	            break;
+	        case "white":
+	            panel.setBackground(Color.white);
+	            break;
+	        default:
+	            // Handle the case when color doesn't match any of the specified colors
+	            break;
+	    }
 	}
+
 	
 	public static JPanel getInHandPeople() {
 		return inhandPeople;
