@@ -32,8 +32,6 @@ import javax.swing.border.TitledBorder;
 public class GameControlPanel extends JPanel{
 	private Board board;
 	private JPanel mainPanel;
-	private int currentPlayer = 0; 
-	private boolean turnFinished = false; 
 	// top panel variables
 	private JPanel subPanelTop;
 	private JPanel subPanelTop1;
@@ -58,7 +56,7 @@ public class GameControlPanel extends JPanel{
 	public GameControlPanel() {
 		board = gameSetUp();
         createTopPanel();
-        createBottomPanel();   
+        createBottomPanel();
 
 	}
 	
@@ -135,21 +133,21 @@ public class GameControlPanel extends JPanel{
 		// add top panel to main panel
 		mainPanel.add(subPanelTop);
 
-		// add action listeners to the accusation button
-		subButtonTop1.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(GameControlPanel.this, "Make Accusation button clicked");
-			}
-		});
-
+//		// add action listeners to the accusation button
+//		subButtonTop1.addActionListener(new ActionListener() {
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				JOptionPane.showMessageDialog(GameControlPanel.this, "Make Accusation button clicked");
+//			}
+//		});
+//
 		// add action listeners to the next button
-		subButtonTop2.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-			}
-		});
+//		subButtonTop2.addActionListener(new ActionListener() {
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				clueGame.nextButton();
+//			}
+//		});
 	}
 	
 	/*
@@ -232,5 +230,10 @@ public class GameControlPanel extends JPanel{
 	        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // allow it to close
 	        frame.setVisible(true); // make it visible
 	    }
+
+
+	public JButton getSubButtonTop2() {
+		return subButtonTop2;
+	}
 
 }

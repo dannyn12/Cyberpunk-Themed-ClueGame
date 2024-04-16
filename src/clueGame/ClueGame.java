@@ -6,6 +6,8 @@ package clueGame;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Random;
@@ -15,7 +17,7 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-public class ClueGame extends JFrame implements MouseListener{
+public class ClueGame extends JFrame implements MouseListener, ActionListener{
 	private Board board;
 	private BoardPanel boardPanel;
 	private CardsPanel cardsPanel;
@@ -59,6 +61,7 @@ public class ClueGame extends JFrame implements MouseListener{
 			
 			//resets painted target cells
 			this.clearTurn();
+			this.nextPlayerNum();
 		} else {
 			firstTurn += 1;
 		}
@@ -94,6 +97,8 @@ public class ClueGame extends JFrame implements MouseListener{
 			repaint();
 		}
 	}
+
+	
 	
 	@Override 
 	public void mousePressed(MouseEvent e) {
@@ -158,13 +163,19 @@ public class ClueGame extends JFrame implements MouseListener{
 		
 		gameControl.setPreferredSize(new Dimension(900, 130));
 		cardsPanel.setPreferredSize(new Dimension(243, getHeight()));
+		
+		gameControl.getSubButtonTop2().addActionListener(this);
 
 		add(boardPanel, BorderLayout.CENTER);
 		add(gameControl, BorderLayout.SOUTH);
 		add(cardsPanel, BorderLayout.EAST);
 	}
 	
-
+    @Override
+    public void actionPerformed(ActionEvent e) {
+    	nextButton(); 
+    }	
+	
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// NO IMPLEMENTATION
