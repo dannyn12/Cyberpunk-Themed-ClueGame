@@ -17,6 +17,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
+import java.util.Set;
 
 import javax.swing.AbstractButton;
 import javax.swing.BorderFactory;
@@ -60,6 +61,7 @@ public class GameControlPanel extends JPanel{
         createBottomPanel();   
 
 	}
+	
 	
 	/*
 	 * Creates to bottom half of the control panel
@@ -133,9 +135,6 @@ public class GameControlPanel extends JPanel{
 		// add top panel to main panel
 		mainPanel.add(subPanelTop);
 
-		// set up first person turn
-		setTurn(board.getPlayers(), currentPlayer, board.getRollNumber());
-
 		// add action listeners to the accusation button
 		subButtonTop1.addActionListener(new ActionListener() {
 			@Override
@@ -148,21 +147,7 @@ public class GameControlPanel extends JPanel{
 		subButtonTop2.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// increment the current player index
-				currentPlayer++;
-				if (currentPlayer >= board.getPlayers().size()) {
-					currentPlayer = 0; 
-				}
-
-				// if human player turn is finished(true) go to next player      
-				if (turnFinished) {
-					setTurn(board.getPlayers(), currentPlayer, board.getRollNumber());
-				}
-				// else human player turn not finish error message pops up
-				else {
-					JOptionPane.showMessageDialog(clueGame, "Please finish your turn!");
-				}
-
+				
 			}
 		});
 	}
@@ -183,9 +168,8 @@ public class GameControlPanel extends JPanel{
 	/*
 	 * Method sets GUI to display who the player that has the current turn with color
 	 */
-	private void setTurn(List<Player> player, int currentPlayerIndex, int rollNumber) {
-	    Player currentPlayer = player.get(currentPlayerIndex);
-	    String color = currentPlayer.getColor();
+	public void setTurn(List<Player> player, int currentPlayerIndex, int rollNumber) {
+	    String color = player.get(currentPlayerIndex).getColor();
 	    Color bgColor;
 	    
 	    // change color of current player
@@ -227,14 +211,12 @@ public class GameControlPanel extends JPanel{
 	   
 	}
 	
-	
 	private void setGuess(String guess) {
 		theGuess.setText(guess);	
 	}
 	
 	private void setGuessResult(String result) {
 		theResult.setText(result);
-		
 	}
 	
 	/*

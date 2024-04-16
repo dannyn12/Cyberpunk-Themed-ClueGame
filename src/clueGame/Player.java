@@ -15,10 +15,17 @@ public abstract class Player {
 	private int row, col;
 	private ArrayList<Card> hand = new ArrayList<>();
 	private Set<Card> seenCards = new HashSet<>();
+	private boolean playerFinished;
 	
 	public Player(String name, String color, int row, int col) {
 		this.name = name;
 		this.color = color;
+		this.row = row;
+		this.col = col;
+		this.playerFinished = false;
+	}
+	
+	public void move(int row, int col) {
 		this.row = row;
 		this.col = col;
 	}
@@ -29,6 +36,14 @@ public abstract class Player {
 	public void updateLocation(int row, int col) {
 		this.row = row;
 		this.col = col;
+	}
+	
+	public void isPlayerFinished(boolean finished) {
+		this.playerFinished = finished;
+	}
+	
+	public boolean getPlayerFinished() {
+		return this.playerFinished;
 	}
 	
 	/*

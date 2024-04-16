@@ -33,26 +33,7 @@ public class Board {
 	private ArrayList<Card> deck;
 	private ArrayList<Player> players;
 	private Solution solution;
-	private int rollNumber;
 	
-	/*
-	 * this function will begin the game
-	 */
-	public void startGame() {
-		int playerNum = 0;
-		int maxPlayer = 5;
-		Player currPlayer;
-		
-		// finding human player to begin game logic
-		for(Player player: players) {
-			if(player instanceof HumanPlayer) {
-				currPlayer = player;
-				break;
-			} else {
-				playerNum += 1;
-			}
-		}
-	}
 	/*
 	 *  Method calculate the adjacency of each cell in the board
 	 */
@@ -630,13 +611,6 @@ public class Board {
 
 	public ArrayList<Card> getDeck(){
 		return deck;
-	}
-
-	public int getRollNumber() {
-		Random random = new Random();
-        int randomRoll = random.nextInt(6) + 1;
-        this.rollNumber = randomRoll;
-        return randomRoll;
 	}
 
 	public void setSolution(Solution solution) {

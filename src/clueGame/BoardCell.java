@@ -5,6 +5,8 @@
 package clueGame;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Point;
+import java.awt.Rectangle;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -20,7 +22,9 @@ public class BoardCell {
 	private boolean roomCenter;
 	private boolean isDoorway;
 	private boolean isRoom;
-	
+	private boolean isTarget;
+	int cellWidth;
+	int cellHeight;
 	/*
 	 * Constructor for BoardCell class 
 	 * 
@@ -50,9 +54,16 @@ public class BoardCell {
 		// find location of cell
 		int x = col * cellWidth;
 		int y = row * cellHeight;
-
+		
+		this.cellWidth = cellWidth;
+		this.cellHeight = cellHeight;
+	
 		// draw walkway
-		if (initial == 'W') {
+		if (isTarget) {
+			Color cyberPink = new Color(252, 3, 127);
+			g.setColor(cyberPink);
+			g.fillRect(x, y, cellWidth, cellHeight);
+		} else if (initial == 'W') {
 			g.setColor(Color.yellow); 
 			g.fillRect(x, y, cellWidth, cellHeight);
 			g.setColor(Color.BLACK);
@@ -72,7 +83,7 @@ public class BoardCell {
 			Color cyberBlue = new Color(0,184,255);
 			g.setColor(cyberBlue);
 			g.fillRect(x, y, cellWidth, cellHeight); 
-		}
+		} 
 	}
 	
 	/*
@@ -106,6 +117,19 @@ public class BoardCell {
 	        String name = room.getName();
 	        g.drawString(name, x, y);
 	    }
+	}
+	
+	public boolean matchLocation(int x, int y) {
+		// find location of cell
+		int xDraw = col * cellWidth;
+		int yDraw = (row * cellHeight) + cellHeight;
+		Rectangle rect = new Rectangle(xDraw, yDraw, cellWidth, cellHeight);
+		
+		// did user click the square?
+		if(rect.contains(new Point(x, y))) {
+			return true;
+		}
+		return false;
 	}
 	
 	/*
@@ -189,6 +213,22 @@ public class BoardCell {
 
 	public void setDoorway(boolean isDoorway) {
 		this.isDoorway = isDoorway;
+	}
+	
+	public void setisTarget(boolean isTarget) {
+		this.isTarget = isTarget;
+	}
+	
+	public int getRow() {
+		return this.row;
+	}
+	
+	public int getCol() {
+		return this.col;
+	}
+	
+	public boolean getisTarget() {
+		return this.isTarget;
 	}
 
 
