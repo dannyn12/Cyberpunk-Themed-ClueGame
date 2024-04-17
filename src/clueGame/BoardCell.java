@@ -88,45 +88,7 @@ public class BoardCell {
 			g.fillRect(x, y, cellWidth, cellHeight); 
 		} 
 	}
-	
-	/*
-	 * repaints room if it is a target
-	 */
-	public void reDrawRoom(Graphics g, int cellWidth, int cellHeight) {
-		int x = col * cellWidth;
-		int y = row * cellHeight;
-		
-		Color cyberPink = new Color(252, 3, 127);
-		g.setColor(cyberPink);
-		g.fillRect(x, y, cellWidth, cellHeight);
-		
-	    // draw doorway
-	    if (isDoorway) {
-	        if (doorDirection == DoorDirection.DOWN) {
-	            g.setColor(Color.BLACK);
-	            g.fillRect(x, y + cellHeight, cellWidth, 5);
-	        } else if (doorDirection == DoorDirection.LEFT) {
-	            g.setColor(Color.BLACK);
-	            g.fillRect(x - 5, y, 5, cellHeight);
-	        } else if (doorDirection == DoorDirection.RIGHT) {
-	            g.setColor(Color.BLACK);
-	            g.fillRect(x + cellWidth, y, 5, cellHeight);
-	        } else {
-	            g.setColor(Color.BLACK);
-	            g.fillRect(x, y - 5, cellWidth, 5);
-	        }
-	    }
-	    // draw room label
-	    else if (roomLabel) {
-	        Board board = Board.getInstance();
-	        Room room = board.getRoom(initial);
-	        String name = room.getName();
-	        g.drawString(name, x, y);
-	    }
-		
-		
-	}
-	
+
 	/*
 	 * Draws doors & labels of the room
 	 */

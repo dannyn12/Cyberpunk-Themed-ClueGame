@@ -40,18 +40,7 @@ public class BoardPanel extends JPanel {
                 	roomName = cell.getInitial();
                 }
             }
-        }
-        for (int row = 0; row < board.getNumRows(); row++) {
-            for (int col = 0; col < board.getNumColumns(); col++) {
-                BoardCell cell = board.getCell(row, col);
-                if (roomTarget == true && cell.getInitial() == roomName) {
-                	cell.reDrawRoom(g, cellWidth, cellHeight);
-                }
-                
-            }
-        }       
-        
-        
+        }             
         repaint();
     }
     
