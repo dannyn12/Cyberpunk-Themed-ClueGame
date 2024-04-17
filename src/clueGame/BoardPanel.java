@@ -15,8 +15,6 @@ public class BoardPanel extends JPanel {
     private Board board;
     private int cellWidth;
     private int cellHeight;
-    private boolean roomTarget = false;
-    private char roomName;
     
     public BoardPanel() {
 		board = Board.getInstance();
@@ -35,10 +33,6 @@ public class BoardPanel extends JPanel {
             for (int col = 0; col < board.getNumColumns(); col++) {
                 BoardCell cell = board.getCell(row, col);
                 cell.draw(g, cellWidth, cellHeight);
-                if (cell.getisTarget() && cell.isRoom()) {
-                	roomTarget = true;
-                	roomName = cell.getInitial();
-                }
             }
         }             
         repaint();

@@ -24,7 +24,7 @@ public class ClueGame extends JFrame implements MouseListener, ActionListener{
 	private GameControlPanel gameControl;
 	private int rollNumber;
 	private int playerNum;
-	private final int maxPlayer = 5;
+	private static final int MAX_PLAYER = 5;
 	private Player currPlayer;
 	private Random random;
 	private int firstTurn;
@@ -146,7 +146,7 @@ public class ClueGame extends JFrame implements MouseListener, ActionListener{
 	// moves to next player number
 	public void nextPlayerNum() {
 		playerNum += 1;
-		if (playerNum > maxPlayer) {
+		if (playerNum > MAX_PLAYER) {
 			playerNum = 0;
 		}
 	}
