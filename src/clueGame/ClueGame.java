@@ -100,7 +100,9 @@ public class ClueGame extends JFrame implements MouseListener, ActionListener{
 	}
 
 	
-	
+	/*
+	 * Perform task when mouse is clicked
+	 */
 	@Override 
 	public void mousePressed(MouseEvent e) {
 		// will do nothing if mouse is pressed when computers turn or player is finished with turn

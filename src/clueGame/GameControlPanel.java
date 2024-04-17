@@ -133,21 +133,13 @@ public class GameControlPanel extends JPanel{
 		// add top panel to main panel
 		mainPanel.add(subPanelTop);
 
-//		// add action listeners to the accusation button
-//		subButtonTop1.addActionListener(new ActionListener() {
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				JOptionPane.showMessageDialog(GameControlPanel.this, "Make Accusation button clicked");
-//			}
-//		});
-//
-		// add action listeners to the next button
-//		subButtonTop2.addActionListener(new ActionListener() {
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				clueGame.nextButton();
-//			}
-//		});
+		// add action listeners to the accusation button
+		subButtonTop1.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(GameControlPanel.this, "Make Accusation button clicked");
+			}
+		});
 	}
 	
 	/*
