@@ -13,7 +13,6 @@ import java.awt.event.MouseListener;
 import java.util.Random;
 import java.util.Set;
 
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -28,6 +27,25 @@ public class ClueGame extends JFrame implements MouseListener, ActionListener{
 	private Player currPlayer;
 	private Random random;
 	private int firstTurn;
+
+	public ClueGame() {
+		board = Board.getInstance();
+		boardPanel = new BoardPanel();
+		cardsPanel = new CardsPanel();
+		gameControl = new GameControlPanel();
+		this.random = new Random();
+		this.firstTurn = 0;
+		
+		gameControl.setPreferredSize(new Dimension(900, 130));
+		cardsPanel.setPreferredSize(new Dimension(243, getHeight()));
+		
+		gameControl.getSubButtonTop1().addActionListener(this);
+		gameControl.getSubButtonTop2().addActionListener(this);
+
+		add(boardPanel, BorderLayout.CENTER);
+		add(gameControl, BorderLayout.SOUTH);
+		add(cardsPanel, BorderLayout.EAST);
+	}
 	
 	
 	/*
@@ -67,7 +85,6 @@ public class ClueGame extends JFrame implements MouseListener, ActionListener{
 			firstTurn += 1;
 		}
 		
-
 		// finding current location to calc targets
 		int[] loc = currPlayer.getLocation();
 		BoardCell currCell = board.getCell(loc[0],loc[1]);
@@ -99,6 +116,35 @@ public class ClueGame extends JFrame implements MouseListener, ActionListener{
 		}
 	}
 
+	// will reset marked cells
+	public void clearTurn() {
+		Set<BoardCell> targets = board.getTargets();
+		for(BoardCell cell: targets) {
+			cell.setisTarget(false);
+		}
+	}
+	
+	// moves to next player number
+	public void nextPlayerNum() {
+		playerNum += 1;
+		if (playerNum > MAX_PLAYER) {
+			playerNum = 0;
+		}
+	}
+
+	
+	/*
+	 * Make an accusation if the player is user
+	 */
+	public void accusationButton() {
+		if (currPlayer instanceof HumanPlayer) {
+			AccusationDialog dialog = new AccusationDialog(this, board);
+	    	dialog.setVisible(true);
+		}
+		else {
+			JOptionPane.showMessageDialog(this, "It's not your turn!");
+		}
+	}
 	
 	/*
 	 * Perform task when mouse is clicked
@@ -128,58 +174,11 @@ public class ClueGame extends JFrame implements MouseListener, ActionListener{
 			currPlayer.move(selectedCell.getRow(), selectedCell.getCol());
 			this.clearTurn();
 		} else {
-			JOptionPane.showMessageDialog(null, "You can't move here!");
+			JOptionPane.showMessageDialog(this, "You can't move here!");
 		}
 	
 		repaint();
-	}
-	
-	
-	// will reset marked cells
-	public void clearTurn() {
-		Set<BoardCell> targets = board.getTargets();
-		for(BoardCell cell: targets) {
-			cell.setisTarget(false);
-		}
-	}
-	
-	// moves to next player number
-	public void nextPlayerNum() {
-		playerNum += 1;
-		if (playerNum > MAX_PLAYER) {
-			playerNum = 0;
-		}
-	}
-	
-	// dice roller
-	public int getRollNumber() {
-        int randomRoll = random.nextInt(6) + 1;
-        this.rollNumber = randomRoll;
-        return randomRoll;
-	}
-
-	public ClueGame() {
-		board = Board.getInstance();
-		boardPanel = new BoardPanel();
-		cardsPanel = new CardsPanel();
-		gameControl = new GameControlPanel();
-		this.random = new Random();
-		this.firstTurn = 0;
-		
-		gameControl.setPreferredSize(new Dimension(900, 130));
-		cardsPanel.setPreferredSize(new Dimension(243, getHeight()));
-		
-		gameControl.getSubButtonTop2().addActionListener(this);
-
-		add(boardPanel, BorderLayout.CENTER);
-		add(gameControl, BorderLayout.SOUTH);
-		add(cardsPanel, BorderLayout.EAST);
-	}
-	
-    @Override
-    public void actionPerformed(ActionEvent e) {
-    	nextButton(); 
-    }	
+	}	
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
@@ -200,6 +199,23 @@ public class ClueGame extends JFrame implements MouseListener, ActionListener{
 	public void mouseExited(MouseEvent e) {
 		// NO IMPLEMENTATION
 		
+	}
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+    	if (e.getSource() == gameControl.getSubButtonTop1()) {
+    		accusationButton();
+    	}
+    	else if (e.getSource() == gameControl.getSubButtonTop2()) {
+    		nextButton(); 
+    	}
+    }	
+
+	// dice roller
+	public int getRollNumber() {
+        int randomRoll = random.nextInt(6) + 1;
+        this.rollNumber = randomRoll;
+        return randomRoll;
 	}
 	
 	/* 

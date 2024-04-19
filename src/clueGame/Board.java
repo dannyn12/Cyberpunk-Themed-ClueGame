@@ -620,7 +620,5 @@ public class Board {
 	public void setPlayers(ArrayList<Player> players) {
 		this.players = players;
 	}
-
-	
 	
 }

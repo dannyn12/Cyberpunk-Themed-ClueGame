@@ -60,7 +60,6 @@ public class GameControlPanel extends JPanel{
 
 	}
 	
-	
 	/*
 	 * Creates to bottom half of the control panel
 	 */
@@ -133,13 +132,6 @@ public class GameControlPanel extends JPanel{
 		// add top panel to main panel
 		mainPanel.add(subPanelTop);
 
-		// add action listeners to the accusation button
-		subButtonTop1.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(GameControlPanel.this, "Make Accusation button clicked");
-			}
-		});
 	}
 	
 	/*
@@ -200,7 +192,15 @@ public class GameControlPanel extends JPanel{
 	    roll.setText(String.valueOf(rollNumber));
 	   
 	}
-	
+
+	public JButton getSubButtonTop1() {
+		return subButtonTop1;
+	}
+		
+	public JButton getSubButtonTop2() {
+		return subButtonTop2;
+	}
+
 	private void setGuess(String guess) {
 		theGuess.setText(guess);	
 	}
@@ -208,7 +208,7 @@ public class GameControlPanel extends JPanel{
 	private void setGuessResult(String result) {
 		theResult.setText(result);
 	}
-	
+		
 	/*
 	 * Main to test the panel
 	 * 
@@ -222,10 +222,5 @@ public class GameControlPanel extends JPanel{
 	        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // allow it to close
 	        frame.setVisible(true); // make it visible
 	    }
-
-
-	public JButton getSubButtonTop2() {
-		return subButtonTop2;
-	}
 
 }
