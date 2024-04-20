@@ -138,8 +138,31 @@ public class ClueGame extends JFrame implements MouseListener, ActionListener{
 	 */
 	public void accusationButton() {
 		if (currPlayer instanceof HumanPlayer) {
+			
+			// FOR TESTING
+//	    	Solution answer = board.getSolution();
+//            String roomAnswer = answer.getRoom().getCardName();
+//            String personAnswer = answer.getPerson().getCardName();
+//            String weaponAnswer = answer.getWeapon().getCardName();
+//	    	System.out.println(roomAnswer);
+//	        System.out.println(personAnswer);
+//	        System.out.println(weaponAnswer);
+	        
+	        // open a dialog
 			AccusationDialog dialog = new AccusationDialog(this, board);
 	    	dialog.setVisible(true);
+	    	
+	    	// check if player wins or loses
+	    	boolean playerAnswer = dialog.isWinOrLose();
+	    	boolean submitted = dialog.isSubmittedAnswer();
+	    	if (playerAnswer == true && submitted == true) {
+	    		JOptionPane.showMessageDialog(this, "You have Won!");
+	    		dispose();
+	    	}
+	    	else if (playerAnswer == false && submitted == true){
+	    		JOptionPane.showMessageDialog(this, "You have Lost!");
+	    		dispose();
+	    	} 	
 		}
 		else {
 			JOptionPane.showMessageDialog(this, "It's not your turn!");

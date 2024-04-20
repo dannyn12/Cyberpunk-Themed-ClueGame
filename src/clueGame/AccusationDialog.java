@@ -3,24 +3,22 @@
  */
 package clueGame;
 
-import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.util.ArrayList;
-import java.util.List;
 
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 public class AccusationDialog extends JDialog {
     private JComboBox<String> roomComboBox, personComboBox, weaponComboBox;
     private JButton submitButton, cancelButton;
     private Board board;
+    private boolean winOrLose;
+    private boolean submittedAnswer = false;
     
 
     public AccusationDialog(JFrame parent, Board board) {
@@ -58,6 +56,38 @@ public class AccusationDialog extends JDialog {
         pack();
         setLocationRelativeTo(parent);
         setResizable(false);
+        
+        // Get the players selected answer and see if its correct or wrong
+        submitButton.addActionListener(e -> {
+        	// get player selected answer
+            String selectedRoom = (String) roomComboBox.getSelectedItem();
+            String selectedPerson = (String) personComboBox.getSelectedItem();
+            String selectedWeapon = (String) weaponComboBox.getSelectedItem();
+
+            // get the solution answer
+            Solution answer = board.getSolution();
+            String roomAnswer = answer.getRoom().getCardName();
+            String personAnswer = answer.getPerson().getCardName();
+            String weaponAnswer = answer.getWeapon().getCardName();
+            
+            // Check if answer by player is correct
+            if (selectedRoom == roomAnswer && selectedPerson == personAnswer && selectedWeapon == weaponAnswer) {
+            	winOrLose = true;
+            	submittedAnswer = true;
+            }
+            else {
+            	winOrLose = false;
+            	submittedAnswer = true;
+            }
+            
+            // Close the dialog if needed
+            dispose();
+        });
+        
+        // Cancel an accusation
+        cancelButton.addActionListener(e -> {
+            dispose();
+        });
     }
     
     /*
@@ -72,5 +102,13 @@ public class AccusationDialog extends JDialog {
         }
         return new JComboBox<>(options.toArray(new String[0]));
     }
+
+	public boolean isWinOrLose() {
+		return winOrLose;
+	}
+
+	public boolean isSubmittedAnswer() {
+		return submittedAnswer;
+	}
 
 }
