@@ -72,18 +72,37 @@ public class ClueGame extends JFrame implements MouseListener, ActionListener{
 	 * Show player hand
 	 */
 	public void showPlayerHand(Player player) {
+		int numRoom = 0;
+		int numPeople = 0;
+		int numWeapon = 0;
+		
 		// get player hand
 		ArrayList<Card> hand = player.getHand();
 		for (Card card: hand) {
 			if (card.getType() == CardType.ROOM) {
 				cardsPanel.update(CardsPanel.getInHandRoom(), card, player.getColor());
+				numRoom += 1;
+				
 			}
 			else if (card.getType() == CardType.PERSON) {
 				cardsPanel.update(CardsPanel.getInHandPeople(), card, player.getColor());
+				numPeople += 1;
 			}		
 			else if (card.getType() == CardType.WEAPON) {
 				cardsPanel.update(CardsPanel.getInHandWeapon(), card, player.getColor());
+				numWeapon += 1;
 			}	
+		}
+		
+		// show if player has no room, people, or weapon card 
+		if (numRoom == 0) {
+			cardsPanel.update(CardsPanel.getInHandRoom(), new Card("None", CardType.ROOM), "White");
+		}
+		if (numPeople == 0) {
+			cardsPanel.update(CardsPanel.getInHandPeople(), new Card("None", CardType.PERSON), "White");
+		}
+		if (numWeapon == 0) {
+			cardsPanel.update(CardsPanel.getInHandWeapon(), new Card("None", CardType.WEAPON), "White");
 		}
 	}
 	
@@ -124,8 +143,8 @@ public class ClueGame extends JFrame implements MouseListener, ActionListener{
 				cell.setisTarget(true);
 			}
 			currPlayer.isPlayerFinished(false);
-			
 			repaint();
+			
 		} else {
 			//type cast so can use computer player functions
 			ComputerPlayer player = (ComputerPlayer)currPlayer;
@@ -157,17 +176,7 @@ public class ClueGame extends JFrame implements MouseListener, ActionListener{
 	 * Make an accusation if the player is user
 	 */
 	public void accusationButton() {
-		if (currPlayer instanceof HumanPlayer) {
-			
-			// FOR TESTING
-//	    	Solution answer = board.getSolution();
-//            String roomAnswer = answer.getRoom().getCardName();
-//            String personAnswer = answer.getPerson().getCardName();
-//            String weaponAnswer = answer.getWeapon().getCardName();
-//	    	System.out.println(roomAnswer);
-//	        System.out.println(personAnswer);
-//	        System.out.println(weaponAnswer);
-	        
+		if (currPlayer instanceof HumanPlayer) {  
 	        // open a dialog
 			AccusationDialog dialog = new AccusationDialog(this, board);
 	    	dialog.setVisible(true);
@@ -215,7 +224,13 @@ public class ClueGame extends JFrame implements MouseListener, ActionListener{
 			// player moves
 			currPlayer.isPlayerFinished(true);
 			currPlayer.move(selectedCell.getRow(), selectedCell.getCol());
+			// clear turn
 			this.clearTurn();
+			// if target selected is a room suggestion dialog shows up
+			if (selectedCell.isRoom()) {
+				SuggestionDialog suggestDialog = new SuggestionDialog(this, board, selectedCell);
+				suggestDialog.setVisible(true);
+			}
 		} else {
 			JOptionPane.showMessageDialog(this, "You can't move here!");
 		}

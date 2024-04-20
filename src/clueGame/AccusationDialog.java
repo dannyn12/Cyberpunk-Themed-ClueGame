@@ -16,15 +16,12 @@ import javax.swing.JPanel;
 public class AccusationDialog extends JDialog {
     private JComboBox<String> roomComboBox, personComboBox, weaponComboBox;
     private JButton submitButton, cancelButton;
-    private Board board;
     private boolean winOrLose;
     private boolean submittedAnswer = false;
     
 
     public AccusationDialog(JFrame parent, Board board) {
         super(parent, "Make an Accusation", true);
-        this.board = board;
-      
         // Initialize JComboBox for room selection
 		roomComboBox = createComboBox(board.getRoomCards());
 		personComboBox = createComboBox(board.getPeopleCards());
@@ -59,12 +56,12 @@ public class AccusationDialog extends JDialog {
         
         // Get the players selected answer and see if its correct or wrong
         submitButton.addActionListener(e -> {
-        	// get player selected answer
+        	// Get player selected answer
             String selectedRoom = (String) roomComboBox.getSelectedItem();
             String selectedPerson = (String) personComboBox.getSelectedItem();
             String selectedWeapon = (String) weaponComboBox.getSelectedItem();
 
-            // get the solution answer
+            // Get the solution answer
             Solution answer = board.getSolution();
             String roomAnswer = answer.getRoom().getCardName();
             String personAnswer = answer.getPerson().getCardName();
@@ -80,7 +77,7 @@ public class AccusationDialog extends JDialog {
             	submittedAnswer = true;
             }
             
-            // Close the dialog if needed
+            // Close the dialog 
             dispose();
         });
         
