@@ -61,7 +61,8 @@ public class ClueGame extends JFrame implements MouseListener, ActionListener{
 				this.currPlayer = player;
 				this.showPlayerHand(player);
 				break;
-			} else {
+			} 
+			else {
 				playerNum += 1;
 			}
 		}
@@ -82,7 +83,6 @@ public class ClueGame extends JFrame implements MouseListener, ActionListener{
 			if (card.getType() == CardType.ROOM) {
 				cardsPanel.update(CardsPanel.getInHandRoom(), card, player.getColor());
 				numRoom += 1;
-				
 			}
 			else if (card.getType() == CardType.PERSON) {
 				cardsPanel.update(CardsPanel.getInHandPeople(), card, player.getColor());
@@ -120,7 +120,8 @@ public class ClueGame extends JFrame implements MouseListener, ActionListener{
 			this.clearTurn();
 			this.nextPlayerNum();
 			currPlayer = board.getPlayers().get(playerNum);
-		} else {
+		} 
+		else {
 			firstTurn += 1;
 		}
 		
@@ -145,7 +146,8 @@ public class ClueGame extends JFrame implements MouseListener, ActionListener{
 			currPlayer.isPlayerFinished(false);
 			repaint();
 			
-		} else {
+		} 
+		else {
 			//type cast so can use computer player functions
 			ComputerPlayer player = (ComputerPlayer)currPlayer;
 			BoardCell selectedCell = player.selectTarget(targets);
@@ -177,21 +179,21 @@ public class ClueGame extends JFrame implements MouseListener, ActionListener{
 	 */
 	public void accusationButton() {
 		if (currPlayer instanceof HumanPlayer) {  
-	        // open a dialog
+			// open a dialog
 			AccusationDialog dialog = new AccusationDialog(this, board);
-	    	dialog.setVisible(true);
-	    	
-	    	// check if player wins or loses
-	    	boolean playerAnswer = dialog.isWinOrLose();
-	    	boolean submitted = dialog.isSubmittedAnswer();
-	    	if (playerAnswer == true && submitted == true) {
-	    		JOptionPane.showMessageDialog(this, "You have Won!");
-	    		dispose();
-	    	}
-	    	else if (playerAnswer == false && submitted == true){
-	    		JOptionPane.showMessageDialog(this, "You have Lost!");
-	    		dispose();
-	    	} 	
+			dialog.setVisible(true);
+
+			// check if player wins or loses
+			boolean playerAnswer = dialog.isWinOrLose();
+			boolean submitted = dialog.isSubmittedAnswer();
+			if (playerAnswer == true && submitted == true) {
+				JOptionPane.showMessageDialog(this, "You have Won!");
+				dispose();
+			}
+			else if (playerAnswer == false && submitted == true){
+				JOptionPane.showMessageDialog(this, "You have Lost!");
+				dispose();
+			} 	
 		}
 		else {
 			JOptionPane.showMessageDialog(this, "It's not your turn!");
@@ -206,7 +208,8 @@ public class ClueGame extends JFrame implements MouseListener, ActionListener{
 		// will do nothing if mouse is pressed when computers turn or player is finished with turn
 		if(currPlayer instanceof ComputerPlayer) {
 			return;
-		} else if (currPlayer.getPlayerFinished()){
+		} 
+		else if (currPlayer.getPlayerFinished()){
 			return;
 		}
 		
@@ -231,10 +234,10 @@ public class ClueGame extends JFrame implements MouseListener, ActionListener{
 				SuggestionDialog suggestDialog = new SuggestionDialog(this, board, selectedCell);
 				suggestDialog.setVisible(true);
 			}
-		} else {
+		} 
+		else {
 			JOptionPane.showMessageDialog(this, "You can't move here!");
 		}
-	
 		repaint();
 	}	
 	
