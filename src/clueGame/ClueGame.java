@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Set;
 
@@ -45,8 +46,7 @@ public class ClueGame extends JFrame implements MouseListener, ActionListener{
 		add(boardPanel, BorderLayout.CENTER);
 		add(gameControl, BorderLayout.SOUTH);
 		add(cardsPanel, BorderLayout.EAST);
-	}
-	
+	}	
 	
 	/*
 	 * this function will begin the game
@@ -59,12 +59,32 @@ public class ClueGame extends JFrame implements MouseListener, ActionListener{
 		for(Player player: board.getPlayers()) {
 			if(player instanceof HumanPlayer) {
 				this.currPlayer = player;
+				this.showPlayerHand(player);
 				break;
 			} else {
 				playerNum += 1;
 			}
 		}
 		this.nextButton();
+	}
+	
+	/*
+	 * Show player hand
+	 */
+	public void showPlayerHand(Player player) {
+		// get player hand
+		ArrayList<Card> hand = player.getHand();
+		for (Card card: hand) {
+			if (card.getType() == CardType.ROOM) {
+				cardsPanel.update(CardsPanel.getInHandRoom(), card, player.getColor());
+			}
+			else if (card.getType() == CardType.PERSON) {
+				cardsPanel.update(CardsPanel.getInHandPeople(), card, player.getColor());
+			}		
+			else if (card.getType() == CardType.WEAPON) {
+				cardsPanel.update(CardsPanel.getInHandWeapon(), card, player.getColor());
+			}	
+		}
 	}
 	
 	/*

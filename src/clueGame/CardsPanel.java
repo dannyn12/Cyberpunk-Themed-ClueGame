@@ -130,14 +130,8 @@ public class CardsPanel extends JPanel {
 	    cardTextField.setEditable(false);
 	    cardTextField.setText(name);
 	    cardPanel.add(cardTextField);
+	    changeColor(cardTextField, color);
 	    
-	    // If card is in hand it has no color
-	    if (panel == inhandPeople || panel == inhandRoom || panel == inhandWeapon) {
-	    	changeColor(cardTextField, "None");
-	    }
-	    else {
-	    	changeColor(cardTextField, color);
-	    }
 	    // Add the card panel to panel
 	    panel.add(cardPanel);
 	    panel.revalidate();
