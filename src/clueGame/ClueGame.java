@@ -152,10 +152,13 @@ public class ClueGame extends JFrame implements MouseListener, ActionListener{
 			ComputerPlayer player = (ComputerPlayer)currPlayer;
 			BoardCell selectedCell = player.selectTarget(targets);
 			
+			// set original location as not occupied
 			BoardCell cell = board.getCell(player.getRow(), player.getCol());
 			cell.setOccupied(false);
 			
 			player.move(selectedCell.getRow(), selectedCell.getCol());	
+			
+			// set new location after move to occupied
 			selectedCell.setOccupied(true);
 			
 			currPlayer.isPlayerFinished(true);
@@ -227,10 +230,13 @@ public class ClueGame extends JFrame implements MouseListener, ActionListener{
 				// player moves
 				currPlayer.isPlayerFinished(true);
 				
+				// set original location as not occupied
 				BoardCell cell = board.getCell(currPlayer.getRow(), currPlayer.getCol());
 				cell.setOccupied(false);
 				
 				currPlayer.move(selectedCell.getRow(), selectedCell.getCol());
+				
+				// set new location after move to occupied
 				selectedCell.setOccupied(true);
 				
 				// clear turn
