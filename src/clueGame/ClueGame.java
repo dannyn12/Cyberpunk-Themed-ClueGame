@@ -152,7 +152,11 @@ public class ClueGame extends JFrame implements MouseListener, ActionListener{
 			ComputerPlayer player = (ComputerPlayer)currPlayer;
 			BoardCell selectedCell = player.selectTarget(targets);
 			
+			BoardCell cell = board.getCell(player.getRow(), player.getCol());
+			cell.setOccupied(false);
+			
 			player.move(selectedCell.getRow(), selectedCell.getCol());	
+			selectedCell.setOccupied(true);
 			
 			currPlayer.isPlayerFinished(true);
 			repaint();
@@ -222,47 +226,55 @@ public class ClueGame extends JFrame implements MouseListener, ActionListener{
 			if (selectedCell != null && selectedCell.getisTarget()) {
 				// player moves
 				currPlayer.isPlayerFinished(true);
-				currPlayer.move(selectedCell.getRow(), selectedCell.getCol());			
+				
+				BoardCell cell = board.getCell(currPlayer.getRow(), currPlayer.getCol());
+				cell.setOccupied(false);
+				
+				currPlayer.move(selectedCell.getRow(), selectedCell.getCol());
+				selectedCell.setOccupied(true);
+				
 				// clear turn
 				this.clearTurn();
 				// if target selected is a room suggestion dialog shows up
 				if (selectedCell.isRoom()) {
 					SuggestionDialog suggestDialog = new SuggestionDialog(this, board, selectedCell, currPlayer);
 					suggestDialog.setVisible(true);
+					
+					if (suggestDialog.isSubmitted()) {
+						// show guess on control panel
+						String room = suggestDialog.getRoomSuggestion().getCardName();
+						String person = suggestDialog.getPersonSuggestion().getCardName();
+						String weapon = suggestDialog.getWeaponSuggestion().getCardName();
+						gameControl.setGuess(room + ", " + person + ", " + weapon);
 
-					// show guess on control panel
-					String room = suggestDialog.getRoomSuggestion().getCardName();
-					String person = suggestDialog.getPersonSuggestion().getCardName();
-					String weapon = suggestDialog.getWeaponSuggestion().getCardName();
-					gameControl.setGuess(room + ", " + person + ", " + weapon);
-
-					// get guess result
-					Card guessResult = suggestDialog.getGuessResult();
-					// if there is a guess show result and color of player with card
-					if (guessResult != null) {
-						gameControl.setGuessResult(guessResult.getCardName());
-						// get player with card to get color
-						ArrayList<Player> players = board.getPlayers();
-						Player playerWithCard = null;
-						for (Player player: players) {
-							if (player.getHand().contains(guessResult)) {
-								playerWithCard = player;
+						// get guess result
+						Card guessResult = suggestDialog.getGuessResult();
+						// if there is a guess show result and color of player with card
+						if (guessResult != null) {
+							gameControl.setGuessResult(guessResult.getCardName());
+							// get player with card to get color
+							ArrayList<Player> players = board.getPlayers();
+							Player playerWithCard = null;
+							for (Player player: players) {
+								if (player.getHand().contains(guessResult)) {
+									playerWithCard = player;
+								}
+							}	
+							// show guess result in card panel
+							if (guessResult.getType() == CardType.ROOM) {
+								cardsPanel.update(CardsPanel.getSeenRoom(), guessResult, playerWithCard.getColor());
 							}
-						}	
-						// show guess result in card panel
-						if (guessResult.getType() == CardType.ROOM) {
-							cardsPanel.update(CardsPanel.getSeenRoom(), guessResult, playerWithCard.getColor());
+							else if (guessResult.getType() == CardType.PERSON) {
+								cardsPanel.update(CardsPanel.getSeenPeople(), guessResult, playerWithCard.getColor());
+							}		
+							else if (guessResult.getType() == CardType.WEAPON) {
+								cardsPanel.update(CardsPanel.getSeenWeapon(), guessResult, playerWithCard.getColor());
+							}
 						}
-						else if (guessResult.getType() == CardType.PERSON) {
-							cardsPanel.update(CardsPanel.getSeenPeople(), guessResult, playerWithCard.getColor());
-						}		
-						else if (guessResult.getType() == CardType.WEAPON) {
-							cardsPanel.update(CardsPanel.getSeenWeapon(), guessResult, playerWithCard.getColor());
+						// else no one has card
+						else {
+							gameControl.setGuessResult("None");
 						}
-					}
-					// else no one has card
-					else {
-						gameControl.setGuessResult("None");
 					}
 				}
 			} 

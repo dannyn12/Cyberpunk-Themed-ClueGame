@@ -20,6 +20,7 @@ public class SuggestionDialog extends JDialog{
 	private Card weaponSuggestion;
 	private Card roomSuggestion;
 	private Card guessResult;
+	private boolean submitted = false;
 
 	public SuggestionDialog(JFrame parent, Board board, BoardCell selectedCell, Player player) {
 		super(parent, "Make a Suggestion", true);
@@ -77,6 +78,7 @@ public class SuggestionDialog extends JDialog{
 			guessResult = board.handleSuggestion(roomSuggestion, personSuggestion, weaponSuggestion, player);
 		
 			// Close the dialog 
+			submitted = true;
 			dispose();
 		});
 
@@ -113,5 +115,9 @@ public class SuggestionDialog extends JDialog{
 
 	public Card getGuessResult() {
 		return guessResult;
+	}
+
+	public boolean isSubmitted() {
+		return submitted;
 	}
 }
