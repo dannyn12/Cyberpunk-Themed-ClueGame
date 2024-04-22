@@ -151,7 +151,9 @@ public class ClueGame extends JFrame implements MouseListener, ActionListener{
 			//type cast so can use computer player functions
 			ComputerPlayer player = (ComputerPlayer)currPlayer;
 			BoardCell selectedCell = player.selectTarget(targets);
-			player.move(selectedCell.getRow(), selectedCell.getCol());
+			
+			player.move(selectedCell.getRow(), selectedCell.getCol());	
+			
 			currPlayer.isPlayerFinished(true);
 			repaint();
 		}
@@ -159,7 +161,7 @@ public class ClueGame extends JFrame implements MouseListener, ActionListener{
 
 	// will reset marked cells
 	public void clearTurn() {
-		Set<BoardCell> targets = board.getTargets();
+		Set<BoardCell > targets = board.getTargets();
 		for(BoardCell cell: targets) {
 			cell.setisTarget(false);
 		}
@@ -206,39 +208,69 @@ public class ClueGame extends JFrame implements MouseListener, ActionListener{
 	@Override 
 	public void mousePressed(MouseEvent e) {
 		// will do nothing if mouse is pressed when computers turn or player is finished with turn
-		if(currPlayer instanceof ComputerPlayer) {
-			return;
-		} 
-		else if (currPlayer.getPlayerFinished()){
-			return;
-		}
-		
-		BoardCell selectedCell = null;
-		for(int i = 0; i < board.getNumRows(); i++) {
-			for(int j = 0; j < board.getNumColumns(); j++) {
-				if(board.getCell(i, j).matchLocation(e.getX(), e.getY())) {
-					selectedCell = board.getCell(i, j);
-					break;
+		if (!(currPlayer instanceof ComputerPlayer) && !currPlayer.getPlayerFinished()) {
+			BoardCell selectedCell = null;
+			for(int i = 0; i < board.getNumRows(); i++) {
+				for(int j = 0; j < board.getNumColumns(); j++) {
+					if(board.getCell(i, j).matchLocation(e.getX(), e.getY())) {
+						selectedCell = board.getCell(i, j);
+						break;
+					}
 				}
 			}
-		}
-		
-		if(selectedCell.getisTarget()) {
-			// player moves
-			currPlayer.isPlayerFinished(true);
-			currPlayer.move(selectedCell.getRow(), selectedCell.getCol());
-			// clear turn
-			this.clearTurn();
-			// if target selected is a room suggestion dialog shows up
-			if (selectedCell.isRoom()) {
-				SuggestionDialog suggestDialog = new SuggestionDialog(this, board, selectedCell);
-				suggestDialog.setVisible(true);
+
+			if (selectedCell != null && selectedCell.getisTarget()) {
+				// player moves
+				currPlayer.isPlayerFinished(true);
+				currPlayer.move(selectedCell.getRow(), selectedCell.getCol());			
+				// clear turn
+				this.clearTurn();
+				// if target selected is a room suggestion dialog shows up
+				if (selectedCell.isRoom()) {
+					SuggestionDialog suggestDialog = new SuggestionDialog(this, board, selectedCell, currPlayer);
+					suggestDialog.setVisible(true);
+
+					// show guess on control panel
+					String room = suggestDialog.getRoomSuggestion().getCardName();
+					String person = suggestDialog.getPersonSuggestion().getCardName();
+					String weapon = suggestDialog.getWeaponSuggestion().getCardName();
+					gameControl.setGuess(room + ", " + person + ", " + weapon);
+
+					// get guess result
+					Card guessResult = suggestDialog.getGuessResult();
+					// if there is a guess show result and color of player with card
+					if (guessResult != null) {
+						gameControl.setGuessResult(guessResult.getCardName());
+						// get player with card to get color
+						ArrayList<Player> players = board.getPlayers();
+						Player playerWithCard = null;
+						for (Player player: players) {
+							if (player.getHand().contains(guessResult)) {
+								playerWithCard = player;
+							}
+						}	
+						// show guess result in card panel
+						if (guessResult.getType() == CardType.ROOM) {
+							cardsPanel.update(CardsPanel.getSeenRoom(), guessResult, playerWithCard.getColor());
+						}
+						else if (guessResult.getType() == CardType.PERSON) {
+							cardsPanel.update(CardsPanel.getSeenPeople(), guessResult, playerWithCard.getColor());
+						}		
+						else if (guessResult.getType() == CardType.WEAPON) {
+							cardsPanel.update(CardsPanel.getSeenWeapon(), guessResult, playerWithCard.getColor());
+						}
+					}
+					// else no one has card
+					else {
+						gameControl.setGuessResult("None");
+					}
+				}
+			} 
+			else {
+				JOptionPane.showMessageDialog(this, "You can't move here!");
 			}
-		} 
-		else {
-			JOptionPane.showMessageDialog(this, "You can't move here!");
+			repaint();
 		}
-		repaint();
 	}	
 	
 	@Override

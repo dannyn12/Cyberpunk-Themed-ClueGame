@@ -78,13 +78,13 @@ class GameSolutionTest {
 		Solution solution = new Solution(neonAllyCard, cipherCard, disrupterCard);
 		board.setSolution(solution);
 		// test solution is correct
-		assertTrue(board.checkAccusation(neonAllyCard, cipherCard, disrupterCard));
+		assertTrue(board.checkAccusation(neonAllyCard.getCardName(), cipherCard.getCardName(), disrupterCard.getCardName()));
 		//test solution with wrong person
-		assertFalse(board.checkAccusation(neonAllyCard, novaCard, disrupterCard));
+		assertFalse(board.checkAccusation(neonAllyCard.getCardName(), novaCard.getCardName(), disrupterCard.getCardName()));
 		// test solution with wrong weapon
-		assertFalse(board.checkAccusation(neonAllyCard, cipherCard, virusCard));
+		assertFalse(board.checkAccusation(neonAllyCard.getCardName(), cipherCard.getCardName(), virusCard.getCardName()));
 		// test solution with wrong room
-		assertFalse(board.checkAccusation(coreCard, cipherCard, disrupterCard));
+		assertFalse(board.checkAccusation(coreCard.getCardName(), cipherCard.getCardName(), disrupterCard.getCardName()));
 		
 	}
 	
@@ -155,8 +155,7 @@ class GameSolutionTest {
 		// test suggestion only human can disprove returns answer (i.e., card that disproves suggestion)
 		assertEquals(board.handleSuggestion(neonAllyCard, vortexCard, injectorCard, player), neonAllyCard);
 		// test suggestion that two players can disprove, correct player (based on starting with next player in list) returns answer
-		assertEquals(board.handleSuggestion(neonAllyCard, novaCard, injectorCard, player), neonAllyCard);
-		
+		assertEquals(board.handleSuggestion(neonAllyCard, novaCard, injectorCard, player), novaCard);	
 	
 	}
 }

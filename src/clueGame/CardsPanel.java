@@ -147,7 +147,7 @@ public class CardsPanel extends JPanel {
 	            panel.setBackground(Color.red);
 	            break;
 	        case "orange":
-	            panel.setBackground(Color.orange);
+	            panel.setBackground(new Color(255, 165, 0));
 	            break;
 	        case "yellow":
 	            panel.setBackground(Color.yellow);
@@ -156,8 +156,7 @@ public class CardsPanel extends JPanel {
 	            panel.setBackground(Color.pink);
 	            break;
 	        case "purple":
-	            Color purple = new Color(148, 150, 211);
-	            panel.setBackground(purple);
+	            panel.setBackground(new Color(148, 150, 211));
 	            break;
 	        case "white":
 	            panel.setBackground(Color.white);

@@ -166,7 +166,7 @@ public class GameControlPanel extends JPanel{
 	            bgColor = Color.RED;
 	            break;
 	        case "Orange":
-	            bgColor = new Color(255, 95, 31);
+	            bgColor = new Color(255, 165, 0);
 	            break;
 	        case "Yellow":
 	            bgColor = Color.YELLOW;
@@ -201,11 +201,11 @@ public class GameControlPanel extends JPanel{
 		return subButtonTop2;
 	}
 
-	private void setGuess(String guess) {
+	public void setGuess(String guess) {
 		theGuess.setText(guess);	
 	}
 	
-	private void setGuessResult(String result) {
+	public void setGuessResult(String result) {
 		theResult.setText(result);
 	}
 		

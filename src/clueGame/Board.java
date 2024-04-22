@@ -204,12 +204,12 @@ public class Board {
 	/*
 	 * Functions checks accusation made by player
 	 */
-	public boolean checkAccusation(Card room, Card person, Card weapon) {
+	public boolean checkAccusation(String room, String person, String weapon) {
 		String roomSolution = solution.getRoom().getCardName();
 		String personSolution = solution.getPerson().getCardName();
 		String weaponSolution = solution.getWeapon().getCardName();
 		
-		if (room.getCardName() == roomSolution && person.getCardName() == personSolution && weapon.getCardName() == weaponSolution) {
+		if (room == roomSolution && person == personSolution && weapon == weaponSolution) {
 			return true;
 		} 
 		else {
@@ -221,28 +221,24 @@ public class Board {
 	 * Function checks the user suggestion and returns if they have seen another players card.
 	 */
 	public Card handleSuggestion(Card room, Card person, Card weapon, Player suggestingPlayer) {
-		Card card = null;
-		for (Player player: players) {
-			if ( !player.equals(suggestingPlayer) && (player.getHand().contains(room) || player.getHand().contains(person) || player.getHand().contains(weapon))) {
-				card = player.disproveSuggestion(room, person, weapon);
-				break;
-			} 
-		}
-		
-		if (card == null) {
-			return null;
-		} 
-		else {
-			for(Player player: players) {
-				if(player.equals(suggestingPlayer)){
-					player.updateSeen(card);
-					return card;
-				}
-			}
-		}
-		return card;
+	    Card card = null;
+
+	    for (Player player : players) {
+	        if (!player.equals(suggestingPlayer) && (player.getHand().contains(room) || player.getHand().contains(person) || player.getHand().contains(weapon))) {
+	            Card disproveCard = player.disproveSuggestion(room, person, weapon);
+	            if (disproveCard != null && !suggestingPlayer.getSeenCards().contains(disproveCard)) {
+	                // Found a card to disprove that suggesting player hasn't seen
+	                suggestingPlayer.updateSeen(disproveCard);
+	                return disproveCard;
+	            } 
+	            else if (disproveCard != null && suggestingPlayer.getSeenCards().contains(disproveCard)) {
+	            	continue;
+	            }
+	        }
+	    }
+	    return card;
 	}
-	
+
 	 
 	/*
 	 * Recursive helper function to calcTargets that find the targets

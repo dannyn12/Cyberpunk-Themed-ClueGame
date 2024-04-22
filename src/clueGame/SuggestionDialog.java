@@ -16,13 +16,16 @@ import javax.swing.JPanel;
 public class SuggestionDialog extends JDialog{
 	private JComboBox<String> personComboBox, weaponComboBox;
 	private JButton submitButton, cancelButton;
+	private Card personSuggestion;
+	private Card weaponSuggestion;
+	private Card roomSuggestion;
+	private Card guessResult;
 
-
-	public SuggestionDialog(JFrame parent, Board board, BoardCell selectedCell) {
+	public SuggestionDialog(JFrame parent, Board board, BoardCell selectedCell, Player player) {
 		super(parent, "Make a Suggestion", true);
-		// get room label
+		// get room player is currently in
 		char roomInitial = selectedCell.getInitial();
-		Room room = board.getRoom(roomInitial);
+		Room roomIn = board.getRoom(roomInitial);
 		// Initialize JComboBox for room selection
 		personComboBox = createComboBox(board.getPeopleCards());
 		weaponComboBox = createComboBox(board.getWeaponCards());
@@ -37,7 +40,7 @@ public class SuggestionDialog extends JDialog{
 
 		// Add components to the panel
 		panel.add(new JLabel("Room:"));
-		panel.add(new JLabel(room.getName()));
+		panel.add(new JLabel(roomIn.getName()));
 		panel.add(new JLabel("Person:"));
 		panel.add(personComboBox);
 		panel.add(new JLabel("Weapon:"));
@@ -54,14 +57,25 @@ public class SuggestionDialog extends JDialog{
 		setLocationRelativeTo(parent);
 		setResizable(false);
 
-		// Get the players selected answer and see if its correct or wrong
+		// Get the players selected suggestion and see if its correct or wrong
 		submitButton.addActionListener(e -> {
-			// get player selected answer
-			String selectedPerson = (String) personComboBox.getSelectedItem();
-			String selectedWeapon = (String) weaponComboBox.getSelectedItem();
-
+			// get player selected suggestion
+			ArrayList<Card> roomCards = board.getRoomCards();
+			ArrayList<Card> personCards = board.getPeopleCards();
+			ArrayList<Card> weaponCards = board.getWeaponCards();
+			
+			// get suggested card 
+			for (Card card: roomCards) {
+				if (card.getCardName() == roomIn.getName()) {
+					roomSuggestion = card;
+				}
+			}
+			personSuggestion = personCards.get(personComboBox.getSelectedIndex());
+			weaponSuggestion = weaponCards.get(weaponComboBox.getSelectedIndex());
+			
 			// add suggestion logic
-
+			guessResult = board.handleSuggestion(roomSuggestion, personSuggestion, weaponSuggestion, player);
+		
 			// Close the dialog 
 			dispose();
 		});
@@ -84,4 +98,20 @@ public class SuggestionDialog extends JDialog{
         }
         return new JComboBox<>(options.toArray(new String[0]));
     }
+
+	public Card getPersonSuggestion() {
+		return personSuggestion;
+	}
+
+	public Card getWeaponSuggestion() {
+		return weaponSuggestion;
+	}
+
+	public Card getRoomSuggestion() {
+		return roomSuggestion;
+	}
+
+	public Card getGuessResult() {
+		return guessResult;
+	}
 }

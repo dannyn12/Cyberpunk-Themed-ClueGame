@@ -55,20 +55,15 @@ public class AccusationDialog extends JDialog {
         setResizable(false);
         
         // Get the players selected answer and see if its correct or wrong
-        submitButton.addActionListener(e -> {
+        submitButton.addActionListener(e -> {  	
         	// Get player selected answer
             String selectedRoom = (String) roomComboBox.getSelectedItem();
             String selectedPerson = (String) personComboBox.getSelectedItem();
             String selectedWeapon = (String) weaponComboBox.getSelectedItem();
 
-            // Get the solution answer
-            Solution answer = board.getSolution();
-            String roomAnswer = answer.getRoom().getCardName();
-            String personAnswer = answer.getPerson().getCardName();
-            String weaponAnswer = answer.getWeapon().getCardName();
-            
+         
             // Check if answer by player is correct
-            if (selectedRoom == roomAnswer && selectedPerson == personAnswer && selectedWeapon == weaponAnswer) {
+            if (board.checkAccusation(selectedRoom, selectedPerson, selectedWeapon)) {
             	winOrLose = true;
             	submittedAnswer = true;
             }
