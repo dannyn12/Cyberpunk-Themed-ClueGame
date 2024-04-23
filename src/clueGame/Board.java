@@ -53,7 +53,7 @@ public class Board {
 						}
 					}
 					if ((row + 1) < rows) { // below neighbor
-						if(grid[row+1][col].getInitial() == 'W' || grid[row-1][col].isDoorway()) { 
+						if(grid[row+1][col].getInitial() == 'W' || grid[row+1][col].isDoorway()) { 
 							cell.addAdj(grid[row+1][col]);
 						}
 					}

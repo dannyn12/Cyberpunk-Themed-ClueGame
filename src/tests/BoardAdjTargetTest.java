@@ -58,6 +58,9 @@ class BoardAdjTargetTest {
 		assertTrue(testList.contains(board.getCell(20, 14))); // door
 		assertTrue(testList.contains(board.getCell(23, 18))); // door
 		assertTrue(testList.contains(board.getCell(24, 18))); // door
+		
+		testList = board.getAdjList(7, 24);
+		assertEquals(3, testList.size());
 	}
 
 	

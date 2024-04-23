@@ -13,6 +13,7 @@ public abstract class Player {
 	private String name;
 	private String color;
 	private int row, col;
+	private boolean out;
 	private ArrayList<Card> hand = new ArrayList<>();
 	private Set<Card> seenCards = new HashSet<>();
 	private boolean playerFinished;
@@ -23,12 +24,22 @@ public abstract class Player {
 		this.row = row;
 		this.col = col;
 		this.playerFinished = false;
+		this.out = false;
 	}
 	
 	public void move(int row, int col) {
 		this.row = row;
 		this.col = col;
 	}
+	
+	public boolean getOut() {
+		return out;
+	}
+	
+	public void setOut(boolean out) {
+		this.out = out;
+	}
+	
 	
 	/*
 	 * 	Updates location of player

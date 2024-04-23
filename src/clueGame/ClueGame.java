@@ -120,6 +120,15 @@ public class ClueGame extends JFrame implements MouseListener, ActionListener{
 			this.clearTurn();
 			this.nextPlayerNum();
 			currPlayer = board.getPlayers().get(playerNum);
+			if(currPlayer.getOut()) {
+				while(currPlayer.getOut()) { // i hate while loops
+					this.nextPlayerNum();
+					currPlayer = board.getPlayers().get(playerNum);
+				}
+			}
+			// clear game control
+			gameControl.setGuess("");
+			gameControl.setGuessResult("");
 		} 
 		else {
 			firstTurn += 1;
@@ -156,7 +165,74 @@ public class ClueGame extends JFrame implements MouseListener, ActionListener{
 			BoardCell cell = board.getCell(player.getRow(), player.getCol());
 			cell.setOccupied(false);
 			
+			if(player.isSolutionFlagged() == true) {
+				Solution acc = player.getAccusation();
+				JOptionPane.showMessageDialog(this, player.getName() + " accuses the murderer is " + acc.getPerson() + "in " + acc.getRoom() + " with a " + acc.getWeapon());
+				if(board.checkAccusation(acc.getRoom().getCardName(), acc.getPerson().getCardName(), acc.getWeapon().getCardName())) {
+					JOptionPane.showMessageDialog(this, player.getName() + "You have Won!");
+					dispose();
+				}else {
+					JOptionPane.showMessageDialog(this, player.getName() + "is out of the game!");	
+					player.setOut(true);
+				}
+			} 
+			
+			if(player.getAccusationChance() >= .80) {
+				Solution acc = player.getAccusation();
+				JOptionPane.showMessageDialog(this, player.getName() + " accuses the murderer is " + acc.getPerson() + "in " + acc.getRoom() + " with a " + acc.getWeapon());
+				if(board.checkAccusation(acc.getRoom().getCardName(), acc.getPerson().getCardName(), acc.getWeapon().getCardName())) {
+					JOptionPane.showMessageDialog(this, player.getName() + "You have Won!");
+					dispose();
+				}else {
+					JOptionPane.showMessageDialog(this, player.getName() + "is out of the game!");	
+					player.setOut(true);
+				}
+			}
+			
 			player.move(selectedCell.getRow(), selectedCell.getCol());	
+			
+			if(selectedCell.isRoomCenter()) {
+				Solution suggestion = player.createSuggestion();
+				
+				Card room = suggestion.getRoom();
+				Card person = suggestion.getPerson();
+				Card weapon = suggestion.getWeapon();
+				String roomName = room.getCardName();
+				String personName = person.getCardName();
+				String weaponName = weapon.getCardName();
+				gameControl.setGuess(roomName + ", " + personName + ", " + weaponName);
+				JOptionPane.showMessageDialog(this, player.getName() + " suggests the murderer is " + personName + "in " + roomName + " with a " + weaponName);
+				
+				for (Player murder: board.getPlayers()) {
+					if(murder.getName() == personName) {
+						murder.move(selectedCell.getRow(), selectedCell.getCol());
+						break;
+					}
+				}
+				repaint();
+				// get guess result
+				Card guessResult = board.handleSuggestion(room, person, weapon, player);
+				
+				if( guessResult != null) {
+					player.updateHand(guessResult);
+					JOptionPane.showMessageDialog(this, "This suggestion was disproven!");
+					gameControl.setGuessResult("Hidden");
+				} else {
+					JOptionPane.showMessageDialog(this, "This suggestion was not disproven!");
+					gameControl.setGuessResult("Not disproven");
+					boolean hasRoom = false;
+					for(Card card: player.getHand()) {
+						if(card.getCardName()==roomName) {
+							hasRoom = true;
+						}
+					}
+					if(!hasRoom) {
+						player.setSolutionFlagged(true);
+						player.setAccusation(suggestion);
+					}
+				}
+				
+			}
 			
 			// set new location after move to occupied
 			selectedCell.setOccupied(true);
@@ -252,6 +328,13 @@ public class ClueGame extends JFrame implements MouseListener, ActionListener{
 						String person = suggestDialog.getPersonSuggestion().getCardName();
 						String weapon = suggestDialog.getWeaponSuggestion().getCardName();
 						gameControl.setGuess(room + ", " + person + ", " + weapon);
+						
+						for (Player murder: board.getPlayers()) {
+							if(murder.getName() == person) {
+								murder.move(selectedCell.getRow(), selectedCell.getCol());
+								break;
+							}
+						}
 
 						// get guess result
 						Card guessResult = suggestDialog.getGuessResult();
@@ -265,7 +348,8 @@ public class ClueGame extends JFrame implements MouseListener, ActionListener{
 								if (player.getHand().contains(guessResult)) {
 									playerWithCard = player;
 								}
-							}	
+							}
+							repaint();
 							// show guess result in card panel
 							if (guessResult.getType() == CardType.ROOM) {
 								cardsPanel.update(CardsPanel.getSeenRoom(), guessResult, playerWithCard.getColor());

@@ -10,9 +10,17 @@ import java.util.Random;
 import java.util.Set;
 
 public class ComputerPlayer extends Player {
+	private boolean solutionFlagged;
+	private Solution accusation;
 	
 	public ComputerPlayer(String name, String color, int row, int col) {
 		super(name, color, row, col);
+		this.solutionFlagged = false;
+		this.accusation = null;
+	}
+	
+	public float getAccusationChance() {
+		return this.getHand().size() / 21;
 	}
 	
 	/*
@@ -98,9 +106,25 @@ public class ComputerPlayer extends Player {
 		}
 		return null;
 	}
-
+	
 
 	
+	public boolean isSolutionFlagged() {
+		return solutionFlagged;
+	}
+
+	public void setSolutionFlagged(boolean solutionFlagged) {
+		this.solutionFlagged = solutionFlagged;
+	}
+
+	public void setAccusation(Solution accusation) {
+		this.accusation = accusation;
+	}
+	
+	public Solution getAccusation() {
+		return accusation;
+	}
+
 	/*
 	 * this function will do the logic for selecting the targets for the computer
 	 * it will choose randomly if no targets are rooms
