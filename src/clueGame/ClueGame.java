@@ -48,7 +48,7 @@ public class ClueGame extends JFrame implements MouseListener, ActionListener{
 		add(gameControl, BorderLayout.SOUTH);
 		add(cardsPanel, BorderLayout.EAST);
 		
-	    AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("src/data/Cyber_Theme.wav"));
+	    AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("src/data/PleaseWork.wav"));
 	    clip = AudioSystem.getClip();
 	    clip.open(audioInputStream);
 	}	
