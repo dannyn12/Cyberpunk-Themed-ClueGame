@@ -201,7 +201,7 @@ public class ClueGame extends JFrame implements MouseListener, ActionListener{
 				String personName = person.getCardName();
 				String weaponName = weapon.getCardName();
 				gameControl.setGuess(roomName + ", " + personName + ", " + weaponName);
-				JOptionPane.showMessageDialog(this, player.getName() + " suggests the murderer is " + personName + "in " + roomName + " with a " + weaponName);
+				JOptionPane.showMessageDialog(this, player.getName() + " suggests the murderer is " + personName + " in " + roomName + " with a " + weaponName);
 				
 				for (Player murder: board.getPlayers()) {
 					if(murder.getName() == personName) {
