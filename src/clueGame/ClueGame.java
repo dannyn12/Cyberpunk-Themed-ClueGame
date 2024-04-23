@@ -13,7 +13,8 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Set;
-
+import javax.sound.sampled.*;
+import java.io.*;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -28,15 +29,15 @@ public class ClueGame extends JFrame implements MouseListener, ActionListener{
 	private Player currPlayer;
 	private Random random;
 	private int firstTurn;
-
-	public ClueGame() {
+	private Clip clip;
+	
+	public ClueGame() throws LineUnavailableException, IOException, UnsupportedAudioFileException {
 		board = Board.getInstance();
 		boardPanel = new BoardPanel();
 		cardsPanel = new CardsPanel();
 		gameControl = new GameControlPanel();
 		this.random = new Random();
 		this.firstTurn = 0;
-		
 		gameControl.setPreferredSize(new Dimension(900, 130));
 		cardsPanel.setPreferredSize(new Dimension(243, getHeight()));
 		
@@ -46,12 +47,17 @@ public class ClueGame extends JFrame implements MouseListener, ActionListener{
 		add(boardPanel, BorderLayout.CENTER);
 		add(gameControl, BorderLayout.SOUTH);
 		add(cardsPanel, BorderLayout.EAST);
+		
+	    AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("src/data/Cyber_Theme.wav"));
+	    clip = AudioSystem.getClip();
+	    clip.open(audioInputStream);
 	}	
 	
 	/*
 	 * this function will begin the game
 	 */
 	public void startGame() {
+		startMusic();
 		addMouseListener(this);
 		this.playerNum = 0;
 		
@@ -413,10 +419,15 @@ public class ClueGame extends JFrame implements MouseListener, ActionListener{
         return randomRoll;
 	}
 	
+	public void startMusic() {
+	    clip.loop(Clip.LOOP_CONTINUOUSLY);
+	    clip.start();
+	}
+	
 	/* 
 	 * Initialize board and begin game
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws LineUnavailableException, IOException, UnsupportedAudioFileException {
 		ClueGame frame = new ClueGame();
 		frame.setTitle("Clue Game");
 		frame.setSize(925, 900);
