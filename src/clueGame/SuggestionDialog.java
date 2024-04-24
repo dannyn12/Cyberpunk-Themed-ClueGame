@@ -59,6 +59,19 @@ public class SuggestionDialog extends JDialog{
 		setResizable(false);
 
 		// Get the players selected suggestion and see if its correct or wrong
+		submitButton(board, player, roomIn);
+
+		// Cancel an accusation
+		cancelButton();
+	}
+
+	private void cancelButton() {
+		cancelButton.addActionListener(e -> {
+			dispose();
+		});
+	}
+
+	private void submitButton(Board board, Player player, Room roomIn) {
 		submitButton.addActionListener(e -> {
 			// get player selected suggestion
 			ArrayList<Card> roomCards = board.getRoomCards();
@@ -79,11 +92,6 @@ public class SuggestionDialog extends JDialog{
 		
 			// Close the dialog 
 			submitted = true;
-			dispose();
-		});
-
-		// Cancel an accusation
-		cancelButton.addActionListener(e -> {
 			dispose();
 		});
 	}

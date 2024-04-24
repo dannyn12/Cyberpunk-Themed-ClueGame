@@ -55,7 +55,26 @@ public class AccusationDialog extends JDialog {
         setResizable(false);
         
         // Get the players selected answer and see if its correct or wrong
-        submitButton.addActionListener(e -> {  	
+        submitButton(board);
+        
+        // Cancel an accusation
+        cancelButton();
+    }
+    
+    /*
+     * Cancel a accusation
+     */
+	private void cancelButton() {
+		cancelButton.addActionListener(e -> {
+            dispose();
+        });
+	}
+	
+	/*
+	 * Submit a accusation and check it
+	 */
+	private void submitButton(Board board) {
+		submitButton.addActionListener(e -> {  	
         	// Get player selected answer
             String selectedRoom = (String) roomComboBox.getSelectedItem();
             String selectedPerson = (String) personComboBox.getSelectedItem();
@@ -75,12 +94,7 @@ public class AccusationDialog extends JDialog {
             // Close the dialog 
             dispose();
         });
-        
-        // Cancel an accusation
-        cancelButton.addActionListener(e -> {
-            dispose();
-        });
-    }
+	}
     
     /*
      * Create pull down for rooms, people, and weapons

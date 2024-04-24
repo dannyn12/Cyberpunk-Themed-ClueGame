@@ -555,6 +555,9 @@ public class Board {
 		this.numColumns = cols;
 	}
 	
+	/*
+	 * Getters and setters
+	 */
 	public Set<BoardCell> getAdjList(int row, int col){
 		BoardCell cell = this.grid[row][col];
 		return cell.getAdjList();

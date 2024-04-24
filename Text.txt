@@ -1,7 +1,0 @@
-Authors: Danny Nguyen and Jordan Lam
-3/2/24
-.
-FourDoorDirections() Test Method: In this test, we decided to test all the doorways and see if the direction to the room is correct. We made sure the door direction and everything matched our layout. 
-testRooms() Test Method: In this test, we tested if a cell is correctly placed in all rooms, if a Cyberspace Nexus cell is correctly labeled, if a cell is in the center of Techno Junkyard, if a cell is the walkway, and if a cell is a unused space.
-
-
