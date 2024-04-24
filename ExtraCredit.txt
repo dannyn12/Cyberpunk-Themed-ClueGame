@@ -1,5 +1,5 @@
 Authors: Danny Nguyen and Jordan Lam
 4/23/24
 
-We added music to the game. We also made a playable .jar file.
+We added music to the game. We improved use interaction by adding prompts for computer action. We added .jar file.
 

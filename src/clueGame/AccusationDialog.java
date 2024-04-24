@@ -1,4 +1,4 @@
-/* AccusationDialog class displays a dialog that allows the player to make a accusation.
+/* AccusationDialog class displays a dialog that allows the player to make a accusation. It also checks the accusation.
  * Authors: Jordan Lam, Danny Nguyen
  */
 package clueGame;

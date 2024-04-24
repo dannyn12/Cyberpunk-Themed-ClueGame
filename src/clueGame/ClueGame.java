@@ -5,6 +5,7 @@
 package clueGame;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -36,6 +37,7 @@ public class ClueGame extends JFrame implements MouseListener, ActionListener{
 		boardPanel = new BoardPanel();
 		cardsPanel = new CardsPanel();
 		gameControl = new GameControlPanel();
+		boardPanel.setBackground(Color.BLACK);
 		this.random = new Random();
 		this.firstTurn = 0;
 		gameControl.setPreferredSize(new Dimension(900, 130));
@@ -85,6 +87,7 @@ public class ClueGame extends JFrame implements MouseListener, ActionListener{
 		int numRoom = 0;
 		int numPeople = 0;
 		int numWeapon = 0;
+		String colorOfNone = "White";
 		
 		// get player hand
 		ArrayList<Card> hand = player.getHand();
@@ -105,13 +108,13 @@ public class ClueGame extends JFrame implements MouseListener, ActionListener{
 		
 		// show if player has no room, people, or weapon card 
 		if (numRoom == 0) {
-			cardsPanel.update(CardsPanel.getInHandRoom(), new Card("None", CardType.ROOM), "White");
+			cardsPanel.update(CardsPanel.getInHandRoom(), new Card("None", CardType.ROOM), colorOfNone);
 		}
 		if (numPeople == 0) {
-			cardsPanel.update(CardsPanel.getInHandPeople(), new Card("None", CardType.PERSON), "White");
+			cardsPanel.update(CardsPanel.getInHandPeople(), new Card("None", CardType.PERSON), colorOfNone);
 		}
 		if (numWeapon == 0) {
-			cardsPanel.update(CardsPanel.getInHandWeapon(), new Card("None", CardType.WEAPON), "White");
+			cardsPanel.update(CardsPanel.getInHandWeapon(), new Card("None", CardType.WEAPON), colorOfNone);
 		}
 	}
 	
@@ -183,6 +186,7 @@ public class ClueGame extends JFrame implements MouseListener, ActionListener{
 		BoardCell cell = board.getCell(player.getRow(), player.getCol());
 		cell.setOccupied(false);
 		
+		// computer does accusation with flagged true of has a 80% chance of getting the answer
 		if(player.isSolutionFlagged() == true) {
 			Solution acc = player.getAccusation();
 			JOptionPane.showMessageDialog(this, player.getName() + " accuses the murderer is " + acc.getPerson() + "in " + acc.getRoom() + " with a " + acc.getWeapon());
@@ -197,7 +201,7 @@ public class ClueGame extends JFrame implements MouseListener, ActionListener{
 		} 
 		
 		if(player.getAccusationChance() >= .80) {
-			Solution acc = player.getAccusation();
+			Solution acc = player.createSuggestion();
 			JOptionPane.showMessageDialog(this, player.getName() + " accuses the murderer is " + acc.getPerson() + "in " + acc.getRoom() + " with a " + acc.getWeapon());
 			if(board.checkAccusation(acc.getRoom().getCardName(), acc.getPerson().getCardName(), acc.getWeapon().getCardName())) {
 				JOptionPane.showMessageDialog(this, player.getName() + "You have Won!");
@@ -456,6 +460,7 @@ public class ClueGame extends JFrame implements MouseListener, ActionListener{
 		frame.setSize(925, 900);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
+		
 		// showing the welcome screen
 		JOptionPane.showMessageDialog(frame, "You are Cipher. \n" + "Can you find the solution \n" + "before the Computer players.", "Welcome to Clue", JOptionPane.INFORMATION_MESSAGE);
 		frame.startGame();
