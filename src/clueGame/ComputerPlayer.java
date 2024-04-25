@@ -19,10 +19,6 @@ public class ComputerPlayer extends Player {
 		this.accusation = null;
 	}
 	
-	public float getAccusationChance() {
-		return this.getHand().size() / 21;
-	}
-	
 	/*
 	 * this function will create the suggestion for the computer
 	 * it will choose the only weapon missing if it has all others and the same for person
@@ -106,24 +102,6 @@ public class ComputerPlayer extends Player {
 		}
 		return null;
 	}
-	
-
-	
-	public boolean isSolutionFlagged() {
-		return solutionFlagged;
-	}
-
-	public void setSolutionFlagged(boolean solutionFlagged) {
-		this.solutionFlagged = solutionFlagged;
-	}
-
-	public void setAccusation(Solution accusation) {
-		this.accusation = accusation;
-	}
-	
-	public Solution getAccusation() {
-		return accusation;
-	}
 
 	/*
 	 * this function will do the logic for selecting the targets for the computer
@@ -188,6 +166,29 @@ public class ComputerPlayer extends Player {
 		}
 		
 		return null;
+	}
+
+	/*
+	 * Setters and Getters
+	 */
+	public float getAccusationChance() {
+		return this.getHand().size() / 21;
+	}
+	
+	public boolean isSolutionFlagged() {
+		return solutionFlagged;
+	}
+
+	public void setSolutionFlagged(boolean solutionFlagged) {
+		this.solutionFlagged = solutionFlagged;
+	}
+
+	public void setAccusation(Solution accusation) {
+		this.accusation = accusation;
+	}
+	
+	public Solution getAccusation() {
+		return accusation;
 	}
 
 }

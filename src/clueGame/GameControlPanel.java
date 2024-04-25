@@ -45,7 +45,6 @@ public class GameControlPanel extends JPanel{
 	private JPanel subPanelBottom1;
 	private JPanel subPanelBottom2;
 	private JTextField theGuess;
-	private JTextField GuessResult;
 	private JTextField theResult;
 	
 	private static ClueGame clueGame; // this is used for testing in main 
