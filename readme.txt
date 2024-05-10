@@ -1,7 +1,7 @@
 Authors: Jordan Lam, Danny Nguyen
 
 Project Description: 
-This project aims to recreate the classic Clue board game as a graphical user interface (GUI) playable on a computer. The game involves one real player, the user, and five other AI players.
+This project aims to recreate the classic Clue board game with a Cyberpunk theme as a graphical user interface (GUI) playable on a computer. The game involves one real player, the user, and five other AI players.
 
 To start the game:
 1. Download the provided source code.
