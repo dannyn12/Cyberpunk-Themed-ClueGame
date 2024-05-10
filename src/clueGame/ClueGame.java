@@ -133,7 +133,7 @@ public class ClueGame extends JFrame implements MouseListener, ActionListener{
 			this.nextPlayerNum();
 			currPlayer = board.getPlayers().get(playerNum);
 			if(currPlayer.getOut()) {
-				while(currPlayer.getOut()) { // i hate while loops
+				while(currPlayer.getOut()) { 
 					this.nextPlayerNum();
 					currPlayer = board.getPlayers().get(playerNum);
 				}
@@ -234,16 +234,15 @@ public class ClueGame extends JFrame implements MouseListener, ActionListener{
 				}
 			}
 			repaint();
+			
 			// get guess result
 			Card guessResult = board.handleSuggestion(room, person, weapon, player);
 			
 			if( guessResult != null) {
 				player.updateHand(guessResult);
-				JOptionPane.showMessageDialog(this, "This suggestion was disproven!");
-				gameControl.setGuessResult("Hidden");
+				gameControl.setGuessResult("Suggestion was Disproven!");
 			} else {
-				JOptionPane.showMessageDialog(this, "This suggestion was not disproven!");
-				gameControl.setGuessResult("Not disproven");
+				gameControl.setGuessResult("Not disproven!");
 				boolean hasRoom = false;
 				for(Card card: player.getHand()) {
 					if(card.getCardName() == roomName) {
@@ -307,49 +306,7 @@ public class ClueGame extends JFrame implements MouseListener, ActionListener{
 			JOptionPane.showMessageDialog(this, "It's not your turn!");
 		}
 	}
-	
-	/*
-	 * Perform task when mouse is clicked
-	 */
-	@Override 
-	public void mousePressed(MouseEvent e) {
-		// will do nothing if mouse is pressed when computers turn or player is finished with turn
-		if (!(currPlayer instanceof ComputerPlayer) && !currPlayer.getPlayerFinished()) {
-			BoardCell selectedCell = null;
-			for(int i = 0; i < board.getNumRows(); i++) {
-				for(int j = 0; j < board.getNumColumns(); j++) {
-					if(board.getCell(i, j).matchLocation(e.getX(), e.getY())) {
-						selectedCell = board.getCell(i, j);
-						break;
-					}
-				}
-			}
 
-			if (selectedCell != null && selectedCell.getisTarget()) {
-				// player moves
-				currPlayer.isPlayerFinished(true);
-				
-				// set original location as not occupied
-				BoardCell cell = board.getCell(currPlayer.getRow(), currPlayer.getCol());
-				cell.setOccupied(false);
-				
-				currPlayer.move(selectedCell.getRow(), selectedCell.getCol());
-				
-				// set new location after move to occupied
-				selectedCell.setOccupied(true);
-				
-				// clear turn
-				this.clearTurn();
-				// if target selected is a room suggestion dialog shows up
-				roomSuggestion(selectedCell);
-			} 
-			else {
-				JOptionPane.showMessageDialog(this, "You can't move here!");
-			}
-			repaint();
-		}
-	}
-	
 	/*
 	 * Method pops up suggestion each time human player goes into a room
 	 */
@@ -404,6 +361,49 @@ public class ClueGame extends JFrame implements MouseListener, ActionListener{
 			}
 		}
 	}	
+	
+	/*
+	 * Perform task when mouse is clicked
+	 */
+	@Override 
+	public void mousePressed(MouseEvent e) {
+		// will do nothing if mouse is pressed when computers turn or player is finished with turn
+		if (!(currPlayer instanceof ComputerPlayer) && !currPlayer.getPlayerFinished()) {
+			BoardCell selectedCell = null;
+			for(int i = 0; i < board.getNumRows(); i++) {
+				for(int j = 0; j < board.getNumColumns(); j++) {
+					if(board.getCell(i, j).matchLocation(e.getX(), e.getY())) {
+						selectedCell = board.getCell(i, j);
+						break;
+					}
+				}
+			}
+
+			if (selectedCell != null && selectedCell.getisTarget()) {
+				// player moves
+				currPlayer.isPlayerFinished(true);
+				
+				// set original location as not occupied
+				BoardCell cell = board.getCell(currPlayer.getRow(), currPlayer.getCol());
+				cell.setOccupied(false);
+				
+				currPlayer.move(selectedCell.getRow(), selectedCell.getCol());
+				
+				// set new location after move to occupied
+				selectedCell.setOccupied(true);
+				
+				// clear turn
+				this.clearTurn();
+				// if target selected is a room suggestion dialog shows up
+				roomSuggestion(selectedCell);
+			} 
+			else {
+				JOptionPane.showMessageDialog(this, "You can't move here!");
+			}
+			repaint();
+		}
+	}
+	
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
