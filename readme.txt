@@ -6,4 +6,4 @@ This project aims to recreate the classic Clue board game with a Cyberpunk theme
 To start the game:
 1. Download the provided source code.
 2. Import the code into any Java Integrated Development Environment (IDE).
-3. Click "Run" in clueGame.java to launch and play the game.
+3. Click "Run" in ClueGame.java to launch and play the game.
